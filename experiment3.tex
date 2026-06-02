@@ -1,0 +1,873 @@
+%\setcounter{MaxMatrixCols}{30}
+
+\documentclass{article}%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{cleveref}%
+\setcounter{MaxMatrixCols}{30}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.50.0.2960}
+%TCIDATA{CSTFile=40 LaTeX article.cst}
+%TCIDATA{Created=Thursday, January 09, 2025 15:40:48}
+%TCIDATA{LastRevised=Friday, March 28, 2025 09:18:44}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{<META NAME="DocumentShell" CONTENT="Standard LaTeX\Blank - Standard LaTeX Article">}
+%BeginMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+%EndMSIPreambleData
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+
+
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\thetahat}{\hat{\theta}_n}
+\newcommand{\thetastar}{\theta^*}
+\newcommand{\one}{\boldsymbol{1}}
+
+
+
+\begin{document}
+
+\title{Bayes-assisted anytime-valid t-tests and confidence sequences for Gaussian means with unknown variance}
+\author{Fran\c{c}ois}
+\maketitle
+
+\section{Calculations}
+
+
+
+% compute_An
+% numerical integration via integrate.quad
+% compute_mixture_martingale
+% numerical integration via integrate.quad
+% compute_g_inverse_lebesgue
+% numerical root-finding via optimize.brentq
+% compute_calibration_function
+% Monte Carlo simulation
+% compute_g_inverse
+% numerical root-finding, repeatedly calling Monte Carlo calibration
+% compute_ville_pvalue
+% depends on numerical compute_mixture_martingale
+% compute_extended_pvalue_lebesgue
+% closed-form once M_n^{Leb}
+% is available, so not really numerical in itself
+% compute_extended_pvalue
+% numerical root-finding plus numerical integration plus Monte Carlo
+% experiment2_pvalue_trajectories
+% simulation experiment with repeated numerical evaluations
+
+
+
+\[
+H_0:\theta^* = 0
+\qquad\text{vs}\qquad
+H_1:\theta^*\neq 0,
+\]
+
+where \(Y_i \sim N(\mu,\sigma^2)\), both \(\mu,\sigma\) unknown, and
+
+\[
+\theta^*=\frac{\mu}{\sigma}.
+\]
+
+The scale-invariant statistic is defined as
+
+\[
+u_n
+=
+\frac{\sum_{i=1}^n Y_i}{\sqrt{\sum_{i=1}^n Y_i^2}}
+=
+\frac{n\hat\theta_n}{\sqrt{(n-1)+n\hat\theta_n^2}},
+\]
+
+and the building block
+
+\[
+h_{\theta,n}(u)
+=
+e^{-n\theta^2/2}\,A_n(\theta u),
+\]
+
+with
+
+\[
+A_n(z)
+=
+\frac{1}{\Gamma(n/2)}
+\int_0^\infty y^{n/2-1}e^{-y+z\sqrt{2y}}\,dy
+=
+\mathbb E[e^{zR_n}],
+\qquad R_n\sim \chi_n.
+\]
+
+Under \(H_0:\theta^*=0\), one has \(h_{0,n}(u)=1\), so the likelihood-ratio martingale reduces to \(L_n(y_{1:n};0,\theta)=h_{\theta,n}(u_n)\).
+
+\paragraph{General mixture martingale:}
+
+Given a prior or \(\sigma\)-finite mixing measure \(\Pi\) on \(\mathbb R\), the mixture martingale is
+
+\[
+M_n^\Pi(u)
+=
+\int_{\mathbb R} h_{\theta,n}(u)\,\Pi(d\theta)
+=
+\int_{\mathbb R} e^{-n\theta^2/2}A_n(\theta u)\,\Pi(d\theta).
+\]
+
+If \(\Pi\) has density \(\pi(\theta)\), this becomes
+
+\[
+M_n^\Pi(u)
+=
+\int_{-\infty}^\infty e^{-n\theta^2/2}A_n(\theta u)\,\pi(\theta)\,d\theta.
+\]
+
+
+Starting from the mixture construction in the document:
+
+\[
+M_n(y_{1:n};\theta_0)
+=
+\int_{\mathbb R}L_n(y_{1:n};\theta_0,\theta)\,\Pi(d\theta)
+=
+\frac{\int h_{\theta,n}(y_{1:n})\,\Pi(d\theta)}{h_{\theta_0,n}(y_{1:n})}.
+\]
+
+For \(\theta_0=0\), \(h_{0,n}=1\), hence
+
+\[
+M_n^\Pi(y_{1:n})
+=
+\int h_{\theta,n}(y_{1:n})\,\Pi(d\theta)
+=
+\int e^{-n\theta^2/2}A_n(\theta u_n)\,\Pi(d\theta).
+\]
+
+
+\paragraph{Calibration function \(g_\Pi\):}
+
+For a proper prior, the Ville p-process is
+
+\[
+P_{n}^{V,\Pi}
+=
+\frac{1}{M_n^\Pi}.
+\]
+
+For a general \(\sigma\)-finite \(\Pi\), the document uses the extended calibration
+
+\[
+g_\Pi(c)
+=
+\mathbb E_0\!\left[\min\!\left(\frac{M_2^\Pi(U_2)}{c},1\right)\right],
+\]
+
+where the expectation is under \(H_0:\theta^*=0\), and \(U_2\) is the 2-sample version of \(u_n\). The extended p-variable is then
+
+\[
+P_n^{E,\Pi}
+=
+g_\Pi(M_n^\Pi).
+\]
+
+%This is the mathematical definition behind `compute_calibration_function` and `compute_extended_pvalue`.
+
+
+We take \(n=2\) in \(g_\Pi\) because the extended Ville calibration is defined from \(M_2\), and for the improper Lebesgue prior the process naturally starts at \(n=2\).
+
+
+
+\paragraph{Prior-by-prior formulas:}
+
+
+\begin{itemize}
+    \item[A.] \textbf{Gaussian prior:}
+    
+    Suppose
+
+\[
+\Pi(d\theta)=\pi_G(\theta)\,d\theta,
+\qquad
+\pi_G(\theta)
+=
+\frac{1}{\sqrt{2\pi}s}
+\exp\!\left(-\frac{(\theta-m)^2}{2s^2}\right).
+\]
+
+Then
+
+\[
+M_n^{G}(u)
+=
+\int_{-\infty}^\infty
+e^{-n\theta^2/2}A_n(\theta u)
+\frac{1}{\sqrt{2\pi}s}
+\exp\!\left(-\frac{(\theta-m)^2}{2s^2}\right)
+\,d\theta.
+\]
+
+The calibration is
+
+\[
+g_G(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^G(U_2)}{c},1\right)
+\right].
+\]
+
+Substituting the Gaussian density into the general mixture formula:
+
+\[
+M_n^\Pi(u)=\int h_{\theta,n}(u)\pi(\theta)\,d\theta.
+\]
+
+There is no closed form given for \(M_n^G\) or \(g_G\), so the code uses numerical integration for \(M_n^G\) and Monte Carlo for \(g_G\).
+
+
+
+\item[B.] \textbf{Laplace prior:}
+
+Let
+
+\[
+\pi_L(\theta)
+=
+\frac{1}{2b}\exp\!\left(-\frac{|\theta-m|}{b}\right).
+\]
+
+Then
+
+\[
+M_n^{L}(u)
+=
+\int_{-\infty}^\infty
+e^{-n\theta^2/2}A_n(\theta u)
+\frac{1}{2b}\exp\!\left(-\frac{|\theta-m|}{b}\right)\,d\theta,
+\]
+
+and
+
+\[
+g_L(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^L(U_2)}{c},1\right)
+\right].
+\]
+
+Again, this is just substitution into the general formula.
+
+
+\item[C.] \textbf{Student-\(t\) prior:}
+
+For \(\nu>0\), center \(m\), scale \(s\),
+
+\[
+\pi_T(\theta)
+=
+\frac{1}{s}
+\frac{\Gamma\!\left(\frac{\nu+1}{2}\right)}
+{\sqrt{\nu\pi}\,\Gamma\!\left(\frac{\nu}{2}\right)}
+\left(
+1+\frac{1}{\nu}\left(\frac{\theta-m}{s}\right)^2
+\right)^{-(\nu+1)/2}.
+\]
+
+Then
+
+\[
+M_n^T(u)
+=
+\int_{-\infty}^\infty
+e^{-n\theta^2/2}A_n(\theta u)\,\pi_T(\theta)\,d\theta,
+\]
+
+and
+
+\[
+g_T(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^T(U_2)}{c},1\right)
+\right].
+\]
+
+The document studies shifted polynomial-tail priors \(\pi_m(\theta)=\pi(\theta-m)\), and Student-\(t\) is one of the main examples with tail index
+
+\[
+\pi(x)\sim C|x|^{-(\nu+1)}.
+\]
+
+This is why the asymptotic recovery of the Lebesgue prior applies here.
+
+
+\item[D.] \textbf{Cauchy prior:}
+
+This is Student-\(t\) with \(\nu=1\):
+
+\[
+\pi_C(\theta)
+=
+\frac{1}{\pi s}\frac{1}{1+\left(\frac{\theta-m}{s}\right)^2}.
+\]
+
+So
+
+\[
+M_n^C(u)
+=
+\int_{-\infty}^\infty
+e^{-n\theta^2/2}A_n(\theta u)\,
+\frac{1}{\pi s}\frac{1}{1+\left(\frac{\theta-m}{s}\right)^2}
+\,d\theta,
+\]
+
+and
+
+\[
+g_C(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^C(U_2)}{c},1\right)
+\right].
+\]
+
+The document explicitly mentions the Cauchy prior as a main example.
+
+
+\item[E.] \textbf{Horseshoe prior:}
+
+We use an approximation
+
+\[
+\pi_{HS}(\theta)
+\approx
+\frac{1}{\pi s}
+\frac{\log\!\left(1+\frac{1}{z^2}\right)}{1+z^2},
+\qquad
+z=\frac{\theta-m}{s},
+\]
+
+with a small-\(z\) regularization near the origin ($\approx \frac{1}{\pi s}$).
+
+So the corresponding mixture is
+
+\[
+M_n^{HS}(u)
+=
+\int_{-\infty}^\infty
+e^{-n\theta^2/2}A_n(\theta u)\,\pi_{HS}(\theta)\,d\theta,
+\]
+
+and
+
+\[
+g_{HS}(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^{HS}(U_2)}{c},1\right)
+\right].
+\]
+
+The horseshoe location family has polynomial tail index \(\beta=2\), so it also falls under the same “recovery of Lebesgue under large shift” theorem.
+
+\end{itemize}
+
+\paragraph{Improper Lebesgue prior:}
+
+Take
+
+\[
+\Pi_{\mathrm{Leb}}(d\theta)=d\theta.
+\]
+
+Then
+
+\[
+M_n^{\mathrm{Leb}}(u)
+=
+\int_{-\infty}^\infty e^{-n\theta^2/2}A_n(\theta u)\,d\theta.
+\]
+
+We have the closed form
+
+\[
+M_n^{\mathrm{Leb}}(u)
+=
+\sqrt{\frac{2\pi}{n}}
+\left(1-\frac{u^2}{n}\right)^{-n/2},
+\qquad |u|<\sqrt n.
+\]
+
+%That is exactly your `compute_mixture_lebesgue`.
+
+% ### Derivation
+% Use
+
+% \[
+% A_n(\theta u)=\mathbb E[e^{\theta u R_n}],
+% \qquad R_n\sim \chi_n.
+% \]
+
+% Then by Tonelli,
+
+% \[
+% M_n^{\mathrm{Leb}}(u)
+% =
+% \int_{\mathbb R} e^{-n\theta^2/2}\mathbb E[e^{\theta u R_n}]\,d\theta
+% =
+% \mathbb E\!\left[
+% \int_{\mathbb R}\exp\!\left(-\frac n2\theta^2+\theta uR_n\right)\,d\theta
+% \right].
+% \]
+
+% Complete the square:
+
+% \[
+% -\frac n2\theta^2+\theta uR_n
+% =
+% -\frac n2\left(\theta-\frac{uR_n}{n}\right)^2
+% +\frac{u^2R_n^2}{2n}.
+% \]
+
+% Hence
+
+% \[
+% \int_{\mathbb R}\exp\!\left(-\frac n2\theta^2+\theta uR_n\right)\,d\theta
+% =
+% \sqrt{\frac{2\pi}{n}}\exp\!\left(\frac{u^2R_n^2}{2n}\right).
+% \]
+
+% Therefore
+
+% \[
+% M_n^{\mathrm{Leb}}(u)
+% =
+% \sqrt{\frac{2\pi}{n}}
+% \mathbb E\!\left[\exp\!\left(\frac{u^2R_n^2}{2n}\right)\right].
+% \]
+
+% Since \(R_n^2\sim \chi_n^2\), its mgf is
+
+% \[
+% \mathbb E[e^{tR_n^2}] = (1-2t)^{-n/2},
+% \qquad t<1/2.
+% \]
+
+% Take \(t=u^2/(2n)\). Then
+
+% \[
+% M_n^{\mathrm{Leb}}(u)
+% =
+% \sqrt{\frac{2\pi}{n}}
+% \left(1-\frac{u^2}{n}\right)^{-n/2}.
+% \]
+
+% This is Proposition 2.
+
+
+
+\textbf{Lebesgue calibration \(g_{\mathrm{Leb}}\)}
+
+We also have the closed form for
+
+\[
+g_{\mathrm{Leb}}(c)
+=
+\mathbb E_0\!\left[
+\min\!\left(\frac{M_2^{\mathrm{Leb}}(U_2)}{c},1\right)
+\right].
+\]
+
+It is
+
+\[
+g_{\mathrm{Leb}}(c)
+=
+\begin{cases}
+1, & c\le \sqrt{\pi},\\[1ex]
+\displaystyle
+\frac{2}{\pi}
+\left[
+\arcsin\!\left(\sqrt{\frac{\sqrt\pi}{c}}\right)
++
+\sqrt{\frac{\sqrt\pi}{c}\left(1-\frac{\sqrt\pi}{c}\right)}
+\right],
+& c>\sqrt{\pi}.
+\end{cases}
+\]
+
+%That is exactly your `compute_g_lebesgue`.
+
+\textbf{Derivation:}
+
+
+For \(n=2\),
+
+\[
+M_2^{\mathrm{Leb}}(u)=\sqrt{\pi}\left(1-\frac{u^2}{2}\right)^{-1}.
+\]
+
+Under \(H_0\), define
+
+\[
+B:=1-\frac{U_2^2}{2}.
+\]
+
+The document shows
+
+\[
+B\sim \mathrm{Beta}\!\left(\frac12,\frac12\right),
+\qquad
+f_B(b)=\frac{1}{\pi\sqrt{b(1-b)}},\quad b\in(0,1),
+\]
+
+and
+
+\[
+M_2^{\mathrm{Leb}}(U_2)=\frac{\sqrt{\pi}}{B}.
+\]
+
+Hence
+
+\[
+g_{\mathrm{Leb}}(c)
+=
+\int_0^1
+\min\!\left(\frac{\sqrt{\pi}}{cb},1\right)
+\frac{db}{\pi\sqrt{b(1-b)}}.
+\]
+
+If \(c\le \sqrt\pi\), the fraction is always at least \(1\), so \(g_{\mathrm{Leb}}(c)=1\).
+
+If \(c>\sqrt\pi\), let
+
+\[
+a=\frac{\sqrt\pi}{c}\in(0,1).
+\]
+
+Then split the integral at \(b=a\):
+
+\[
+g_{\mathrm{Leb}}(c)
+=
+\int_0^a \frac{db}{\pi\sqrt{b(1-b)}}
++
+a\int_a^1 \frac{db}{\pi b\sqrt{b(1-b)}}.
+\]
+
+Evaluating these gives the closed form above. That is Proposition 3.
+
+
+\paragraph{Shifted polynomial-tail priors:}
+
+We have a shifted prior
+
+\[
+\pi_m(\theta)=\pi(\theta-m),
+\]
+
+and then the corresponding mixture
+
+\[
+M_{n,m}(u)
+=
+\int_{\mathbb R} e^{-n\theta^2/2}A_n(\theta u)\pi(\theta-m)\,d\theta.
+\]
+
+It also defines
+
+\[
+a_m := \pi(-m),
+\]
+
+and proves that for polynomial-tail priors,
+
+\[
+\frac{M_{n,m}(u)}{a_m}\to M_n^{\mathrm{Leb}}(u)
+\qquad (m\to\infty),
+\]
+
+and similarly
+
+\[
+g_m(a_m c)\to g_{\mathrm{Leb}}(c).
+\]
+
+This is the reason the shifted Student-\(t\), Cauchy, and horseshoe priors recover the improper Lebesgue benchmark under extreme prior-data conflict.
+
+
+% \paragraph{Improper exponential prior \(e^{-\kappa\theta}\):}
+
+% The code discussed the improper prior
+
+% \[
+% \Pi_\kappa(d\theta)=e^{-\kappa|\theta|}\,d\theta,
+% \qquad \kappa\ge 0.
+% \]
+
+% For \(\kappa=0\), this is the Lebesgue prior.
+
+% The corresponding mixture is
+
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \int_{\mathbb R}
+% e^{-n\theta^2/2}A_n(\theta u)e^{-\kappa|\theta|}
+% \,d\theta.
+% \]
+
+% The document gives the closed-form representation
+
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \sqrt{\frac{2\pi}{n}}\,
+% \mathbb E\!\left[
+% \exp\!\left(\frac{(uR_n-\kappa)^2}{2n}\right)
+% \right].
+% \]
+
+% For \(\kappa=0\), this reduces to the Lebesgue formula.
+
+% \textbf{Derivation:}
+
+% Start from
+
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \int_{\mathbb R} e^{-n\theta^2/2}A_n(\theta u)e^{-\kappa|\theta|}\,d\theta.
+% \]
+
+% The document’s derivation effectively rewrites the exponent in linear form inside the expectation and then completes the square, obtaining
+
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \mathbb E\!\left[
+% \int_{\mathbb R}
+% \exp\!\left(-\frac{n\theta^2}{2}+\theta(uR_n-\kappa)\right)d\theta
+% \right].
+% \]
+
+% Complete the square:
+
+% \[
+% -\frac{n\theta^2}{2}+\theta(uR_n-\kappa)
+% =
+% -\frac n2\left(\theta-\frac{uR_n-\kappa}{n}\right)^2
+% +\frac{(uR_n-\kappa)^2}{2n}.
+% \]
+
+% Then the Gaussian integral contributes \(\sqrt{2\pi/n}\), giving
+
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \sqrt{\frac{2\pi}{n}}\,
+% \mathbb E\!\left[
+% \exp\!\left(\frac{(uR_n-\kappa)^2}{2n}\right)
+% \right].
+% \]
+
+
+
+% \paragraph{Calibration for the exponential improper prior:}
+
+
+% Its calibration is defined exactly the same way:
+
+% \[
+% \tilde g_\kappa(c)
+% =
+% \mathbb E_0\!\left[
+% \min\!\left(\frac{M_2^{(\kappa)}(U_2)}{c},1\right)
+% \right].
+% \]
+
+% For \(n=2\),
+
+% \[
+% M_2^{(\kappa)}(u)
+% =
+% \sqrt{\pi}\,
+% \mathbb E\!\left[
+% \exp\!\left(\frac{(uR_2-\kappa)^2}{4}\right)
+% \right].
+% \]
+
+% There is no closed form analogous to \(g_{\mathrm{Leb}}\) known here, so one would approximate \(\tilde g_\kappa\) numerically or by Monte Carlo.
+
+
+
+% \section{Summary table}
+
+% For all priors, the common structure is
+
+% \[
+% M_n^\Pi(u)=\int e^{-n\theta^2/2}A_n(\theta u)\,\Pi(d\theta),
+% \qquad
+% g_\Pi(c)=\mathbb E_0\!\left[\min\!\left(\frac{M_2^\Pi(U_2)}{c},1\right)\right].
+% \]
+
+% Then:
+
+% Gaussian
+% \[
+% \Pi(d\theta)=\pi_G(\theta)\,d\theta
+% \]
+% \[
+% M_n^G(u)=\int e^{-n\theta^2/2}A_n(\theta u)\pi_G(\theta)\,d\theta
+% \]
+% \[
+% g_G(c)=\mathbb E_0[\min(M_2^G(U_2)/c,1)]
+% \]
+
+% - **Laplace**
+% \[
+% \Pi(d\theta)=\pi_L(\theta)\,d\theta
+% \]
+% \[
+% M_n^L(u)=\int e^{-n\theta^2/2}A_n(\theta u)\pi_L(\theta)\,d\theta
+% \]
+
+% - **Student-\(t\)**
+% \[
+% \Pi(d\theta)=\pi_T(\theta)\,d\theta
+% \]
+% \[
+% M_n^T(u)=\int e^{-n\theta^2/2}A_n(\theta u)\pi_T(\theta)\,d\theta
+% \]
+
+% - **Cauchy**
+% \[
+% \Pi(d\theta)=\pi_C(\theta)\,d\theta
+% \]
+% \[
+% M_n^C(u)=\int e^{-n\theta^2/2}A_n(\theta u)\pi_C(\theta)\,d\theta
+% \]
+
+% - **Horseshoe approximation**
+% \[
+% \Pi(d\theta)=\pi_{HS}(\theta)\,d\theta
+% \]
+% \[
+% M_n^{HS}(u)=\int e^{-n\theta^2/2}A_n(\theta u)\pi_{HS}(\theta)\,d\theta
+% \]
+
+% - **Lebesgue**
+% \[
+% \Pi(d\theta)=d\theta
+% \]
+% \[
+% M_n^{\mathrm{Leb}}(u)=\sqrt{\frac{2\pi}{n}}\left(1-\frac{u^2}{n}\right)^{-n/2}
+% \]
+% \[
+% g_{\mathrm{Leb}}(c)=
+% \begin{cases}
+% 1, & c\le \sqrt\pi,\\[1ex]
+% \frac{2}{\pi}\left[\arcsin\!\left(\sqrt{\frac{\sqrt\pi}{c}}\right)+
+% \sqrt{\frac{\sqrt\pi}{c}\left(1-\frac{\sqrt\pi}{c}\right)}\right], & c>\sqrt\pi
+% \end{cases}
+% \]
+
+% - **Improper exponential**
+% \[
+% \Pi_\kappa(d\theta)=e^{-\kappa|\theta|}d\theta
+% \]
+% \[
+% M_n^{(\kappa)}(u)
+% =
+% \sqrt{\frac{2\pi}{n}}\,
+% \mathbb E\!\left[\exp\!\left(\frac{(uR_n-\kappa)^2}{2n}\right)\right]
+% \]
+% \[
+% \tilde g_\kappa(c)
+% =
+% \mathbb E_0\!\left[\min(M_2^{(\kappa)}(U_2)/c,1)\right]
+% \]
+
+% ---
+
+% # 8. Relation to your code
+
+% Your code is implementing these formulas as follows:
+
+% - `compute_mixture_martingale`:
+% \[
+% M_n^\Pi(u)=\int h_{\theta,n}(u)\pi(\theta)\,d\theta
+% \]
+
+% - `compute_mixture_lebesgue`:
+% closed form for \(M_n^{\mathrm{Leb}}(u)\)
+
+% - `compute_g_lebesgue`:
+% closed form for \(g_{\mathrm{Leb}}(c)\)
+
+% - `compute_calibration_function`:
+% Monte Carlo approximation of
+% \[
+% g_\Pi(c)=\mathbb E_0[\min(M_2^\Pi(U_2)/c,1)]
+% \]
+
+% - `compute_ville_pvalue`:
+% \[
+% P_n^{V,\Pi}=\frac{1}{M_n^\Pi}
+% \]
+
+% - `compute_extended_pvalue_lebesgue`:
+% \[
+% P_n^{E,\mathrm{Leb}}=g_{\mathrm{Leb}}(M_n^{\mathrm{Leb}})
+% \]
+
+% - `compute_extended_pvalue`:
+% numerical inversion-based approximation to
+% \[
+% P_n^{E,\Pi}=g_\Pi(M_n^\Pi).
+% \]
+
+% If you want, I can next turn this into a one-page “notation sheet” with every formula written in the exact symbols you want for your report.
+
+
+
+
+
+
+% \bibliography{bayesanytimettest}
+% \bibliographystyle{alpha}
+
+\end{document} 
