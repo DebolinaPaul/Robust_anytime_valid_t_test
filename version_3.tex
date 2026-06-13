@@ -1077,6 +1077,117 @@ which is \eqref{eq:p-conv-Lap}.
 Theorem \ref{thm:laplace-limits} explains the asymptotic shape of the symmetric Laplace mixture statistic as the prior is shifted far from the origin. After dividing out the prior density at zero, the mixture statistic converges to the one-sided exponential tilt of Theorem~\ref{thm:Mn-kappa} in the direction towards which the prior is shifted, and the associated extended-Ville p-variable converges correspondingly. The ratio \eqref{eq:Ipm-ratio} quantifies the left-right asymmetry of the limit as a function of the maximal invariant $u_n$, it is exactly trivial at $u_n=0$ and grows monotonically with $|u_n|$, mirroring the fact that the symmetric Laplace prior carries no directional information at $u_n=0$ but is maximally informative at the boundary $|u_n|=\sqrt n$. The crucial feature is that the limit is itself a non-trivial anytime-valid procedure rather than the non-informative Lebesgue benchmark: the exponential decay of the Laplace prior is fast enough that a residual directional signal of rate $\kappa = 1/r$ survives in the limit. This contrasts sharply with the behaviour of polynomial-tail priors, whose slower decay allows prior-data conflict to be absorbed entirely and yields reversion to the non-informative benchmark, as we now show in Section~\ref{sec:bdd-influence}.
 \end{remark}
 
+
+
+\section{Sub-Gaussian fragility under prior-data conflict}
+
+\begin{theorem}[Sub-Gaussian fragility under prior-data conflict]
+\label{thm:subgaussian-failure}
+Let $\pi$ be a probability density on $\mathbb{R}$ satisfying the sub-Gaussian tail bound
+\begin{equation}\label{eq:subgauss-bound}
+   \pi(\theta) \;\le\; C\, e^{-\theta^{2}/(2\tau^{2})}, \qquad \theta\in\mathbb R,
+\end{equation}
+for some constants $C,\tau^{2}>0$, and let $\Pi_{m}(\dd\theta)=\pi(\theta-m)\,\dd\theta$ denote the shifted prior. For every fixed $n\ge 2$ and every dataset $y_{1:n}$ with $|u_{n}|<\sqrt n$,
+\begin{enumerate}%[label=\textup{(\roman*)}]
+\item[(i)] (Closed form, Gaussian case.) If $\pi(\theta)=\pi_{\tau}(\theta)=(2\pi\tau^{2})^{-1/2}\,e^{-\theta^{2}/(2\tau^{2})}$, then with
+   $a=n+1/\tau^{2}$ and
+   $z_{n}(m)=u_{n}m/[\tau^{2}\sqrt{a(a-u_{n}^{2})}]$,
+   \begin{equation}\label{eq:M-closed-Gauss}
+      M_{n}^{\Pi_{m}}(y_{1:n}) \;=\; \frac{1}{A_{n}(0)\sqrt{a\tau^{2}}}\,\Bigl(\frac{a}{a-u_{n}^{2}}\Bigr)^{\!n/2}\, e^{-nm^{2}/(2a\tau^{2})}\, A_{n}\bigl(z_{n}(m)\bigr),
+   \end{equation}
+   where $A_{n}(z)=\int_{0}^{\infty}v^{n-1}e^{-v^{2}/2+zv}\,\dd v$ and $A_{n}(0)=2^{(n-2)/2}\,\Gamma(n/2)$.
+\item[(ii)] \emph{(Super-exponential vanishing.)} Setting
+   \begin{equation}\label{eq:lambda-def}
+      \lambda_{n}(u_{n},\tau) \;=\; \frac{n-u_{n}^{2}}{1+\tau^{2}(n-u_{n}^{2})} \;\in\;\bigl(0,\,1/\tau^{2}\bigr),
+   \end{equation}
+   under the sub-Gaussian bound \eqref{eq:subgauss-bound} we have
+   \begin{equation}\label{eq:decay-rate}
+      M_{n}^{\Pi_{m}}(y_{1:n}) \;=\; O\!\bigl(|m|^{n-1}\,e^{-\lambda_{n}(u_{n},\tau)\,m^{2}/2}\bigr) \qquad\text{as }|m|\to\infty.
+   \end{equation}
+\item[(iii)] \emph{(Vacuous classical Ville $p$-process.)} Consequently
+   \[
+      P_{n}^{V,\Pi_{m}}(y_{1:n}) \;=\; \min\!\bigl(1/M_{n}^{\Pi_{m}}(y_{1:n}),\,1\bigr) \;\longrightarrow\; 1
+      \qquad\text{as }|m|\to\infty,
+   \]
+   and the procedure cannot reject $H_{0}\colon\theta^{\star}=0$ at any level $\alpha\in(0,1)$ once $|m|$ is large enough.
+\end{enumerate}
+\end{theorem}
+
+ 
+\begin{remark}
+The decay rate $\lambda_{n}(u_{n},\tau)>0$ for every finite $\tau$, so every sub-Gaussian prior, however diffuse, fails under prior-data conflict. Two diagnostic limits make the trichotomy explicit,
+\begin{itemize}
+\item As $\tau\to\infty$, $\lambda_{n}\to 0$ and the rate collapses, this is the polynomial regime, in which the bound \eqref{eq:decay-rate} becomes vacuous and recovery (Theorem~\ref{thm:recovery}) applies instead.
+\item As $\tau\to 0$, $\lambda_{n}\to n-u_{n}^{2}$, and the decay rate saturates the Gaussian envelope $e^{-n\theta^{2}/2}$ of the likelihood itself.
+\end{itemize}
+The threshold between failure and recovery is therefore precisely a Gaussian tail in the prior. The Laplace case, intermediate, produces the directional limit of Theorem~\ref{thm:laplace-limits}.
+\end{remark}
+
+\begin{proof}
+    We prove the Gaussian case (i)-(ii); the sub-Gaussian extension and (iii) follow at the end.
+ 
+\emph{Step 1 (Fubini and Gaussian convolution in $\theta$).} Recall $h_{\theta,n}(y) = C_{n}(y)\, e^{-n\theta^{2}/2}\, A_{n}(\theta u_{n})$, where $C_{n}(y)>0$ depends on $y$ only. Define the numerator
+\[
+   N_{n}(m) \;=\; \int_{\mathbb R} h_{\theta,n}(y)\,\pi_{\tau}(\theta-m)\,\dd\theta,
+\]
+so that $M_{n}^{\Pi_{m}}(y)=N_{n}(m)/h_{0,n}(y)$ and $h_{0,n}(y)=C_{n}(y)A_{n}(0)$. Inserting the integral representation of $A_{n}$ and applying Fubini (all integrands positive),
+\[
+   N_{n}(m) \;=\; C_{n}(y)\int_{0}^{\infty}v^{n-1}\,e^{-v^{2}/2}\, J_{m}(v)\,\dd v,
+   \quad
+   J_{m}(v)=\int_{\mathbb R} e^{-n\theta^{2}/2+u_{n}v\,\theta}\,\pi_{\tau}(\theta-m)\,\dd\theta.
+\]
+Completing the square in $\theta$ with $a=n+1/\tau^{2}$ and $b:=u_{n}v+m/\tau^{2}$,
+\[
+   J_{m}(v) \;=\; \frac{1}{\sqrt{a\tau^{2}}}\, \exp\!\Bigl(\tfrac{b^{2}}{2a}-\tfrac{m^{2}}{2\tau^{2}}\Bigr)
+   \;=\; \frac{1}{\sqrt{a\tau^{2}}}\, \exp\!\Bigl(\tfrac{u_{n}^{2}v^{2}}{2a}+\tfrac{u_{n}vm}{a\tau^{2}}-\tfrac{nm^{2}}{2a\tau^{2}}\Bigr),
+\]
+where we used $a\tau^{2}-1=n\tau^{2}$ to simplify the constant term.
+
+\emph{Step 2 (Closed form).} Substituting $J_{m}$ back and re-scaling $w=v\sqrt{\beta}$ with $\beta =(a-u_{n}^{2})/a>0$ (positive since $|u_{n}|^{2}<n<a$) recognises the inner integral as $\beta^{-n/2}A_{n}(z_{n}(m))$. We obtain
+\[
+   N_{n}(m) \;=\; \frac{C_{n}(y)}{\sqrt{a\tau^{2}}}\,\Bigl(\frac{a}{a-u_{n}^{2}}\Bigr)^{\!n/2}\, e^{-nm^{2}/(2a\tau^{2})}\, A_{n}\bigl(z_{n}(m)\bigr).
+\]
+Dividing by $h_{0,n}(y)=C_{n}(y)A_{n}(0)$ yields \eqref{eq:M-closed-Gauss}, proving (i).
+ 
+\emph{Step 3 (Asymptotics of $A_{n}$).} Either by direct saddle-point analysis of $A_{n}(z)=\int_{0}^{\infty}v^{n-1}e^{-v^{2}/2+zv}\,\dd v$, or via the parabolic-cylinder identity $A_{n}(z)=\Gamma(n)\,e^{z^{2}/4}\,D_{-n}(-z)$ combined with the standard asymptotics of $D_{\nu}$,
+\begin{equation}\label{eq:An-asymptotics}
+   A_{n}(z)\;\sim\;\sqrt{2\pi}\,z^{n-1}e^{z^{2}/2}\quad (z\to+\infty),
+   \qquad
+   A_{n}(z)\;\sim\;\Gamma(n)\,|z|^{-n}\quad (z\to-\infty).
+\end{equation}
+
+\emph{Step 4 (Sign cases for $z_{n}(m)$).} The case $u_{n}=0$ is immediate: $z_{n}(m)\equiv 0$, $A_{n}(0)$ is constant in $m$, and \eqref{eq:M-closed-Gauss} gives $M_{n}^{\Pi_{m}}=O(e^{-nm^{2}/(2a\tau^{2})})$, which satisfies \eqref{eq:decay-rate} since $n/(a\tau^{2})\ge \lambda_{n}(u_{n},\tau)$. Assume $u_{n}\ne 0$ in the remaining cases.
+ 
+\emph{Case A: $u_{n}m\to+\infty$.} Then $z_{n}(m)\to+\infty$. Substituting the first asymptote in \eqref{eq:An-asymptotics} into \eqref{eq:M-closed-Gauss},
+\[
+   M_{n}^{\Pi_{m}}(y_{1:n})\;\asymp\;|m|^{n-1}\,\exp\!\Bigl(-\frac{nm^{2}}{2a\tau^{2}}+\frac{z_{n}(m)^{2}}{2}\Bigr).
+\]
+Using $z_{n}(m)^{2}/2=u_{n}^{2}m^{2}/[2\tau^{4}a(a-u_{n}^{2})]$ and the identity
+\[
+   n\tau^{2}(a-u_{n}^{2})-u_{n}^{2}
+   \;=\; n\tau^{2}\Bigl(n+\tfrac{1}{\tau^{2}}-u_{n}^{2}\Bigr)-u_{n}^{2}
+   \;=\; (n\tau^{2}+1)(n-u_{n}^{2})
+   \;=\; a\tau^{2}(n-u_{n}^{2}),
+\]
+the combined exponent simplifies to
+\[
+   -\frac{nm^{2}}{2a\tau^{2}}+\frac{z_{n}(m)^{2}}{2}
+   \;=\; -\frac{m^{2}(n-u_{n}^{2})}{2\tau^{2}(a-u_{n}^{2})}
+   \;=\; -\frac{m^{2}(n-u_{n}^{2})}{2\bigl(1+\tau^{2}(n-u_{n}^{2})\bigr)}
+   \;=\; -\frac{\lambda_{n}(u_{n},\tau)\,m^{2}}{2},
+\]
+which is \eqref{eq:decay-rate} in Case A. The bound $\lambda_{n}<1/\tau^{2}$ follows from $\lambda_{n}^{-1}=\tau^{2}+1/(n-u_{n}^{2})>\tau^{2}$, and $\lambda_{n}>0$ from $|u_{n}|<\sqrt n$.
+
+\emph{Case B: $u_{n}m\to-\infty$.} Then $z_{n}(m)\to-\infty$ and the second asymptote in \eqref{eq:An-asymptotics} gives $A_{n}(z_{n}(m))=O(|m|^{-n})$. Hence $M_{n}^{\Pi_{m}}=O\bigl(|m|^{-n}\,e^{-nm^{2}/(2a\tau^{2})}\bigr)$, which is dominated by \eqref{eq:decay-rate} since $n/(a\tau^{2})>\lambda_{n}(u_{n},\tau)$.
+ 
+\emph{Step 5 (Sub-Gaussian extension).} If $\pi$ satisfies \eqref{eq:subgauss-bound}, then $\pi(\theta-m)\le C\sqrt{2\pi\tau^{2}}\,\pi_{\tau}(\theta-m)$, so $N_{n}(m)\le C\sqrt{2\pi\tau^{2}}\,N_{n}^{\pi_{\tau}}(m)$ pointwise in $m$. The asymptotic \eqref{eq:decay-rate} therefore transfers from the Gaussian case to any sub-Gaussian $\pi$ with the \emph{same} rate $\lambda_{n}(u_{n},\tau)$, possibly with a different prefactor.
+ 
+\emph{Step 6 (Implication for $P^{V}$).} Since $M_{n}^{\Pi_{m}}(y_{1:n})\to 0$ super-exponentially in $m^{2}$, $1/M_{n}^{\Pi_{m}}(y_{1:n})\to\infty$, so $P_{n}^{V,\Pi_{m}}(y_{1:n})=\min(1/M_{n}^{\Pi_{m}},1)$ equals $1$ for all $m$ with $|m|$ sufficiently large, proving (iii).
+
+\end{proof}
+
+
+
 \section{Bounded influence under prior-data conflict}\label{sec:bdd-influence}
 We now turn to the central robustness question. We show that the Ville construction is fragile under prior-data conflict (Section~\ref{sec:Ville-divergence}), whereas the extended-Ville
 construction with polynomial-tail priors is robust and reverts to the non-informative Lebesgue construction.
