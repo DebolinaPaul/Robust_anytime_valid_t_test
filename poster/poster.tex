@@ -1,4 +1,7 @@
 % !TEX program = lualatex
+%
+% Poster: Bayes-assisted anytime-valid t-tests and confidence sequences
+%         for Gaussian means with unknown variance
 
 \documentclass[final]{beamer}
 
@@ -12,14 +15,22 @@
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath,amssymb,amsfonts,mathtools,bm}
 \pgfplotsset{compat=1.14}
+
+% ====================
+% Math macros (carried over from the report)
+% ====================
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\Leb}{\mathrm{Leb}}
+\newcommand{\Lap}{\mathrm{Lap}}
+\newcommand{\thetahat}{\widehat{\theta}_n}
 
 % ====================
 % Lengths
 % ====================
-
-% If you have N columns, choose \sepwidth and \colwidth such that
-% (N+1)*\sepwidth + N*\colwidth = \paperwidth
 \newlength{\sepwidth}
 \newlength{\colwidth}
 \setlength{\sepwidth}{0.025\paperwidth}
@@ -31,27 +42,25 @@
 % Title
 % ====================
 
-\title{Inverse-Free Sparse Variational Gaussian Processes}
+\title{Bayes-assisted anytime-valid \texorpdfstring{$t$}{t}-tests and confidence sequences for Gaussian means with unknown variance}
 
-\author{Stefano Cortinovis \inst{1} \and Laurence Aitchison \inst{2} \and Stefanos Eleftheriadis \inst{\ast, 3} \and Mark van der Wilk \inst{\ast, 1}}
+\author{Debolina Paul \and Patrick Rebeschini \and Fran\c{c}ois Caron}
 
-\institute[shortinst]{\inst{1} University of Oxford \samelineand \inst{2} University of Bristol \samelineand \inst{3} No affiliation \and \inst{\ast} Equal contribution}
+\institute[shortinst]{Department of Statistics, University of Oxford}
 
 % ====================
-% Footer (optional)
+% Footer
 % ====================
 
 \footercontent{
-  \rlap{\href{mailto:cortinovis@stats.ox.ac.uk}{cortinovis@stats.ox.ac.uk}}\phantom{github.com/stefanocortinovis/relaxedgp} \hfill
-  AISTATS 2026, Tangier, Morocco \hfill
-  \href{https://github.com/stefanocortinovis/relaxedgp/}{github.com/stefanocortinovis/relaxedgp}}
+  \href{mailto:debolina.paul@stats.ox.ac.uk}{debolina.paul@stats.ox.ac.uk}
+  }
 
 % ====================
-% Logo (optional)
+% Logo
 % ====================
 
 \logoright{\includegraphics[height=10cm]{ox_logo.pdf}}
-\logoleft{\includegraphics[height=10cm]{qrcode_relaxedgp.pdf}}
 
 % ====================
 % Body
@@ -64,212 +73,364 @@
 \separatorcolumn
 
 % ============================================================
-% COLUMN 1 — Setup & background
+% COLUMN 1 --- Motivation, Setup & Lebesgue closed form
 % ============================================================
 \begin{column}{\colwidth}
-    \begin{block}{Motivation}
-        Gaussian processes (GPs) are flexible and convenient functional priors, but they suffer from \alert{computational limitations}.
 
-        Even state-of-the-art sparse variational methods rely on
-        {\Huge
-            $$
-                \mathbf{K}_{\mathbf{u}\mathbf{u}}^{\textcolor{red}{-1}}
-            $$
-        }
-        
-        \vspace{0.01cm}
-        computed via Cholesky decompositions, which are:
-        \begin{itemize}
-            \setlength\itemsep{0.2cm}
-            \item Ill-suited to \alert{low precision} arithmetic
-            \item Inherently \alert{sequential}, unlike parallel \textit{matmuls}
-            \item Computationally \alert{expensive} ($\mathcal{O}(M^3)$)
-        \end{itemize}
+  \begin{block}{Motivation}
+    Classical inference assumes the sample size is fixed before the data are seen: $\Prob_{H_0}(p_n\le\alpha)\le\alpha$ holds per-$n$ but degrades arbitrarily under data-dependent stopping, a quantitatively important driver of the reproducibility crisis.
 
-        \begin{center}
-            \LARGE\textbf{Can we train sparse variational GPs using \\ \alert{only matmuls}?}
-        \end{center}
-    \end{block}
+    \vspace{0.15cm}
+    \textbf{Anytime-valid inference}: build a non-negative martingale $(M_n)_{n\ge 1}$ with $\E_{H_0}[M_n]\le 1$. Ville's inequality gives
+    \[
+      \Prob_{H_0}\!\bigl(\exists n\colon M_n\ge 1/\alpha\bigr)\;\le\;\alpha,
+    \]
+    so rejecting at the first crossing of $1/\alpha$ is valid at every stopping time simultaneously.
 
-    \begin{block}{Sparse variational Gaussian processes (SVGPs) \cite{hensman2013gaussian}}
-        Apply variational inference to $f \sim \mathcal{GP}(0, k)$, $\mathbf{y} | \mathbf{f} \sim \prod_{n=1}^N p(y_n|f(\mathbf{x}_n))$:
-        \begin{enumerate}
-            \setlength\itemsep{0.4cm}
-            \item Introduce $M \ll N$ \alert{inducing inputs} $\mathbf{Z}$ with outputs $\mathbf{u} = f(\mathbf{Z})$
-            \item Define tractable variational \alert{posterior} (\textbf{M-SVGP})
-            $$
-                q(\mathbf{u}) = \mathcal{N}(\mathbf{m}, \mathbf{S}), \quad q(f(\cdot)) = \int p(f_{\neq{\mathbf{u}}}(\cdot) | \mathbf{u}) q(\mathbf{u})\ \mathrm{d}\mathbf{u}
-            $$
-            \item Formulate variational \alert{lower bound} (ELBO)
-            \begin{equation*}
-                \mathcal{L} = \sum_{n=1}^N \mathbb{E}_{\mathcal{N}(f_n; \textcolor{red}{\mu_n}, \textcolor{red}{\sigma_n^2})} \left[\log p(y_n | f_n)\right] - \textcolor{red}{\mathrm{KL}}\left[q(\mathbf{u}) \| p(\mathbf{u})\right]
-            \end{equation*}
-            \item \alert{Maximise} $\mathcal{L}(\mathbf{m}, \mathbf{S})$ to minimise $\mathrm{KL}[q(f)\|p(f|\mathbf{y})]$
-        \end{enumerate}
+    \vspace{0.15cm}
+    \textbf{The robustness question.} For the \emph{known-variance} Gaussian mean, Cortinovis, Kilian \& Caron (2025) showed that polynomial-tail priors give sharper sequences under prior--data agreement and revert to the non-informative benchmark under conflict. The practically important case of \alert{unknown variance}, where the $t$-test framework is needed, has been open.
+  \end{block}
 
-        \begin{center}
-            \Large \textbf{$\mathbf{K}_{\mathbf{u}\mathbf{u}}^{\textcolor{red}{-1}}$ shows up in $\textcolor{red}{\mu_n}$, $\textcolor{red}{\sigma_n^2}$, and in the $\textcolor{red}{\mathrm{KL}}$ term!}
-        \end{center}
+  \begin{block}{Setup}
+    $Y_1,Y_2,\ldots\stackrel{\mathrm{iid}}{\sim}\mathcal N(\mu,\sigma^2)$, both unknown; standardised effect $\theta^\star=\mu/\sigma$. Test \[
+      H_0\colon\theta^\star=0 \quad\text{vs}\quad H_1\colon\theta^\star\neq 0.
+    \]
+    A \alert{$p$-process} $(P_{n,0})_{n\ge 2}$ satisfies $\Prob_{H_0}(\exists n\colon P_{n,0}\le\alpha)\le\alpha$, and inverting it gives a \alert{confidence sequence} $C_{\alpha,n}=\{\theta_0:P_{n,\theta_0}>\alpha\}$.
 
-        \textbf{However}: we are free to reparameterise $\mathbf{m}$ and $\mathbf{S}$; e.g., the \textbf{L-SVGP} parameterisation \cite{panosFullyScalableGaussian2018} uses
-        \begin{equation*}
-            \mathbf{m} = \mathbf{K}_{\mathbf{u}\mathbf{u}} \tilde{\mathbf{m}}, \quad \mathbf{S} = (\mathbf{K}_{\mathbf{u}\mathbf{u}}^{-1} + \tilde{\mathbf{S}}^{-1})^{-1},
-        \end{equation*}
-        with $\tilde{\mathbf{S}}$ PD diagonal, inducing a bound $\hat{\mathcal{L}}(\tilde{\mathbf{m}}, \tilde{\mathbf{S}})$ with predictive variance $\textcolor{red}{\sigma_n^{2(\mathrm{L})}}$.
-    \end{block}
+    \vspace{0.15cm}
+    \textbf{Scale-invariant likelihood ratio} (Wang \& Ramdas, 2025a; P\'erez-Ortiz et al., 2024). On the filtration $\mathcal F_n=\sigma(Y_i/|Y_1|)$,
+    \[
+      L_n(y_{1:n};0,\theta) \;=\; \frac{h_{\theta,n}(y_{1:n})}{h_{0,n}(y_{1:n})}, \qquad
+      h_{\theta,n} \;=\; e^{-n\theta^2/2}\,A_n(\theta\,u_n),
+    \]
+    with $A_n(z)=\E[e^{zX}]$, $X\sim\chi_n$, and maximal invariant
+    \[
+      u_n \;=\; \frac{\sum_{i=1}^n y_i}{\sqrt{\sum_{i=1}^n y_i^{2}}} \;=\; \frac{n\thetahat}{\sqrt{(n-1)+n\thetahat^{\,2}}}\;\in\;[-\sqrt n,\sqrt n],
+    \]
+    with $\thetahat=\bar Y_n/S_n$ the sample Sharpe ratio.
 
-    \begin{block}{Inverse-free variational bound (R-SVGP) \cite{vdwilk2022improved}}
-        Let $\tilde{\mathbf{K}} := \mathbf{K}_{\mathbf{u}\mathbf{u}} + \tilde{\mathbf{S}}$ and introduce an auxiliary $\mathbf{T} \in \mathbb{R}^{M\times M}$. Reparameterise
-        \begin{equation*}
-            \mathbf{m} = \mathbf{K}_{\mathbf{u}\mathbf{u}} \tilde{\mathbf{m}}, \quad \mathbf{S} = \mathbf{K}_{\mathbf{u}\mathbf{u}} - \mathbf{K}_{\mathbf{u}\mathbf{u}}(2\mathbf{T} - \mathbf{T}\tilde{\mathbf{K}}\mathbf{T})\mathbf{K}_{\mathbf{u}\mathbf{u}},
-        \end{equation*}
-        giving
-        \begin{equation*}
-            \textcolor{ForestGreen}{\mu_n} = \mathbf{k}_{n\mathbf{u}}\tilde{\mathbf{m}}, \quad \textcolor{ForestGreen}{\sigma_n^2} = k_{nn} - \mathbf{k}_{n\mathbf{u}}(2\mathbf{T} - \mathbf{T}\tilde{\mathbf{K}}\mathbf{T})\mathbf{k}_{\mathbf{u}n},
-        \end{equation*}
-        and the closed-form KL upper bound
-        \begin{equation*}
-            \mathrm{KL}[q(\mathbf{u}) \| p(\mathbf{u})] \leq \tfrac{1}{2}\left(-\mathrm{tr}((2\mathbf{T} - \mathbf{T}\tilde{\mathbf{K}}\mathbf{T})\mathbf{K}_{\mathbf{u}\mathbf{u}}) - M + \tilde{\mathbf{m}}^\top \mathbf{K}_{\mathbf{u}\mathbf{u}} \tilde{\mathbf{m}} + \mathrm{tr}(\mathbf{T}\tilde{\mathbf{K}}) - \log|\mathbf{T}| - \log|\tilde{\mathbf{S}}|\right) =: \textcolor{ForestGreen}{\tilde{\mathrm{KL}}}
-        \end{equation*}
-        The resulting \emph{relaxed} bound $\tilde{\mathcal{L}}(\tilde{\mathbf{m}}, \tilde{\mathbf{S}}, \mathbf{T})$ is:
-        \begin{itemize}
-            \setlength\itemsep{0.3cm}
-            \item A valid \alert{ELBO}
-            \item \alert{Equivalent} to L-SVGP when $\mathbf{T} = \tilde{\mathbf{K}}^{-1}$
-            \item \Large \underline{\alert{Free} of matrix \alert{inversion}/decomposition}
-        \end{itemize}
+    \vspace{0.1cm}
+    \textbf{Mixture martingale.} For $\sigma$-finite $\Pi$ on $\mathbb R$,
+    \[
+      M_n^{\Pi}(y_{1:n}) \;=\; \frac{\int_{\mathbb R} h_{\theta,n}(y_{1:n})\,\Pi(\dd\theta)}{\,h_{0,n}(y_{1:n})}\,,
+    \]
+    calibrated through classical Ville for proper $\Pi$, or the \alert{extended Ville inequality} (Wang \& Ramdas 2025) for improper $\Pi$,
+    \[
+      P_{n,0}(y_{1:n}) \;=\; g\bigl(M_n^{\Pi}(y_{1:n})\bigr), \qquad
+      g(c) \;=\; \E_0\!\left[\min\!\Bigl(\tfrac{M_2^{\Pi}}{c},\,1\Bigr)\right].
+    \]
+    % calibrated by Ville (proper $\Pi$) or the \alert{extended Ville inequality} (Wang \& Ramdas, 2025b) for improper $\Pi$, via $P_{n,0}=g(M_n^\Pi)$ with $g(c)=\E_0[\min(M_2^{\Pi}/c,1)]$.
+  \end{block}
 
-        \textbf{Note}: using similar tricks, it is possible to derive (\emph{almost}) inverse-free bounds targeting other parameterisations, e.g., \textbf{W-SVGP} \cite{hensman2015mcmc}.
-    \end{block}
+  \begin{block}{Closed form: Lebesgue prior recovers the scale-invariant \texorpdfstring{$t$}{t}-statistic}
+    \textbf{Theorem 1.} Under $\Pi_{\Leb}(\dd\theta)=\dd\theta$, for $n\ge 2$ and $|u_n|<\sqrt n$,
+    {\large
+    \[
+      M_n^{\Leb}(u_n) \;=\; \sqrt{\tfrac{2\pi}{n}}\Bigl(1-\tfrac{u_n^{2}}{n}\Bigr)^{\!-n/2} \;=\; \sqrt{\tfrac{2\pi}{n}}\Bigl(1+\tfrac{n\thetahat^{\,2}}{n-1}\Bigr)^{\!n/2}.
+    \]}
+    Up to the constant, this is the scale-invariant statistic of Lai (1976).
+
+    \vspace{0.1cm}
+    \textbf{Theorem 2 (closed-form calibration).} With $B\sim\mathrm{Beta}(1/2,1/2)$ and $M_2^{\Leb}=\sqrt\pi/B$,
+    \[
+      g_{\Leb}(c) \;=\; \begin{cases} 1, & 0<c\le\sqrt\pi,\\[2pt]
+        \tfrac{2}{\pi}\!\left[\arcsin\!\sqrt{\tfrac{\sqrt\pi}{c}}+\sqrt{\tfrac{\sqrt\pi}{c}\bigl(1-\tfrac{\sqrt\pi}{c}\bigr)}\right], & c>\sqrt\pi.
+      \end{cases}
+    \]
+    continuous, strictly decreasing on $[\sqrt\pi,\infty)$, one-to-one onto $(0,1]$.
+  \end{block}
+
 \end{column}
 
 \separatorcolumn
 
 % ============================================================
-% COLUMN 2 — Contributions
+% COLUMN 2 --- Exponential tilt, Laplace limits, Ville fragility
 % ============================================================
 \begin{column}{\colwidth}
-\begin{alertblock}{Problem}
-    \begin{center}
-        \Large Joint optimisation of $\mathbf{T} = \mathbf{L}\mathbf{L}^\top$ with \alert{Adam} is terribly \alert{unstable}!
-    \end{center}
-\end{alertblock}
+  \begin{block}{Trichotomy of prior tails}
 
-\begin{block}{Solution 1: Iterative matrix inversion via natural gradients}
-    Tailored optimisation procedure for $\mathbf{T}$:
-    \begin{itemize}
-        \setlength\itemsep{0.6cm}
-        \item Characterise $\mathbf{L}_{\tilde{\mathbf{K}}^{-1}} = \mathrm{chol}(\tilde{\mathbf{K}}^{-1})$ as the minimiser of an \alert{auxiliary loss}
-        \begin{equation*}
-            \mathbf{L}_{\tilde{\mathbf{K}}^{-1}} = \arg\min_{\mathbf{L}}\,\ell_{\tilde{\mathbf{K}}}(\mathbf{L}), \quad \ell_{\tilde{\mathbf{K}}}(\mathbf{L}) := \mathrm{KL}\!\left[\mathcal{N}(\mathbf{0}, \mathbf{L}\mathbf{L}^\top) \,\|\, \mathcal{N}(\mathbf{0}, \tilde{\mathbf{K}}^{-1})\right]
-        \end{equation*}
-        \item Compute the \alert{natural gradient} (NG) in closed form (\alert{matmuls only}):
-        \begin{equation*}
-            \tilde{\nabla}\ell_{\tilde{\mathbf{K}}} = \mathbf{L}\!\left[\mathrm{tril}(\mathbf{L}^\top \tilde{\mathbf{K}} \mathbf{L}) - \tfrac{1}{2}(\mathbf{I} + \mathrm{diag}(\mathbf{L}^\top \tilde{\mathbf{K}} \mathbf{L}))\right]
-        \end{equation*}
-        \item \alert{Alternate} $t^*$ NG steps on $\mathbf{L}$ with one Adam step on $\xi = \{\theta, \mathbf{Z}, \tilde{\mathbf{m}}, \tilde{\mathbf{S}}\}$
-    \end{itemize}
-    \textbf{Remark}: the NG update is an $\mathbf{L}$-space version of the classical Newton--Schulz iteration for $\tilde{\mathbf{K}}^{-1}$ $\rightarrow$ \alert{local quadratic convergence} by standard Newton-type arguments.
+
+\begin{center}
+\resizebox{0.9\linewidth}{!}{%
+\begin{tikzpicture}[
+font=\tiny,
+    cell/.style={draw, rounded corners=4pt, minimum width=5.2cm,
+                 minimum height=3.6cm, inner sep=4pt, line width=1pt},
+    poly/.style={cell, fill=green!8,  draw=green!50!black},
+    expo/.style={cell, fill=orange!12, draw=orange!75!black},
+    subg/.style={cell, fill=red!8,    draw=red!60!black},
+    colheader/.style={font=\small\bfseries, anchor=center},
+    colsub/.style={font=\tiny, anchor=center},
+    rowlabel/.style={font=\itshape\footnotesize, align=center,
+                     anchor=east, text width=4cm},
+    plotaxis/.style={->, semithick, gray!70},
+]
+ 
+% ---- column x-positions and row y-positions ----
+\def\xpoly{4.5}   \def\xexpo{10.5}  \def\xsubg{16.5}
+\def\yprior{10.8} \def\ymix{6.8}    \def\ypvar{2.8}
+ 
+% ============ COLUMN HEADERS ============
+\node[colheader, green!45!black]  at (\xpoly, 15) {Polynomial};
+\node[colsub,    green!45!black]  at (\xpoly, 13.5) {$\pi(\theta)\asymp |\theta|^{-\beta}$};
+ 
+\node[colheader, orange!80!black] at (\xexpo, 15) {Exponential};
+\node[colsub,    orange!80!black] at (\xexpo, 13.5) {$\pi(\theta)\propto e^{-|\theta|/r}$ (Laplace)};
+ 
+\node[colheader, red!65!black]    at (\xsubg, 15) {Sub-Gaussian};
+\node[colsub,    red!65!black]    at (\xsubg, 13.5) {$\pi(\theta)\lesssim e^{-\theta^{2}/(2\tau^{2})}$};
+ 
+% ============ ROW LABELS ============
+\node[rowlabel] at (1.3, \yprior) {Prior shape \\$\pi(\theta)$};
+\node[rowlabel] at (1.3, \ymix)   {Rescaled mixture\\ as $m\to\infty$};
+\node[rowlabel] at (1.3, \ypvar)  {Power under\\ prior--data conflict};
+ 
+% ============ ROW 1: PRIOR SHAPES ============
+% Polynomial -- Cauchy-like, wide tails
+\node[poly] at (\xpoly, \yprior) {};
+\begin{scope}[shift={(\xpoly, \yprior - 0.3)}]
+    \draw[plotaxis] (-2.2,-0.7) -- (2.2,-0.7);
+    \draw[plotaxis] (0,-0.7) -- (0,0.9);
+    \draw[thick, green!50!black, smooth, samples=80, domain=-2:2]
+        plot (\x, {-0.7 + 1.4/(1 + 0.5*\x*\x)});
+    \node[font=\tiny, gray] at (2.2,-0.95) {$\theta$};
+    \node[font=\tiny, green!50!black] at (0,1.25) {heavy tails};
+\end{scope}
+ 
+% Exponential -- Laplace (drawn in two halves to avoid abs() in PGF math)
+\node[expo] at (\xexpo, \yprior) {};
+\begin{scope}[shift={(\xexpo, \yprior - 0.3)}]
+    \draw[plotaxis] (-2.2,-0.7) -- (2.2,-0.7);
+    \draw[plotaxis] (0,-0.7) -- (0,0.9);
+    \draw[thick, orange!75!black, smooth, samples=40, domain=-2:0]
+        plot (\x, {-0.7 + 1.4*exp(1.5*\x)});
+    \draw[thick, orange!75!black, smooth, samples=40, domain=0:2]
+        plot (\x, {-0.7 + 1.4*exp(-1.5*\x)});
+    \node[font=\tiny, gray] at (2.2,-0.95) {$\theta$};
+    \node[font=\tiny, orange!80!black] at (0,1.25) {kinked peak};
+\end{scope}
+ 
+% Sub-Gaussian -- narrow bell
+\node[subg] at (\xsubg, \yprior) {};
+\begin{scope}[shift={(\xsubg, \yprior - 0.3)}]
+    \draw[plotaxis] (-2.2,-0.7) -- (2.2,-0.7);
+    \draw[plotaxis] (0,-0.7) -- (0,0.9);
+    \draw[thick, red!65!black, smooth, samples=80, domain=-2:2]
+        plot (\x, {-0.7 + 1.4*exp(-3*\x*\x)});
+    \node[font=\tiny, gray] at (2.2,-0.95) {$\theta$};
+    \node[font=\tiny, red!65!black] at (0,1.25) {light tails};
+\end{scope}
+ 
+% ============ ROW 2: MIXTURE LIMIT ============
+\node[poly] at (\xpoly, \ymix) {%
+  \begin{minipage}{4.8cm}\centering
+    $\displaystyle\frac{M_{n,m}^{\Pi}(u_n)}{a_m}\;\longrightarrow\;M_n^{\Leb}(u_n)$\\[0.7em]
+    \tiny\textcolor{green!50!black}{\textbf{recovers Lebesgue}}
+  \end{minipage}};
+ 
+\node[expo] at (\xexpo, \ymix) {%
+  \begin{minipage}{4.8cm}\centering
+    $\displaystyle\frac{M_{n,m}(u_n)}{a_m^{\Lap}(r)}\;\longrightarrow\;I^{\pm}(u_n)$\\[0.7em]
+    \tiny\textcolor{orange!80!black}{\textbf{tilted limit, rate $1/r$}}
+  \end{minipage}};
+ 
+\node[subg] at (\xsubg, \ymix) {%
+  \begin{minipage}{4.8cm}\centering
+    $\displaystyle\sup_{|u_n|<\sqrt n} M_n^{\Pi}(u_n)\;<\;\infty$\\[0.7em]
+    \tiny\textcolor{red!60!black}{\textbf{uniformly bounded}}
+  \end{minipage}};
+ 
+% ============ ROW 3: POWER UNDER CONFLICT ============
+% Polynomial -- power dips at large |m|, plateaus at Lebesgue baseline
+\node[poly] at (\xpoly, \ypvar) {};
+\begin{scope}[shift={(\xpoly - 2, \ypvar - 0.85)}]
+    \draw[plotaxis] (0,0) -- (4,0);
+    \draw[plotaxis] (0,0) -- (0,1.6);
+    \node[font=\tiny, gray] at (4,-0.25) {$|m|$};
+    \node[font=\tiny, gray, anchor=south] at (0.10,1.55) {power};
+    \draw[dotted, red!60, semithick] (0,0.25) -- (4,0.25);
+    \node[font=\tiny, red!60] at (-0.25,0.25) {$\alpha$};
+    \draw[dashed, gray!70, semithick] (0,0.7) -- (4,0.7);
+    \node[font=\tiny, gray, anchor=west] at (3.45,1) {$P^{\Leb}$};
+    \draw[thick, green!50!black, smooth]
+      plot coordinates {(0,1.3) (0.4,1.25) (0.8,1.0) (1.2,0.85)
+                        (1.6,0.75) (2.2,0.71) (3,0.7) (4,0.7)};
+\end{scope}
+ 
+% Exponential -- plateau at tilted limit (below Lebesgue)
+\node[expo] at (\xexpo, \ypvar) {};
+\begin{scope}[shift={(\xexpo - 2, \ypvar - 0.85)}]
+    \draw[plotaxis] (0,0) -- (4,0);
+    \draw[plotaxis] (0,0) -- (0,1.6);
+    \node[font=\tiny, gray] at (4,-0.25) {$|m|$};
+    \node[font=\tiny, gray, anchor=south] at (0.10,1.55) {power};
+    \draw[dotted, red!60, semithick] (0,0.25) -- (4,0.25);
+    \node[font=\tiny, red!60] at (-0.25,0.25) {$\alpha$};
+    \draw[dotted, gray!40] (0,0.7) -- (4,0.7); % faint Lebesgue
+    \draw[dashed, gray!70, semithick] (0,0.45) -- (4,0.45);
+    \node[font=\tiny, gray, anchor=west] at (3.35,0.8) {tilted};
+    \draw[thick, orange!75!black, smooth]
+      plot coordinates {(0,1.3) (0.4,1.2) (0.8,0.9) (1.2,0.65)
+                        (1.6,0.5) (2.2,0.46) (3,0.45) (4,0.45)};
+\end{scope}
+ 
+% Sub-Gaussian -- power crashes to zero, never crosses alpha
+\node[subg] at (\xsubg, \ypvar) {};
+\begin{scope}[shift={(\xsubg - 2, \ypvar - 0.85)}]
+    \draw[plotaxis] (0,0) -- (4,0);
+    \draw[plotaxis] (0,0) -- (0,1.6);
+    \node[font=\tiny, gray] at (4,-0.25) {$|m|$};
+    \node[font=\tiny, gray, anchor=south] at (0.10,1.55) {power};
+    \draw[dotted, red!60, semithick] (0,0.25) -- (4,0.25);
+    \node[font=\tiny, red!60] at (-0.25,0.25) {$\alpha$};
+    \draw[thick, red!65!black, smooth]
+      plot coordinates {(0,1.3) (0.3,1.15) (0.6,0.85) (1.0,0.45)
+                        (1.4,0.18) (1.8,0.06) (2.4,0.02) (3,0.02) (4,0.02)};
+    \node[font=\tiny, red!65!black, align=center] at (2.6,0.55) {never\\rejects};
+\end{scope}
+ 
+\end{tikzpicture}%
+}
+\end{center}
+ 
 \end{block}
 
-\begin{block}{Solution 2: Inducing-mean preconditioning}
-    With NG updates for $\mathbf{T}$, R-SVGP $\approx$ L-SVGP $<$ W-SVGP:
-    \begin{itemize}
-        \setlength\itemsep{0.5cm}
-        \item \textbf{Problem}: gap between L-SVGP and W-SVGP due to the \alert{inducing mean parameterisation}
-        \begin{equation*}
-            \mathbf{m} = \mathbf{K}_{\mathbf{u} \mathbf{u}} \tilde{\mathbf{m}}
-        \end{equation*}
-        \item \textbf{Solution for L-SVGP}: use $\mathbf{P}^{(\mathrm{L})} = \tilde{\mathbf{K}}^{-1}$ as a \alert{preconditioner} $\rightarrow$ i.e., use it to premultiply $\tilde{\mathbf{m}}$
-        \item \textbf{Solution for R-SVGP}: use $\mathbf{P}^{(\mathrm{R})} = 2\mathbf{T} - \mathbf{T}\tilde{\mathbf{K}}\mathbf{T}$ as an \alert{inverse-free} preconditioner $\rightarrow$ $\mathbf{P}^{(\mathrm{R})}$ matches the L-SVGP gradients wrt $\xi$ when $\mathbf{T} = \mathrm{stopgrad}({\tilde{\mathbf{K}}^{-1}})$
-    \end{itemize}
-    \textbf{Note}: the naive choice $\mathbf{P}^{(\mathrm{R})} = \mathbf{T}$ would not work.
-\end{block}
 
-\begin{block}{Efficacy: toy datasets}
-        Suffixes: \textbf{N} $=$ NG updates for $\mathbf{T}$; \textbf{P} $=$ inducing-mean preconditioning.
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=1\textwidth]{figures/toy_trace.pdf}
-            % Regenerate to match paper Fig. 1: 7 curves
-            % (W-SVGP, L-SVGP, L-SVGP (P), R-SVGP, R-SVGP (P), R-SVGP (N), R-SVGP (NP))
-        \end{figure}
-        \textbf{R-SVGP (NP)} is the \alert{only} inverse-free variant that matches W-SVGP and L-SVGP (P).
-    \end{block}
 
-\begin{block}{Practical recipe for realistic datasets}
-    \alert{Heuristics} that lower complexity of \textbf{bound evaluation} and keep the \textbf{NG inner loop} cheap:
-    \begin{itemize}
-        \setlength\itemsep{0.5cm}
-        \item \textbf{Hutchinson}'s trace estimation with $K$ probes $\rightarrow$ bound evaluation in $\mathcal{O}((B + K)M^2)$
-        \item \textbf{Regularise} $\mathbf{Z}$ updates: $k$-means++ initialisation, freeze during warmup, smaller LR, etc.
-        \item \textbf{Stopping criteria} for $t^*$ with log-linear LR schedule
-    \end{itemize}
-    \centering Under these, $t^* \leq 3$ NG updates per step typically \alert{suffices} for shallow GPs on UCI datasets.
-\end{block}
+  \begin{block}{Closed form: one-sided exponential tilt}
+    For $\kappa\in\mathbb R$ and location $m\in\mathbb R$, define the $\sigma$-finite prior
+    \[
+      \pi_\kappa(\theta,\sigma)\,\dd\theta\,\dd\sigma \;=\; \tfrac{1}{\sqrt{2\pi}\,\sigma}\, e^{-\kappa(\theta-m)}\dd\theta\,\dd\sigma,
+    \]
+    combining the right-Haar measure on $\sigma$ with a one-sided exponential tilt on $\theta$. Writing $T_n=\sum y_i^2$:
+    
+      Theorem 3. For every $n\ge 2$ and $u_n\in(-\sqrt n,\sqrt n)$,
+    
+    %\large
+    \[
+      M_n^{(\kappa)}(y_{1:n}) \;=\; \frac{(n-1)!}{(2\pi)^{n/2}\sqrt n}\!\left(\frac{T_n(n-u_n^2)}{n}\right)^{\!-n/2}\! e^{\Lambda_n(\kappa,u_n)}\, D_{-n}\!\bigl(z_n(\kappa,u_n)\bigr),
+    \]
+    where $D_{-n}$ is the parabolic cylinder function and
+    \[
+      z_n(\kappa,u_n) = \frac{\kappa\,u_n}{\sqrt{n(n-u_n^2)}}, \qquad
+      \Lambda_n(\kappa,u_n) = \kappa m + \frac{\kappa^2}{2n} + \frac{\kappa^2 u_n^2}{4n(n-u_n^2)}.
+    \]
+    
+    
+    At $\kappa=0$ this reduces to $M_n^{\Leb}$ via Legendre duplication and $D_{-n}(0)=\sqrt\pi\,2^{-n/2}/\Gamma((n+1)/2)$. The process is a non-negative extended martingale under $H_0$ (via disintegration argument on the scale-invariant filtration).
+  \end{block}
+
+  \begin{alertblock}{Directional limits of the symmetric Laplace mixture}
+    For $\pi_{\Lap;m,r}(\theta)=(2r)^{-1}e^{-|\theta-m|/r}$, $M_{n,m}$ admits no closed form. After rescaling by $a_m^{\Lap}(r)=(2r)^{-1}e^{-|m|/r}$,
+
+    \textbf{Theorem 4.} Both directional limits exist, and with $\kappa=1/r$,
+    \[
+      \lim_{m\to+\infty}\frac{M_{n,m}(u_n)}{a_m^{\Lap}(r)} \;=\; I^+(u_n), \qquad
+      \lim_{m\to-\infty}\frac{M_{n,m}(u_n)}{a_m^{\Lap}(r)} \;=\; I^-(u_n),
+    \]
+    each coinciding with the one-sided exponential tilt of Theorem 3 at zero location, with opposite signed rates, and
+    \[
+      \frac{I^+(u_n)}{I^-(u_n)} \;=\; \frac{D_{-n}\!\bigl(-z_n(\kappa,u_n)\bigr)}{D_{-n}\!\bigl(+z_n(\kappa,u_n)\bigr)},
+    \]
+    strictly monotone in $u_n$ on $(-\sqrt n,\sqrt n)$, equal to $1$ iff $u_n=0$.
+
+    \vspace{0.1cm}
+    \textbf{Interpretation.} Exponential tails decay too fast for the conflict to be absorbed: a residual directional signal of rate $1/r$ survives in the limit. This is the borderline case in the trichotomy.
+  \end{alertblock}
+
 \end{column}
 
 \separatorcolumn
 
 % ============================================================
-% COLUMN 3 — Results & discussion
+% COLUMN 3 --- Recovery, trichotomy, simulations, references
 % ============================================================
 \begin{column}{\colwidth}
-    \begin{block}{Efficiency: UCI runtime}
-        NLPD vs wall-clock time on \textsc{elevators} ($N{=}16{,}599$) and \textsc{kin40k} ($N{=}40{,}000$). % Fixed NG step $\gamma = 1$; tolerance $\epsilon = 5\times 10^{-3}$; $K = 256$ Hutchinson probes.
-        \begin{figure}[h!]
-            \centering
-            \includegraphics[width=0.98\textwidth]{figures/shallow_nlpd_seed.pdf}
-            % Placeholder: paper Figure 2 (NLPD vs runtime, M ∈ {1000, 2000, 3000, 4000})
-        \end{figure}
-        \centering R-SVGP is up to \alert{$2.5\times$ faster than L-SVGP} and \alert{$1.4\times$ faster than W-SVGP}.
-    \end{block}
 
-    \begin{block}{Generality: deep GPs \& convolutional GPs}
-        \small
-        Test NLPD on \textsc{kin40k}, deep GPs with $L$ layers ($M = 500$):
-        \begin{center}
-        \begin{tabular}{cccc}
-        \toprule
-        $L$ & W-SVGP & L-SVGP & R-SVGP \\
-        \midrule
-        1 & $-0.38\,(0.001)$ & $-0.39\,(0.002)$ & $-0.39\,(0.002)$ \\
-        2 & $-1.86\,(0.03)$  & $-1.88\,(0.02)$  & $-1.88\,(0.02)$  \\
-        3 & $-2.39\,(0.03)$  & $-2.64\,(0.01)$  & $-2.64\,(0.01)$  \\
-        \bottomrule
-        \end{tabular}
-        \end{center}
+% \begin{block}{Fragility of the classical Ville construction}
+%     \begin{center}
+%       \large\textbf{Theorem 5 (volume divergence).} For \alert{every proper prior} $\Pi_0$, every $n\ge 2$ and $\alpha\in(0,1)$,
+%     \end{center}
+%     \[
+%       \mathrm{Leb}\!\bigl(C^V_{\alpha,n}(y_{1:n})\bigr) \;\longrightarrow\; \infty \qquad\text{as}\quad |\thetahat|\to\infty,
+%     \]
+%     so $P_n^{V,\Pi_0}\to 0$. The classical Ville CS becomes \alert{vacuous} under arbitrary prior--data conflict.
 
-        Test error (\%) on \textsc{MNIST} ($M = 750$):
-        \begin{center}
-        \begin{tabular}{cccc}
-        \toprule
-        Kernel & W-SVGP & L-SVGP & R-SVGP \\
-        \midrule
-        RBF  & $1.96\,(0.02)$ & $1.95\,(0.01)$ & $1.94\,(0.02)$ \\
-        Conv & $1.31\,(0.02)$ & $1.53\,(0.02)$ & $1.53\,(0.03)$ \\
-        \bottomrule
-        \end{tabular}
-        \end{center}
+%     \vspace{0.1cm}
+%     \textbf{Proof idea.} Rescale $\theta=x/\sqrt{\gamma_n}$ with $\gamma_n=n-u_n^2\downarrow 0$. By Laplace's method on $A_n$,
+%     \[
+%       \gamma_n^{(n-1)/2}\,h_{x/\sqrt{\gamma_n},n}(u_n) \;\longrightarrow\; C\,\psi(x), \qquad \psi(x)=x^{n-1}e^{-x^2/2},
+%     \]
+%     uniformly on compacts of $(0,\infty)$. The super-level set $\{\theta:h_{\theta,n}(u_n)\ge\alpha\,\bar h(u_n)\}$ then contains an interval of length $\asymp 1/\sqrt{\gamma_n}\to\infty$.
+%   \end{block}
 
-        \centering \normalsize R-SVGP can be used as a \alert{drop-in replacement} within deep GPs and interdomain models.
-    \end{block}
 
-    \begin{block}{Discussion}
-        First practical \alert{inverse-free} SVGP that trains stably on realistic datasets using \alert{only matmuls}, matches Cholesky-based baselines, and serves as a drop-in in deeper / interdomain models — with \alert{potential speed-ups} when well tuned.
+  \begin{alertblock}{Recovery for polynomial-tail priors}
+    \textbf{Assumption.} $\pi(x)\sim C_\pm |x|^{-\beta}L_\pm(|x|)$ as $x\to\pm\infty$, some $\beta>1$.
+    Includes Cauchy ($\beta=2$; Rouder et al., 2009), Student-$t_\nu$, horseshoe.
 
-        \textbf{Future directions:}
-        \begin{itemize}
-            \setlength\itemsep{0.15cm}
-            \item \alert{Low-precision} (FP16/FP32) regimes where matmul advantages compound
-            \item Inverse-free parameterisations targeting \alert{W-SVGP} directly
-            \item Transfer of heuristics to deep / multi-output / interdomain settings
-        \end{itemize}
-    \end{block}
+    Let $\Pi_m(\dd\theta)=\pi(\theta-m)\dd\theta$ and $a_m=\pi(-m)$.
 
-    \begin{block}{References}
-        \footnotesize{\bibliographystyle{plain}\bibliography{references}}
-    \end{block}
+    \vspace{0.15cm}
+    \textbf{Theorem 6 (recovery).} For fixed $n\ge 2$ and dataset with $|u_n|<\sqrt n$, as $m\to\infty$,
+    \[
+      \frac{M_{n,m}(u_n)}{a_m} \to M_n^{\Leb}(u_n),
+      \quad
+      g_m(a_m c) \to g_{\Leb}(c),
+    \]
+    \[
+      g_m\!\bigl(M_{n,m}(y_{1:n})\bigr) \;\longrightarrow\; g_{\Leb}\!\bigl(M_n^{\Leb}(y_{1:n})\bigr) \;=\; P_n^{\Leb}(y_{1:n}).
+    \]
+
+    \vspace{0.1cm}
+    The extended-Ville $p$-variable under the shifted polynomial-tail prior \alert{reverts to the non-informative Lebesgue benchmark} under arbitrary prior--data conflict. Worst-case robustness cost: zero.
+  \end{alertblock}
+
+
+
+  
+    % Critical threshold: the Gaussian envelope $e^{-n\theta^{2}/2}$ of the likelihood.
+    % \begin{itemize}
+    %   \setlength\itemsep{0.25cm}
+    %   \item \textbf{Polynomial} ($\pi(x)\asymp|x|^{-\beta}$): \alert{bounded influence}; reverts to the non-informative benchmark (Theorem 6).
+    %   \item \textbf{Exponential} (Laplace): \alert{borderline}; non-trivial directional limit, residual rate $1/r$ (Theorem 4).
+    %   \item \textbf{Sub-Gaussian} ($\pi(x)\lesssim e^{-x^{2}/(2\tau^{2})}$): $M_n^{\Pi_0}$ uniformly bounded; \alert{cannot reject regardless of the data}.
+    % \end{itemize}
+  % \end{block}
+
+  % \begin{block}{No data-conflict Hausdorff limit}
+  %   In the known-variance setting, the centred eVCS converges in Hausdorff distance to a closed-form interval (Cortinovis et al., 2025). Here:
+
+  %   \textbf{Proposition 7 (rate mismatch).} For $\pi_0(x)\sim C_+|x|^{-\beta}$, $\beta\in(1,n)$, as $u_n\to\sqrt n$,
+  %   \[
+  %     M_n^{\Pi_0}(u_n)\,/\,M_n^{\Leb}(u_n) \;\sim\; K\,\gamma_n^{\beta/2} \;\longrightarrow\; 0.
+  %   \]
+  %   Two obstructions: $u_n$ is \alert{bounded} in $[-\sqrt n,\sqrt n]$, and $\theta^\star=\mu/\sigma$ is a \alert{ratio} not a location --- no isometric recentring.
+  % \end{block}
+
+  \begin{block}{Simulation: power vs.\ prior location}
+    \begin{figure}[h!]
+      \centering
+      \includegraphics[width=0.9\textwidth]{images/power_vs_m_priors_v5_cropped.pdf}
+    \end{figure}
+    \vspace{-0.2cm}
+    %\footnotesize Empirical power, $\theta^\star=0.5$, $\alpha=0.1$, $n\in\{5,20,50,100,200\}$.\\[0.1cm]
+    \normalsize\textbf{Top:} classical Ville --- every proper prior fragile under conflict. \textbf{Bottom:} extended Ville --- polynomial-tail priors gain power under prior-data agreement and gracefully revert to the Lebesgue baseline (dash-dotted) under conflict.
+  \end{block}
+
+  \begin{block}{References}
+    \footnotesize
+    \begin{itemize}
+      \setlength\itemsep{0.05cm}
+      \item Cortinovis, Kilian, Caron (2025). Anytime-valid $t$-tests with informative priors.
+      \item Lai (1976). On confidence sequences. \emph{Ann.\ Statist.}
+      \item P\'erez-Ortiz, Lardy, de Heide, Gr\"unwald (2024). E-statistics, group invariance and anytime-valid testing.
+      \item Rouder, Speckman, Sun, Morey, Iverson (2009). Bayesian $t$-tests for accepting and rejecting the null. \emph{Psychon.\ Bull.\ Rev.}
+      \item Wang, Ramdas (2025a). Anytime-valid $t$-tests and confidence sequences for Gaussian means with unknown variance.
+      \item Wang, Ramdas (2025b). The extended Ville's inequality.
+    \end{itemize}
+  \end{block}
 
 \end{column}
 
