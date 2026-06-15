@@ -1148,7 +1148,7 @@ where we used $a\tau^{2}-1=n\tau^{2}$ to simplify the constant term.
    N_{n}(m) \;=\; \frac{C_{n}(y)}{\sqrt{a\tau^{2}}}\,\Bigl(\frac{a}{a-u_{n}^{2}}\Bigr)^{\!n/2}\, e^{-nm^{2}/(2a\tau^{2})}\, A_{n}\bigl(z_{n}(m)\bigr).
 \]
 Dividing by $h_{0,n}(y)=C_{n}(y)A_{n}(0)$ yields \eqref{eq:M-closed-Gauss}, proving (i).
- 
+
 \emph{Step 3 (Asymptotics of $A_{n}$).} Either by direct saddle-point analysis of $A_{n}(z)=\int_{0}^{\infty}v^{n-1}e^{-v^{2}/2+zv}\,\dd v$, or via the parabolic-cylinder identity $A_{n}(z)=\Gamma(n)\,e^{z^{2}/4}\,D_{-n}(-z)$ combined with the standard asymptotics of $D_{\nu}$,
 \begin{equation}\label{eq:An-asymptotics}
    A_{n}(z)\;\sim\;\sqrt{2\pi}\,z^{n-1}e^{z^{2}/2}\quad (z\to+\infty),
@@ -1706,7 +1706,63 @@ The contrast between the top and bottom rows of Figure~\ref{fig:power_vs_m_prior
 extended-Ville construction with polynomial-tail priors enjoys
 informative power gains under prior-data agreement and graceful reversion to the scale-invariant \(t\)-test under arbitrary prior-data conflict.
 
+% =====================================================================
+% Proposition: order-dependence of the anytime-valid stopping time.
+% Slot in immediately before the permutation experiment in the data
+% application / discussion section.
+% =====================================================================
 
+\subsection{Order-dependence of the anytime-valid stopping time}
+\label{sec:order-dependence}
+
+The fixed-sample $t$-test rejects on the basis of $(\bar y_{N},s_{N})$, a function of the unordered sample, and is therefore permutation-invariant. By contrast, the anytime-valid stopping time
+\[
+   \tau_{\alpha}(y_{1},\ldots,y_{N}) \;:=\; \inf\bigl\{n\ge 2 : P_{n}(y_{1:n}) \le \alpha\bigr\} \;\in\; \{2,\ldots,N\}\cup\{\infty\}
+\]
+is adapted to the filtration $\mathcal{F}_{n}=\sigma(Y_{1},\ldots,Y_{n})$ rather than to the exchangeable $\sigma$-algebra $\sigma(\{Y_{1},\ldots,Y_{N}\})$, so $\tau_{\alpha}$ is genuinely a function of the recruitment order. The next proposition records what is and is not preserved under permutation.
+
+\begin{proposition}[Order-dependence and joint validity]
+\label{prop:order-dependence}
+Let $Y_{1},\ldots,Y_{N}\stackrel{\mathrm{iid}}{\sim}\mathcal{N}(\mu,\sigma^{2})$, let $(P_{n})_{n\ge 2}$ be either the classical Ville $p$-process $P_{n}^{V}=\min(1/M_{n}^{\Pi},1)$ for a proper prior $\Pi$ or an extended-Ville $p$-process $P_{n}^{eV}=g_{\Pi}(M_{n}^{\Pi})$ for a (possibly improper) prior $\Pi$, and let $\tau_{\alpha}$ be the associated stopping time.
+\begin{enumerate}
+\item[(i)] For every deterministic enrolment order $\sigma\in\mathcal{S}_{N}$,
+   \[
+      \Prob_{H_{0}}\bigl(\tau_{\alpha}(Y_{\sigma(1)},\ldots,Y_{\sigma(N)})<\infty\bigr)\;\le\;\alpha.
+   \]
+\item[(ii)] For a fixed realisation $(y_{1},\ldots,y_{N})$ the map $\sigma\mapsto\tau_{\alpha}(y_{\sigma(1)},\ldots,y_{\sigma(N)})$ is in general non-constant; in particular $\tau_{\alpha}$ is not measurable with respect to the unordered observation $\{y_{1},\ldots,y_{N}\}$, which is a complete sufficient statistic for $(\mu,\sigma^{2})$.
+\item[(iii)] If $\sigma\sim\mathrm{Unif}(\mathcal{S}_{N})$ is drawn independently of the data, then
+   \[
+      \Prob_{H_{0},\sigma}\bigl(\tau_{\alpha}(Y_{\sigma(1)},\ldots,Y_{\sigma(N)})<\infty\bigr)\;\le\;\alpha,
+   \]
+   so the procedure remains anytime-valid under the joint randomisation.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{itemize}
+\item[(i)] This is Ville's inequality applied to $(M_{n}^{\Pi})$ on the filtration $\mathcal{F}_{n}^{\sigma}=\sigma(Y_{\sigma(1)},\ldots,Y_{\sigma(n)})$, which is a non-negative supermartingale under $H_{0}$ for each fixed $\sigma$ (proper $\Pi$); the extended-Ville case is the analogous statement for the calibrated $p$-process \citep{wang2025extended}. 
+
+\item[(ii)] This is immediate as $u_{n}=\sum_{i\le n}y_{i}/\sqrt{\sum_{i\le n}y_{i}^{2}}$ depends on which indices are included up to step $n$, hence on the order. 
+
+\item[(iii)] This follows from (i) by Fubini, since
+\[
+   \Prob_{H_{0},\sigma}\bigl(\tau_{\alpha}<\infty\bigr) \;=\; \mathbb{E}_{\sigma}\bigl[\Prob_{H_{0}}(\tau_{\alpha}<\infty\mid\sigma)\bigr]\;\le\;\alpha.
+\]
+\end{itemize}
+\end{proof}
+
+The procedure is therefore valid under each fixed order, what varies across orders is the operational quantity $\tau_{\alpha}$ - the sample size at which we actually stop. For an exchangeable sample no single ordering is privileged, so we report a single dataset's anytime-valid performance via the permutation distribution of $\tau_{\alpha}$,
+\begin{equation}\label{eq:perm-cdf}
+   \widehat{F}_{\tau_{\alpha}}(t) \;=\; \frac{1}{B}\sum_{b=1}^{B}\mathbf{1}\bigl\{\tau_{\alpha}\bigl(y_{\sigma_{b}(1)},\ldots,y_{\sigma_{b}(N)}\bigr)\le t\bigr\}, \quad \sigma_{1},\ldots,\sigma_{B}\stackrel{\mathrm{iid}}{\sim}\mathrm{Unif}(\mathcal{S}_{N}).
+\end{equation}
+
+Two features of $\widehat{F}_{\tau_{\alpha}}$ are noteworthy.
+
+\paragraph{Null calibration.} Under $H_{0}$, Proposition~\ref{prop:order-dependence}(iii) gives $\mathbb{E}\bigl[\widehat{F}_{\tau_{\alpha}}(N)\bigr]\le\alpha$, so the fraction of permutations rejecting by the full horizon is bounded by~$\alpha$ up to Monte-Carlo error of order $\sqrt{\alpha(1-\alpha)/B}$. This is a finite-sample diagnostic that the implementation is correctly calibrated.
+
+\paragraph{Matched-pair efficiency comparison.} Comparing two procedures (e.g.\ classical Ville and extended Ville) on the same permutation $\sigma_{b}$ yields the matched-pair difference $\tau_{\alpha}^{V}(\sigma_{b})-\tau_{\alpha}^{eV}(\sigma_{b})$, which is non-negative whenever both stop and removes the dataset-level variation contributing to the marginal distributions. A sign test on the matched differences supplies a calibrated test of $H_{0}^{*}\colon\mathbb{E}[\tau_{\alpha}^{V}-\tau_{\alpha}^{eV}]=0$ against $H_{1}^{*}\colon\tau_{\alpha}^{eV}<\tau_{\alpha}^{V}$ stochastically.
+
+% We use $\widehat{F}_{\tau_{\alpha}}$ and the matched-pair gain throughout Section~\ref{sec:neurovault} to summarise the operational behaviour of the anytime-valid $t$-test on the Bo et al.~\cite{bo2024systems} sample.
 
 \subsection{Real-data application: Bo et al.\ emotion-regulation contrast}
 \label{sec:neurovault}
@@ -1787,7 +1843,7 @@ with $\tau^{\bullet}(\Pi, m) = \infty$ if no crossing occurs within $N$ subjects
 
 \begin{figure}
     \centering
-    \includegraphics[width=\linewidth]{images/neurovault_first_rejection_v2.pdf}
+    \includegraphics[width=\linewidth]{images/neurovault_first_rejection_shuffled.pdf}
     \caption{First $n$ for which the p-process crosses the threshold $\alpha = 0.05$}
     \label{fig:neurovault-first-rejection}
 \end{figure}
