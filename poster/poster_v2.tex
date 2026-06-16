@@ -70,11 +70,20 @@
 \begin{column}{\colwidth}
 
   \begin{block}{Motivation}
-  Anytime-valid $t$-tests for unknown-variance Gaussians arise various real-world problems such as in clinical trials, A/B testing, sequential quality monitoring etc. The no-prior framework is well understood \cite{Lai1976,PerezOrtiz2024,Wang2025}. With prior information, mixture martingales calibrated by Ville's inequality yield anytime-valid Bayes factors \cite{Rouder2009}, \alert{but any proper informative prior loses all power under prior--data mismatch},
+  % Anytime-valid $t$-tests for unknown-variance Gaussians arise various real-world problems such as in clinical trials, A/B testing, sequential quality monitoring etc. The no-prior framework is well understood \cite{Lai1976,PerezOrtiz2024,Wang2025}. With prior information, mixture martingales calibrated by Ville's inequality yield anytime-valid Bayes factors \cite{Rouder2009}, \alert{but any proper informative prior loses all power under prior--data mismatch},
+Anytime-valid $t$-tests for unknown-variance Gaussians arise in clinical trials, A/B testing, and sequential quality monitoring --- settings where it is crucial to have the freedom to stop optionally as evidence accumulates.
 
-  \vspace{0.2cm}
+\textbf{Existing approaches:}
+\begin{itemize}
+  \setlength\itemsep{0.08cm}
+  \item \textbf{No prior information} \cite{Lai1976,PerezOrtiz2024,Wang2025}: scale-invariant likelihood ratio calibrated by Ville's inequality.
+  \item \textbf{With prior information} \cite{Rouder2009}: informative-prior Bayes factor, made anytime-valid as a mixture martingale via Ville's inequality.
+\end{itemize}
+
+\alert{Any proper informative prior loses all power under prior--data mismatch:} 
+  %\vspace{0.2cm}
   \begin{center}
-  \begin{tikzpicture}[scale=1.8, every node/.style={font=\footnotesize}]
+  \begin{tikzpicture}[scale=2, every node/.style={font=\footnotesize}]
     % --- axis and true effect ---
     \draw[->, thick] (-3, 0) -- (9, 0) node[below right] {$\theta$};
     \draw[blue!80!black, dashed, very thick] (0.5, 0) -- (0.5, 2.5);
@@ -104,24 +113,24 @@
   \end{center}
   \vspace{0.15cm}
 
-  As $|m|\to\infty$, $M_n^{\Pi_m}\to 0$ so $P_n^V=\min(1/M_n^{\Pi_m},1)\to 1$, the procedure simply never rejects.
-
+  As $|m|\to\infty$, $M_n^{\Pi_m}\to 0$ so $P_n^V=\min \left\{\frac{1}{M_n^{\Pi_m}}, 1\right\} \to 1$, the procedure simply never rejects.
   \vspace{0.1cm}
-  \textbf{Our contribution.} \cite{Cortinovis2025} addressed this for a simple null for i.i.d. Gaussian data where the variance known. We extend from known to \alert{unknown variance}, where the prior is composite on $(\theta,\sigma)$, via the \alert{extended Ville inequality} \cite{wang2025extended}: Let \((X_n)_{n\geq 1}\) be an extended nonnegative supermartingale.
-For any \(c>0\),
-\[
-   \Prob\left(\sup_{n\geq 1} X_n\geq c\right)\;\leq\;
-   \E\!\bigl[\min(X_1/c,\,1)\bigr] = g(c).
-\]
+%   \textbf{Our contribution.} \cite{Cortinovis2025} addressed this for a simple null for i.i.d. Gaussian data where the variance known. We extend from known to \alert{unknown variance}, where the prior is composite on $(\theta,\sigma)$, via the \alert{extended Ville inequality} \cite{wang2025extended}: Let \((X_n)_{n\geq 1}\) be an extended nonnegative supermartingale.
+% For any \(c>0\),
+% \[
+%    \Prob\left(\sup_{n\geq 1} X_n\geq c\right)\;\leq\;
+%    \E\!\bigl[\min(X_1/c,\,1)\bigr] = g(c).
+% \]
   
-  Then, for any $\sigma$-finite (proper \emph{or} improper) $\Pi$,
-  \[
-    P_n \;=\; g_\Pi\!\bigl(M_n^{\Pi}\bigr), \qquad
-    g_\Pi(c) \;=\; \E_{H_0}\!\bigl[\min(M_2^{\Pi}/c,\,1)\bigr]
-  \]
-  is a valid $p$-process. The resulting informative $p$-processes gain power under agreement and \alert{revert to the Lebesgue baseline} under conflict.
+%   Then, for any $\sigma$-finite (proper \emph{or} improper) $\Pi$,
+%   \[
+%     P_n \;=\; g_\Pi\!\bigl(M_n^{\Pi}\bigr), \qquad
+%     g_\Pi(c) \;=\; \E_{H_0}\!\bigl[\min(M_2^{\Pi}/c,\,1)\bigr]
+%   \]
+%   is a valid $p$-process. The resulting informative $p$-processes gain power under agreement and \alert{revert to the Lebesgue baseline} under conflict.
+\textbf{Our contribution.} \cite{Cortinovis2025} addressed this for a simple null with known variance. We extend to the practically central case of \alert{unknown variance}, where $\sigma$ enters as a nuisance parameter and the prior is composite on $(\theta,\sigma)$ without losing power even in data-prior conflict. %The construction yields informative $p$-processes that gain power under prior--data agreement and \alert{revert to the non-informative Lebesgue baseline} under arbitrary conflict --- recovering an anytime-valid analogue of Lai's classical $t$-statistic at no worst-case efficiency cost.
 \end{block}
-\vspace{-0.1cm}
+%\vspace{-0.1cm}
   \begin{block}{Setup}
 $Y_1,Y_2,\ldots\stackrel{\mathrm{iid}}{\sim}\mathcal N(\mu,\sigma^2)$, both parameters unknown; standardised effect $\theta^\star=\mu/\sigma$. Test
     \[
@@ -131,35 +140,50 @@ $Y_1,Y_2,\ldots\stackrel{\mathrm{iid}}{\sim}\mathcal N(\mu,\sigma^2)$, both para
     %\vspace{-0.1cm}
     
     \textbf{Scale-invariant likelihood ratio.} On the filtration $\mathcal F_n=\sigma(Y_i/|Y_1|)$, after integrating out $\sigma$ against its Haar measure,
-    \vspace{-0.1cm}
+    %\vspace{-0.1cm}
     \[
-      L_n(y_{1:n};0,\theta) \;=\; \frac{h_{\theta,n}(y_{1:n})}{h_{0,n}(y_{1:n})},\qquad
+      L_n(y_{1:n};0,\theta) \;=\; \frac{h_{\theta,n}(y_{1:n})}{h_{0,n}(y_{1:n})},\]
+      \[
       h_{\theta,n}\;=\;e^{-n\theta^{2}/2}\,A_n(\theta\,u_n),
     \]
-    \vspace{-0.1cm}
+    %\vspace{-0.1cm}
     with $A_n(z)=\E[e^{zX}]$, $X\sim\chi_n$, and maximal invariant
     \[
       u_n \;=\; \frac{\sum_{i=1}^n y_i}{\sqrt{\sum_{i=1}^n y_i^{2}}}
            \;=\; \frac{n\,\thetahat}{\sqrt{(n-1)+n\,\thetahat^{\,2}}}\;\in\;[-\sqrt n,\sqrt n].
     \]
 
-    \vspace{-0.1cm}
+    %\vspace{-0.1cm}
     \textbf{Mixture martingale.} For $\sigma$-finite $\Pi$ on $\mathbb R$,
     \[
       M_n^{\Pi}(y_{1:n}) \;=\; \int_{\mathbb R} L_n(y_{1:n};0,\theta)\,\Pi(\dd\theta).
     \]
+    %\vspace{-0.2cm}
+    \textbf{Why classical Ville is not enough.}
+    %\vspace{-0.2cm}
+\begin{itemize}
+  \setlength\itemsep{0.08cm}
+  \item \textbf{Proper $\Pi$:} $M_n^\Pi$ is a non-negative martingale and Ville gives $P_n^{V,\Pi}(y_{1:n})=1/M_n^\Pi(y_{1:n})$. But \alert{every proper prior is fragile}: power $\to 0$ as $|m|\to\infty$.
+  \item \textbf{Lebesgue baseline:} restores power but is \emph{improper}; $\E_{H_0}[M_n^{\Leb}]=\infty$, so the classical bound $1/c$ no longer applies.
+\end{itemize}
+%\vspace{-0.1cm}
+% The \alert{extended Ville inequality} \cite{wang2025extended} circumvents both:
+% \[
+%    P_n^{E,\Pi}(y_{1:n})=g_\Pi\!\bigl(M_n^\Pi(y_{1:n})\bigr),
+%    \qquad
+%    g_\Pi(c)=\E_{0}\!\left[\min\!\left(\tfrac{M_2^\Pi(Y_{1:2})}{c},\,1\right)\right],
+% \]
+% a valid $p$-process for proper \emph{and} improper $\Pi$. This is what lets an informative $\Pi_m$ revert to the Lebesgue baseline under conflict while \alert{always} delivering a valid $p$-process — unlike a Bayes factor, whose interpretation breaks under mismatch.
+%     \textbf{Why classical Ville is not enough.} For proper $\Pi$, $M_n^\Pi$ is a non-negative martingale and Ville gives $P_n^{V,\Pi}(y_{1:n})=\frac{1}{M_n^\Pi(y_{1:n})}$. But \alert{every proper prior is fragile under conflict}: power $\to 0$ as $|m|\to\infty$. Restoring power requires the (improper) Lebesgue baseline, but then $\E_{H_0}[M_n^{\Leb}]=\infty$ and the classical Ville bound $1/c$ no longer applies.
 
-    \vspace{-0.1cm}
-    \textbf{Why classical Ville is not enough.} For proper $\Pi$, $M_n^\Pi$ is a non-negative martingale and Ville gives $P_n^{V,\Pi}(y_{1:n})=\frac{1}{M_n^\Pi(y_{1:n})}$. But \alert{every proper prior is fragile under conflict}: power $\to 0$ as $|m|\to\infty$. Restoring power requires the (improper) Lebesgue baseline, but then $\E_{H_0}[M_n^{\Leb}]=\infty$ and the classical Ville bound $1/c$ no longer applies.
-
-    %\vspace{0.05cm}
-    The \alert{extended Ville inequality} (Wang \& Ramdas 2025b) circumvents this,
-    \[
-     P_n^{E,\Pi}(y_{1:n})=g_\Pi(M_n^\Pi(y_{1:n})),
-\qquad
-g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
-    \]
-    is a valid $p$-process for proper \emph{and} improper $\Pi$. This is the property that lets an informative $\Pi_m$ revert to the Lebesgue baseline under conflict, while \emph{always} delivering a valid $p$-process, unlike a Bayes factor whose interpretation breaks under mismatch.
+%     %\vspace{0.05cm}
+%     The \alert{extended Ville inequality} (Wang \& Ramdas 2025b) circumvents this,
+%     \[
+%      P_n^{E,\Pi}(y_{1:n})=g_\Pi(M_n^\Pi(y_{1:n})),
+% \qquad
+% g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
+%     \]
+%     is a valid $p$-process for proper \emph{and} improper $\Pi$. This is the property that lets an informative $\Pi_m$ revert to the Lebesgue baseline under conflict, while \emph{always} delivering a valid $p$-process, unlike a Bayes factor whose interpretation breaks under mismatch.
   \end{block}
 \end{column}
 
@@ -169,15 +193,42 @@ g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
 % COLUMN 2 -- Trichotomy (prose) + exponential tilt + Laplace directional
 % ============================================================
 \begin{column}{\colwidth}
+\begin{alertblock}{Proposal: extended Ville calibration}
+\textbf{Key tool.} For any extended non-negative supermartingale $(X_n)_{n\ge 1}$, the \alert{extended Ville inequality} \cite{wang2025extended},
 
-\begin{block}{Closed form: Lebesgue prior recovers Lai's \texorpdfstring{$t$}{t}-statistic}
+\[ \Prob_{H_0}\!\left(\sup_{n\ge 1} X_n \ge c\right) \le \E_{H_0}\!\left[\min\!\left(\frac{X_1}{c},1\right)\right] =: g(c). \] 
+Moreover, \[ g(c) \le \min(1/c,1), \] with equality only in the degenerate case. Thus extended Ville calibration is at least as sharp as Ville's bound, and remains valid when Ville's inequality is not applicable.
+  % We sidestep both failure modes by replacing Ville's inequality with the \alert{extended Ville inequality} \cite{wang2025extended}, which holds for an arbitrary extended non-negative supermartingale $(X_n)_{n\ge 1}$:
+  % \[
+  %    \Prob_{H_0}\!\Bigl(\sup_{n\ge 1} X_n\ge c\Bigr) \;\le\; \E_{H_0}\!\bigl[\min(X_1/c,\,1)\bigr] \;=:\; g(c).
+  % \]
+  % Crucially, $g(c)\le\min(1/c,1)$, with equality only when $X_1$ is degenerate --- so the extended-Ville bound is \alert{uniformly at least as sharp} as Ville's $1/c$, and \emph{tight even when $X_1$ has infinite mean}, the regime where Ville breaks.
+
+  \vspace{0.10cm}
+  \textbf{Application to mixture martingales.} For any $\sigma$-finite mixing measure $\Pi$, proper or improper, define \[ P_n^{E,\Pi}(y_{1:n}) = g_\Pi\!\left(M_n^\Pi(y_{1:n})\right), \] where \[ g_\Pi(c) = \E_{H_0}\!\left[ \min\!\left( \frac{M_2^\Pi(Y_{1:2})}{c},1 \right) \right]. \]
+  % \textbf{Applied to mixture martingales.} For any $\sigma$-finite (proper \emph{or} improper) $\Pi$, setting $X_n = M_n^{\Pi}$ gives the valid $p$-process
+  % \[
+  %    P_n^{E,\Pi}(y_{1:n}) \;=\; g_\Pi\!\bigl(M_n^{\Pi}(y_{1:n})\bigr), \qquad
+  %    g_\Pi(c) \;=\; \E_{H_0}\!\Bigl[\min\!\Bigl(\tfrac{M_2^{\Pi}(Y_{1:2})}{c},\,1\Bigr)\Bigr].
+  % \]
+  % \alert{Validity holds for any $\Pi$ --- proper or improper, well-specified or misaligned}: there is no regime in which the $p$-process becomes meaningless, in contrast to a Bayes factor whose interpretation breaks under mismatch.
+
+  \vspace{0.10cm}
+  \textbf{Consequence.} The resulting process is a valid $p$-process for any $\Pi$: \[ \Pi \text{ may be proper, improper, well-specified, or misaligned.} \] Hence calibration does not rely on a Bayes-factor interpretation. 
+  
+  \vspace{0.08cm} 
+  \textbf{Limits.} This makes the non-informative limit $\Pi=\Pi_{\Leb}$ usable, while the informative limit $\Pi=\Pi_m$ interpolates automatically between the two regimes. 
+  % The non-informative limit $\Pi = \Pi_{\Leb}$ is now usable; the informative limit $\Pi = \Pi_m$ with a polynomial-tail $\pi$ will be shown (\S\textbf{Recovery}) to interpolate between the two automatically.
+\end{alertblock}
+
+\begin{block}{Closed form: Lebesgue prior recovers the scale-invariant \texorpdfstring{$t$}{t}-statistic}
     \textbf{Theorem 1.} Under $\Pi_{\Leb}(\dd\theta)=\dd\theta$, for $n\ge 2$ and $|u_n|<\sqrt n$,
     {\large
     \[
       M_n^{\Leb}(u_n) \;=\; \sqrt{\tfrac{2\pi}{n}}\Bigl(1-\tfrac{u_n^{2}}{n}\Bigr)^{\!-n/2} \;=\; \sqrt{\tfrac{2\pi}{n}}\Bigl(1+\tfrac{n\thetahat^{\,2}}{n-1}\Bigr)^{\!n/2}.
     \]}
-    Up to the multiplicative constant, this is the scale-invariant $t$-statistic of \cite{Lai1976}, here promoted to an anytime-valid procedure via the extended Ville calibration $g_{\Leb}$.
-
+    Up to the multiplicative constant, this is the scale-invariant $t$-statistic of \cite{Lai1976}.
+    %, here promoted to an anytime-valid procedure via the extended Ville calibration $g_{\Leb}$.
     \vspace{0.1cm}
     \textbf{Theorem 2 (closed-form calibration).} With $B\sim\mathrm{Beta}(1/2,1/2)$, $M_2^{\Leb}=\sqrt\pi/B$, and
     \[
@@ -267,8 +318,33 @@ g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
     \]
 
     \vspace{0.1cm}
-    The extended-Ville $p$-process under the shifted polynomial-tail prior \alert{reverts to the non-informative Lebesgue benchmark} under arbitrary prior--data conflict. Worst-case robustness cost: zero. Validity is preserved throughout, in contrast to a Bayes factor whose interpretation collapses under mismatch.
+    The extended-Ville $p$-process under the shifted polynomial-tail prior \alert{reverts to the non-informative Lebesgue benchmark} under arbitrary prior-data conflict. %Worst-case robustness cost: zero. Validity is preserved throughout, in contrast to a Bayes factor whose interpretation collapses under mismatch.
+
+    \textbf{Lighter Tailed Priors:} Polynomial tails are uniquely positioned at the boundary: exponential tails (e.g. Laplace) yield only a partial directional limit with residual rate $1/r$, while sub-Gaussian tails force $M_n^{\Pi_m} \to 0$ and $P_n \to 1$, so the procedure cannot reject at any $|m|$ sufficiently large. 
   \end{alertblock}
+
+% \begin{block}{Beyond polynomial tails}
+%   The polynomial case is special. Two other regimes of prior-tail decay (relative to the Gaussian envelope $e^{-n\theta^{2}/2}$ of the likelihood) behave very differently:
+
+%   \vspace{0.15cm}
+%   \textbf{Exponential tails} (e.g.\ Laplace, $\pi(\theta)\propto e^{-|\theta|/r}$) --- borderline. After rescaling by $a_m^{\Lap}(r)=(2r)^{-1}e^{-|m|/r}$, the mixture has \emph{non-trivial directional limits} $I^{\pm}(u_n)$ with residual rate $1/r$: conflict is only partially absorbed.
+
+%   \vspace{0.15cm}
+%   \textbf{Sub-Gaussian tails} (e.g.\ Gaussian, $\pi(\theta)\lesssim e^{-\theta^{2}/(2\tau^{2})}$) --- ruinous. The prior tail decays faster than the likelihood envelope, $M_n^{\Pi_m}\to 0$ super-exponentially in $m^{2}$, and $P_n\to 1$: \alert{the procedure cannot reject regardless of the data}.
+
+%   \vspace{0.15cm}
+%   Polynomial tails are the \alert{unique class} that combines informative-prior efficiency under agreement with full anytime-valid robustness under arbitrary conflict.
+% \end{block}
+
+
+% \begin{block}{Calibration intuition}
+%   All three regimes can be read off the calibration function $g_\Pi$. For any $\sigma$-finite $\Pi$, Markov gives $g_\Pi(c)\le\min(1/c,1)$, with equality only when $M_2^{\Pi}$ is degenerate --- so \alert{extended Ville is uniformly at least as sharp as classical Ville}, and strictly sharper whenever the prior--likelihood interaction spreads $M_2^{\Pi}$.
+
+%   \vspace{0.1cm}
+%   The gap $1/c - g_\Pi(c)$ is largest at moderate $c$ (the regime where $M_n^{\Pi}$ sits before the procedure rejects) and vanishes at both ends ($c\to 0$ and $c\to\infty$). Under prior--data conflict, the entire distribution of $M_2^{\Pi}$ shifts: for polynomial $\Pi_m$ it converges (after rescaling) to that of $M_2^{\Leb}$, which is precisely the mechanism behind Theorem~6.
+% \end{block}
+
+
 \end{column}
 
 \separatorcolumn
@@ -288,7 +364,7 @@ g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
   \begin{block}{Simulation: empirical power vs.\ prior shift}
     \begin{figure}[h!]
       \centering
-      \includegraphics[width=0.95\textwidth]{images/power_vs_m_priors_v5_cropped.pdf}
+    \includegraphics[width=\textwidth]{images/power_vs_m_priors_poster.pdf}
     \end{figure}
 
     \vspace{-0.15cm}
@@ -309,8 +385,11 @@ g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right],
     }
   \end{block}
 
-\bibliographystyle{alpha}
+\begin{block}{References}
+    \bibliographystyle{alpha}
 \bibliography{bayesanytimettest.bib}
+\end{block}
+
 
 
   % \begin{block}{References}
