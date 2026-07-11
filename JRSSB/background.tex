@@ -1,228 +1,549 @@
 \section{Background}
 \label{sec:background}
 
-\subsection{(Extended) test martingales and (extended) Ville inequality}
 
 
-We recall some definitions that will be useful in the rest of the
-manuscript. Let $\mathcal P$ be a family of probability measures on $\mathbb R$, representing the composite null hypothesis, and
-let $(\mathcal F_n)_{n\geq 1}$ be a filtration. We start by defining a p-process, test martingale and extended test martingale.
+\section{Background}
+\label{sec:background}
 
-\begin{definition}[$p$-process]
-An adapted process $(P_n)_{n\geq1}$ taking values in $[0,1]$ is called a p-process for $\mathcal P$ if, for every $\mathbb P\in\mathcal P$, and every $\alpha\in[0,1]$,
-$$
-\mathbb P(\inf_{n\geq 1} P_n \leq \alpha )\leq\alpha .
-$$
-\end{definition}
+\subsection{(Extended) test martingales and (extended) Ville inequalities}
+\label{subsec:ville}
 
-
-\begin{definition}[test martingale]
-An adapted process $(X_n)_{n\geq 1}$ is a test martingale for
-$\mathcal P$ with respect to $(\mathcal F_n)_{n\geq 1}$ if, for every $\mathbb P\in\mathcal P$, $X_n\geq 0$ $\mathbb P$--a.s., $\mathbb E_{\mathbb P}[X_1]=1$ and
+Let
 \[
-\mathbb E_{\mathbb P}[X_{n+1}\mid\mathcal F_n]=X_n
-\quad \mathbb P\text{-a.s. for every }n\geq1.
+  \bigl(\Omega,\mathcal A,(\mathcal F_n)_{n\geq 1}\bigr)
+\]
+be a filtered measurable space, and let \(\mathcal P\) be a family of
+probability measures on \((\Omega,\mathcal A)\), representing a
+composite null hypothesis. We allow a process to start at an arbitrary
+deterministic time \(m\geq 1\); the usual case is \(m=1\).
+
+\begin{definition}[\(p\)-process]
+An adapted process \((P_n)_{n\geq m}\), taking values in \([0,1]\), is
+called a \(p\)-process for \(\mathcal P\) if, for every
+\(\mathbb P\in\mathcal P\) and every \(\alpha\in[0,1]\),
+\[
+  \mathbb P\left(\inf_{n\geq m}P_n\leq\alpha\right)
+  \leq\alpha.
 \]
 \end{definition}
 
-Test martingales require integrability. This requirement can be
-relaxed by considering extended nonnegative martingales
-\citep{Wang2025a}.
-
-\begin{definition}[extended nonnegative martingale]
-An adapted process $(X_n)_{n\geq1}$ taking values in $[0,\infty]$ is
-an extended nonnegative martingale for $\mathcal P$ with respect to
-$(\mathcal F_n)_{n\geq 1}$ if, for every $\mathbb P\in\mathcal P$,
+\begin{definition}[Test martingale]
+An adapted process \((X_n)_{n\geq m}\) is a test martingale for
+\(\mathcal P\), with respect to \((\mathcal F_n)_{n\geq m}\), if, for
+every \(\mathbb P\in\mathcal P\), the random variables \(X_n\) are
+nonnegative and \(\mathbb P\)-integrable,
 \[
-\mathbb E_{\mathbb P}[X_{n+1}\mid\mathcal F_n]=X_n
-\quad \mathbb P\text{-a.s. for every }n\geq1,
+  \mathbb E_{\mathbb P}[X_m]=1,
+\]
+and
+\[
+  \mathbb E_{\mathbb P}
+  \left[X_{n+1}\mid\mathcal F_n\right]
+  =
+  X_n
+  \qquad
+  \mathbb P\text{-a.s. for every }n\geq m.
+\]
+\end{definition}
+
+The integrability requirement can be relaxed by considering extended
+nonnegative martingales \citep{Wang2025a}.
+
+\begin{definition}[Extended nonnegative martingale]
+An adapted process \((X_n)_{n\geq m}\), taking values in
+\([0,\infty]\), is an extended nonnegative martingale for
+\(\mathcal P\), with respect to \((\mathcal F_n)_{n\geq m}\), if, for
+every \(\mathbb P\in\mathcal P\),
+\[
+  \mathbb E_{\mathbb P}
+  \left[X_{n+1}\mid\mathcal F_n\right]
+  =
+  X_n
+  \qquad
+  \mathbb P\text{-a.s. for every }n\geq m,
 \]
 where the conditional expectation is understood in the extended
 nonnegative sense.
 \end{definition}
 
-Every test martingale is an extended nonnegative martingale. Conversely,
-under a given $\mathbb P\in\mathcal P$, an extended nonnegative martingale is a
-classical nonnegative martingale if $X_1$ is $\mathbb P$-integrable; it is a
-test martingale if, in addition, $\mathbb E_P[X_1]=1$.
+Every test martingale is an extended nonnegative martingale.
+Conversely, under a given \(\mathbb P\in\mathcal P\), an extended
+nonnegative martingale is a classical nonnegative martingale if
+\(X_m\) is \(\mathbb P\)-integrable; it is a test martingale if, in
+addition, \(\mathbb E_{\mathbb P}[X_m]=1\). The extended nonnegative
+martingales used below are finite \(\mathbb P\)-almost surely from
+their stated starting times, but need not be integrable.
 
-The extended nonnegative martingales considered here are finite
-$\mathbb P$-almost surely for every $\mathbb P\in\mathcal P$, but need not be
-$\mathbb P$-integrable.
-
-
-The following is a corollary of Ville's inequality.
+The following result is a direct consequence of Ville's inequality.
 
 \begin{proposition}[Ville calibration of a test martingale]
-Let $(X_n)_{n\geq1}$ be a test martingale for $\mathcal P$ with respect
-to $(\mathcal F_n)_{n\geq 1}$. Define
+\label{prop:ville-calibration}
+Let \((X_n)_{n\geq m}\) be a test martingale for \(\mathcal P\).
+Define
 \[
-P_n=\min\left\{1,\frac1{X_n}\right\},
-\qquad
-\widetilde P_n
-=
-\min\left\{
-1,\frac1{\max_{1\leq k\leq n}X_k}
-\right\},
+  P_n
+  =
+  \min\left\{1,\frac{1}{X_n}\right\},
+  \qquad
+  \widetilde P_n
+  =
+  \min\left\{
+    1,
+    \frac{1}{\max_{m\leq k\leq n}X_k}
+  \right\},
+  \qquad n\geq m,
 \]
-where $1/0:=\infty$. Then $(P_n)_{n\geq1}$ and
-$(\widetilde P_n)_{n\geq1}$ are p-processes for $\mathcal P$.
+where \(1/0:=\infty\). Then
+\((P_n)_{n\geq m}\) and
+\((\widetilde P_n)_{n\geq m}\) are \(p\)-processes for
+\(\mathcal P\).
 \end{proposition}
 
-We call any p-process obtained in this way a Ville-calibrated
-p-process.
+We call a \(p\)-process obtained in this way a
+Ville-calibrated \(p\)-process.
 
+The corresponding result for extended nonnegative martingales follows
+from the extended Ville inequality for extended nonnegative
+supermartingales \citep{Wang2025a}.
 
-The following is a corollary of the extended Ville inequality for
-extended nonnegative supermartingales \citep{Wang2025a}.
-
-\begin{proposition}[Extended Ville calibration of a nonnegative extended martingale]
-Let $(X_n)_{n\geq1}$ be an extended nonnegative martingale for
-$\mathcal P$ with respect to $(\mathcal F_n)_{n\geq 1}$. Define, for $x>0$,
+\begin{proposition}[Extended Ville calibration]
+\label{prop:extended-ville-calibration}
+Let \((X_n)_{n\geq m}\) be an extended nonnegative martingale for
+\(\mathcal P\). For \(x>0\), define
 \[
-g(x)
-=
-\sup_{\mathbb P\in\mathcal P} \mathbb E_{\mathbb P}\left[
-\min\left\{1,\frac{X_1}{x}\right\}
-\right].
+  g_m(x)
+  =
+  \sup_{\mathbb P\in\mathcal P}
+  \mathbb E_{\mathbb P}
+  \left[
+    \min\left\{1,\frac{X_m}{x}\right\}
+  \right],
 \]
-Set $g(0)=1$. Then
+and set \(g_m(0)=1\). Then
 \[
-\bigl(g(X_n)\bigr)_{n\geq 1}
+  \bigl(g_m(X_n)\bigr)_{n\geq m}
 \]
 and
 \[
-\left(
-g\left(\max_{1\leq k\leq n}X_k\right)
-\right)_{n\geq 1}
+  \left(
+    g_m\left(\max_{m\leq k\leq n}X_k\right)
+  \right)_{n\geq m}
 \]
-are p-processes for $\mathcal P$.
+are \(p\)-processes for \(\mathcal P\).
 \end{proposition}
 
-We call any p-process obtained in this way an extended
-Ville-calibrated p-process. This calibration applies to extended
-nonnegative martingales, including processes that need not be
-integrable. For test martingales, as $g(x)\leq \min(1,1/x)$, the extended Ville-calibrated p-process is pointwise no larger than, and hence dominates, the corresponding Ville-calibrated p-process.
-
-
-%
-%
-%We recall some definitions that will be useful in the rest of the manuscript.
-%\begin{definition}
-%An adapted process $(X_n)_{n\geq 1}$ is a test martingale with respect to the filtration $(\mathcal F_n)_{n\geq 1}$ if $X_n\geq 0$ a.s., $\mathbb E[X_1]=1$ and 
-%$$
-%\mathbb E[X_{n+1}\mid \mathcal F_n]=X_n \text{  a.s. for all }n\geq 1.
-%$$
-%\end{definition}
-%
-%Test martingales require integrability of $X_n$. This can be relaxed by considering extended test martingales \cite{Wang2025a}, which generalise test martingales.
-%\begin{definition}
-%An adapted process $(X_n)_{n\geq 1}$, taking value in $[0,\infty)\cup\{\infty\}$ is an extended test martingale with respect to the filtration $(\mathcal F_n)_{n\geq 1}$ if $X_n\geq 0$ a.s., and 
-%$$
-%\mathbb E[X_{n+1}\mid \mathcal F_n]=X_n \text{ a.s. for all }n\geq 1.
-%$$
-%\end{definition}
-%Unlike an ordinary test martingale, an extended test martingale need not be integrable, nor even a.s. finite. Every extended test martingale is also a test martingale. The extended test martingales considered here will all be finite, but not necessarily integrable. 
-%
-%
-%The following is a corollary of Ville's inequality.
-%\begin{proposition}
-%Let $(X_n)_{n\geq 1}$ be a test martingale with respect to the filtration $(\mathcal F_n)_{n\geq 1}$. Let $P_n=\min(1,1/X_n)$ and $\widetilde P_n=\min(1,\frac{1}{\max_{k\leq n} X_k})$. Then $(P_n)_{n\geq 1}$ and $(\widetilde P_n)_{n\geq 1}$ are both p-processes. 
-%\end{proposition}
-%We call such p-process a Ville-calibrated p-process. 
-%
-%
-%The following is a corollary of the extended Ville inequality for extended supermartingales \citep{Wang2025a}. 
-%\begin{proposition}
-%Let $(X_n)_{n\geq 1}$ be an extended test martingale with respect to the filtration $(\mathcal F_n)_{n\geq 1}$. For any $m\geq 1$, define
-%$$
-%g_m(x)=\mathbb E[\min(1,X_m/x)]
-%$$
-%Then $(g_m(X_n))_{n\geq m}$ and $(g_m(max_{m\leq k\leq n}X_k))_{n\geq m}$ are both p-processes. 
-%\end{proposition}
-%We call such $p$ process an extended Ville-calibrated p-process. Note that 
-
+We call a \(p\)-process obtained in this way an extended
+Ville-calibrated \(p\)-process. This calibration applies to extended
+nonnegative martingales that need not be integrable. If
+\((X_n)_{n\geq m}\) is a test martingale, then
+\[
+  g_m(x)
+  \leq
+  \min\left\{1,\frac{1}{x}\right\}.
+\]
+Consequently, the extended Ville-calibrated \(p\)-process is
+pointwise no larger than, and hence dominates, the corresponding
+Ville-calibrated \(p\)-process.
 
 
 \subsection{Martingale construction for the anytime-valid \(t\)-test}
 \label{subsec:martingale-t-test}
 
+Suppose that
+\[
+  Y_1,Y_2,\ldots
+  \stackrel{\mathrm{iid}}{\sim}
+  \mathcal N(\mu,\sigma^2),
+  \qquad \sigma>0,
+\]
+and define the standardized effect size
+\[
+  \theta^\star=\frac{\mu}{\sigma}.
+\]
+We consider the composite null hypothesis
+\[
+  H_0:\theta^\star=0,
+  \qquad
+  \mathcal P_0
+  =
+  \left\{
+    \mathbb P_{0,\sigma}:\sigma>0
+  \right\}.
+\]
 
-
-Following the construction of \citet{Lai1976,PerezOrtiz2024,Wang2025}, define the restricted scale-invariant filtration
+Following the constructions of
+\citet{Lai1976,PerezOrtiz2024,Wang2025}, define the restricted
+scale-invariant filtration
 \[
   \mathcal F_n
   =
-  \sigma\!\left(
+  \sigma\left(
     \frac{Y_1}{|Y_1|},
     \frac{Y_2}{|Y_1|},
     \ldots,
     \frac{Y_n}{|Y_1|}
   \right).
 \]
+The quantities in this display can be defined arbitrarily on the
+event \(\{Y_1=0\}\), which has probability zero under every model
+considered here.
 
-Let $Z_i=Y_i/|Y_1|$, for $i\geq 1$. For an alternative effective effect size $\theta\in\mathbb R$, denote $\eta_{n,\theta}$ the joint probability density function of $(Z_1,\ldots,Z_n)$ when $\theta^\ast=\theta$. Then the scale-invariant likelihood ratio
-\begin{equation}\label{eq:scale-inv-LR}
-  L_{n,\theta}(y_{1:n})
-  \;=\;\frac{\eta_{n,\theta}(y_1/|y_1|,\ldots,y_n/|y_1|)}
-            {\eta_{n,0}(y_1/|y_1|,\ldots,y_n/|y_1|)}
+Let
+\[
+  Z_i=\frac{Y_i}{|Y_1|},
+  \qquad i\geq 1.
+\]
+For \(\theta\in\mathbb R\), let \(\eta_{n,\theta}\) denote the density
+of \((Z_1,\ldots,Z_n)\) when \(\theta^\star=\theta\), with respect to
+counting measure on \(\{-1,1\}\) in the first coordinate and
+Lebesgue measure on \(\mathbb R^{n-1}\) in the remaining coordinates.
+This distribution depends on \(\theta\), but not on the unknown scale
+parameter \(\sigma\).
+
+The scale-invariant likelihood ratio
+\begin{equation}
+\label{eq:scale-inv-LR}
+  L_{n,\theta}(Y_{1:n})
+  =
+  \frac{
+    \eta_{n,\theta}
+    \left(
+      Y_1/|Y_1|,
+      \ldots,
+      Y_n/|Y_1|
+    \right)
+  }{
+    \eta_{n,0}
+    \left(
+      Y_1/|Y_1|,
+      \ldots,
+      Y_n/|Y_1|
+    \right)
+  }
 \end{equation}
-is a $(\mathcal F_n)$-test martingale under $H_0$. A direct computation  \cite[Sec.~4.4]{Wang2025} yields
-\begin{equation}\label{eq:hthetadef}
-  L_{n,\theta}(y_{1:n})
-  \;=\;\frac{h_{\theta,n}(y_{1:n})}{h_{0,n}(y_{1:n})},
-  \qquad
-  h_{\theta,n}(y_{1:n}) \;=\; e^{-n\theta^2/2}\,A_n\bigl(\theta\,u_n(y_{1:n})\bigr),
+is therefore a \((\mathcal F_n)\)-test martingale under every
+\(\mathbb P_{0,\sigma}\in\mathcal P_0\).
+
+A direct computation \cite[Sec.~4.4]{Wang2025} gives
+\begin{equation}
+\label{eq:hthetadef}
+  L_{n,\theta}(Y_{1:n})
+  =
+  e^{-n\theta^2/2}
+  A_n\bigl(\theta u_n(Y_{1:n})\bigr),
 \end{equation}
 where
 \begin{align}
-  A_n(z) &\;=\;\frac{1}{\Gamma(n/2)}\int_0^\infty y^{n/2-1}
-                \exp\!\bigl(-y+z\sqrt{2y}\bigr)\dd y
-              \;=\; \E\bigl[e^{z R_n}\bigr],\quad R_n\sim\chi_n,
-              \label{eq:Andef}\\[2pt]
-  u_n(y_{1:n})
-       &\;=\;\frac{\sum_{i=1}^n y_i}{\sqrt{\sum_{i=1}^n y_i^2}}
-       \;=\;\frac{n\widehat\theta_n}{\sqrt{(n-1)+n\widehat\theta_n^2}}
-       \;\in\;[-\sqrt n,\sqrt n],
-       \label{eq:undef}
+  A_n(z)
+  &=
+  \frac{1}{\Gamma(n/2)}
+  \int_0^\infty
+  y^{n/2-1}
+  \exp\left(-y+z\sqrt{2y}\right)
+  \dd y
+  \notag\\
+  &=
+  \mathbb E\left[e^{zR_n}\right],
+  \qquad
+  R_n\sim\chi_n,
+  \label{eq:Andef}
 \end{align}
-and \(\widehat\theta_n=\bar Y_n/S_n\) is the sample Sharpe ratio, where $\bar Y_n$ is the sample mean and $S^2_n$ the sample variance. 
+and
+\begin{equation}
+\label{eq:undef}
+  u_n(Y_{1:n})
+  =
+  \frac{\sum_{i=1}^nY_i}
+       {\sqrt{\sum_{i=1}^nY_i^2}}.
+\end{equation}
+For \(n\geq2\), this statistic can equivalently be written as
+\begin{equation}
+\label{eq:undef-tstat}
+  u_n(Y_{1:n})
+  =
+  \frac{n\widehat\theta_n}
+       {\sqrt{(n-1)+n\widehat\theta_n^2}}
+  =
+  \frac{\sqrt n\,T_n}
+       {\sqrt{(n-1)+T_n^2}},
+\end{equation}
+where
+\[
+  \overline Y_n
+  =
+  \frac1n\sum_{i=1}^nY_i,
+  \qquad
+  S_n^2
+  =
+  \frac{1}{n-1}
+  \sum_{i=1}^n
+  (Y_i-\overline Y_n)^2,
+\]
+\[
+  \widehat\theta_n
+  =
+  \frac{\overline Y_n}{S_n},
+  \qquad
+  T_n
+  =
+  \sqrt n\,\widehat\theta_n.
+\]
+Thus, \(\widehat\theta_n\) is the sample standardized effect size, or
+sample Sharpe ratio, and \(T_n\) is the classical one-sample
+\(t\)-statistic.
+
 
 \subsection{Mixture construction}
+\label{subsec:mixture-construction}
 
-Let \(\Pi\) be a \(\sigma\)-finite measure on \(\mathbb{R}\), representing our prior information on the effect size. Define the
-mixture process
-\begin{equation}\label{eq:Mn-def}
-  M_n^{\Pi}(y_{1:n})
-  \;=\;\int_\mathbb{R} L_{n,\theta}(y_{1:n})\,\Pi(\dd\theta)
-  \;=\;\frac{\int_\mathbb{R} h_{\theta,n}(y_{1:n})\,\Pi(\dd\theta)}
-            {h_{0,n}(y_{1:n})},
+Let \(\Pi\) be a \(\sigma\)-finite measure on \(\mathbb R\),
+representing a mixing measure over the effect size. When \(\Pi\) is a
+probability distribution, it can also be interpreted as a prior
+distribution. Define
+\begin{align}
+  M_n^\Pi(Y_{1:n})
+  &=
+  \int_{\mathbb R}
+  L_{n,\theta}(Y_{1:n})
+  \,\Pi(\dd\theta)
+  \notag\\
+  &=
+  \int_{\mathbb R}
+  e^{-n\theta^2/2}
+  A_n\bigl(\theta u_n(Y_{1:n})\bigr)
+  \,\Pi(\dd\theta).
+  \label{eq:Mn-def}
+\end{align}
+As the integrand is nonnegative, the integral is well-defined as an
+element of \([0,\infty]\).
+
+If \(\Pi\) is a proper probability distribution, then
+\[
+  \bigl(M_n^\Pi(Y_{1:n})\bigr)_{n\geq1}
+\]
+is a nonnegative \((\mathcal F_n)\)-test martingale under
+\(\mathcal P_0\). Consequently,
+\begin{equation}
+\label{eq:proper-mixture-p-process}
+  P_n^{V,\Pi}
+  =
+  \min\left\{
+    1,
+    \frac{1}{M_n^\Pi}
+  \right\}
 \end{equation}
-provided the integral is finite. When \(\Pi\) is a proper probability distribution,
-\((M_n^{\Pi}(Y_{1:n}))_{n\geq 1}\) is a non-negative $(\mathcal F_n)$ test martingale under \(\Prob_{\theta_0}\); and hence, by Ville's inequality,
+and
+\begin{equation}
+\label{eq:proper-mixture-running-p-process}
+  \widetilde P_n^{V,\Pi}
+  =
+  \min\left\{
+    1,
+    \frac{1}{\max_{1\leq k\leq n}M_k^\Pi}
+  \right\}
+\end{equation}
+are Ville-calibrated \(p\)-processes.
+
+For a general \(\sigma\)-finite mixing measure \(\Pi\), the process
+\((M_n^\Pi)\) is an extended nonnegative martingale
+\citep{Wang2025a}. Let \(m\) be a deterministic starting time from
+which \(M_n^\Pi\) is finite almost surely, and define, for \(c>0\),
+\begin{equation}
+\label{eq:general-extended-calibration}
+  g_{\Pi,m}(c)
+  =
+  \sup_{\sigma>0}
+  \mathbb E_{0,\sigma}
+  \left[
+    \min\left\{
+      1,
+      \frac{M_m^\Pi}{c}
+    \right\}
+  \right],
+\end{equation}
+with \(g_{\Pi,m}(0)=1\). Because \(M_m^\Pi\) is scale invariant, its
+null distribution does not depend on \(\sigma\), so the supremum in
+\eqref{eq:general-extended-calibration} may equivalently be replaced
+by an expectation under any fixed \(\mathbb P_{0,\sigma}\). The
+processes
 \[
-P_n^{V,\Pi}(y_{1:n})=\frac{1}{M_n^\Pi(y_{1:n})}
+  P_n^{E,\Pi}
+  =
+  g_{\Pi,m}(M_n^\Pi)
 \]
-is a valid Ville p-process.
-
-For a general $\sigma$-finite $\Pi$ (in particular for an improper prior), the appropriate anytime-valid p-variable is the extended one as $(M_n^\Pi)_{n\geq 1}$ is an extended non-negative martingale \citep{Wang2025a},
+and
 \[
-P_n^{E,\Pi}(y_{1:n})=g_\Pi(M_n^\Pi(y_{1:n})),
-\qquad
-g_\Pi(c)=\E_{0}\!\left[\min\!\left(\frac{M_2^\Pi(Y_{1:2})}{c},1\right)\right]
+  \widetilde P_n^{E,\Pi}
+  =
+  g_{\Pi,m}
+  \left(
+    \max_{m\leq k\leq n}M_k^\Pi
+  \right),
+  \qquad n\geq m,
 \]
-where $\E_0$ denotes expectation under $H_0:\theta^*=0$.
+are extended Ville-calibrated \(p\)-processes.
 
 
-\subsection{Improper prior case}
+\subsection{Connection to Bayes factors for Bayesian \(t\)-tests}
+\label{subsec:bayesian-t-test}
 
-Todo.
+The mixture process \(M_n^\Pi\) has a direct Bayesian \(t\)-test
+interpretation. Parameterize the Gaussian model as
+\[
+  Y_i\mid(\theta,\sigma)
+  \stackrel{\mathrm{iid}}{\sim}
+  \mathcal N(\sigma\theta,\sigma^2),
+  \qquad
+  \theta=\frac{\mu}{\sigma}.
+\]
+Under both hypotheses, assign the nuisance scale the Jeffreys prior
+\[
+  \pi(\dd\sigma)\propto\frac{\dd\sigma}{\sigma}.
+\]
+Under \(H_0\), set \(\theta=0\), while under \(H_1\), assign the
+standardized effect size the proper prior \(\theta\sim\Pi\),
+independently of \(\sigma\).
 
-\subsection{Connection to Bayes factors for Bayesian t-tests}
+The corresponding Bayes factor in favor of the alternative is
+\begin{align}
+  \mathrm{BF}_{10,n}^{\Pi}(y_{1:n})
+  &=
+  \frac{
+    \displaystyle
+    \int_{\mathbb R}\int_0^\infty
+    p_{\theta,\sigma}^{(n)}(y_{1:n})
+    \frac{\dd\sigma}{\sigma}\,
+    \Pi(\dd\theta)
+  }{
+    \displaystyle
+    \int_0^\infty
+    p_{0,\sigma}^{(n)}(y_{1:n})
+    \frac{\dd\sigma}{\sigma}
+  }
+  \notag\\
+  &=
+  \int_{\mathbb R}
+  L_{n,\theta}(y_{1:n})\,\Pi(\dd\theta)
+  =
+  M_n^\Pi(y_{1:n}).
+\end{align}
+The arbitrary multiplicative constant in the improper scale prior
+cancels because the same prior is used under both hypotheses.
+Consequently,
+\[
+  M_n^\Pi
+  =
+  \mathrm{BF}_{10,n}^{\Pi}
+  =
+  \left(\mathrm{BF}_{01,n}^{\Pi}\right)^{-1}.
+\]
+Thus, when the Bayes factor is defined in favor of the null, the test
+martingale is its inverse. 
 
-The inverse of evidence process $M_n^{\Pi}(y_{1:n})$ takes the form
-$$
-1/M_n^{\Pi}(y_{1:n}) = \frac{\int }{\int}
-$$
-which may be interpreted as a Bayes factor in a Bayesian $t$-test, under the assumption that 
+Standard choices of \(\Pi\) include Gaussian effect-size priors
+\citep{Gonen2005}, the centered Cauchy prior used in the
+Jeffreys--Zellner--Siow Bayesian \(t\)-test \citep{Rouder2009}, and,
+more generally, location-scale Student \(t\) priors
+\citep{Gronau2020}. One-sided tests can be obtained by truncating and
+renormalizing these priors to either positive or negative effect
+sizes.
 
+This Bayes-factor interpretation requires \(\Pi\) to be proper. For a
+merely \(\sigma\)-finite mixing measure, such as Lebesgue measure,
+\(M_n^\Pi\) remains an extended nonnegative martingale, but it is not
+a well-defined Bayes factor because the arbitrary normalization of
+\(\Pi\) does not cancel.
+
+
+\subsection{Lebesgue mixing measure}
+\label{subsec:improper-prior}
+
+The improper Lebesgue mixing measure
+\[
+  \Pi_{\mathrm{Leb}}(\dd\theta)
+  =
+  \dd\theta
+\]
+is an important noninformative benchmark
+\citep{Lai1976,Wang2025}. In this case,
+\[
+  M_1^{\mathrm{Leb}}=\infty
+  \qquad
+  \mathbb P_{0,\sigma}\text{-a.s.},
+\]
+whereas \(M_n^{\mathrm{Leb}}\) is finite almost surely for every
+\(n\geq2\). The process
+\[
+  \bigl(M_n^{\mathrm{Leb}}\bigr)_{n\geq2}
+\]
+is therefore a finite-valued extended nonnegative martingale, but is
+not integrable and hence is not a test martingale. Standard Ville
+calibration cannot be applied, but the extended Ville calibration
+can be started at \(m=2\).
+
+The martingale and its calibration function admit explicit
+expressions \citep{Wang2025}.
+
+\begin{proposition}
+\label{thm:Mn-Leb}
+For every \(n\geq2\),
+\begin{equation}
+\label{eq:Mn-Leb}
+  M_n^{\mathrm{Leb}}(Y_{1:n})
+  =
+  \sqrt{\frac{2\pi}{n}}
+  \left(
+    1+
+    \frac{n\widehat\theta_n^2}{n-1}
+  \right)^{n/2}.
+\end{equation}
+Define \(g_{\mathrm{Leb}}(0)=1\) and, for \(c>0\),
+\begin{equation}
+\label{eq:g-Leb}
+  g_{\mathrm{Leb}}(c)
+  =
+  \begin{cases}
+    1,
+    & 0<c\leq\sqrt\pi,
+    \\[8pt]
+    \displaystyle
+    \frac{2}{\pi}
+    \left[
+      \arcsin\left(
+        \sqrt{\frac{\sqrt\pi}{c}}
+      \right)
+      +
+      \sqrt{
+        \frac{\sqrt\pi}{c}
+        \left(
+          1-\frac{\sqrt\pi}{c}
+        \right)
+      }
+    \right],
+    & c>\sqrt\pi.
+  \end{cases}
+\end{equation}
+Then
+\[
+  P_n^{E,\mathrm{Leb}}
+  =
+  g_{\mathrm{Leb}}
+  \left(
+    M_n^{\mathrm{Leb}}
+  \right)
+\]
+and
+\[
+  \widetilde P_n^{E,\mathrm{Leb}}
+  =
+  g_{\mathrm{Leb}}
+  \left(
+    \max_{2\leq k\leq n}
+    M_k^{\mathrm{Leb}}
+  \right),
+  \qquad n\geq2,
+\]
+are \(p\)-processes for the composite null family
+\(\mathcal P_0\).
+\end{proposition}
