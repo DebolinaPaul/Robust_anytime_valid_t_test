@@ -1,0 +1,187 @@
+\section{Proofs}
+\label{sec:proofs}
+
+
+
+\subsection{Proof of Proposition \ref{thm:Mn-Leb}}
+
+This is already in Wang and Ramdas, just included here for completeness.\fc{todo}
+
+
+\subsection{Proof of Theorem \ref{thm:recovery}}
+
+
+
+\begin{proof}
+We recall that
+$$
+h_{n}(\theta,u)=e^{-n\theta^2/2 }A_n(u \theta ).
+$$
+Write $M_{n,m}(u)=\int h_n(\theta,u)\Pi(\dd\theta)$ and $M_{n,m}^\Leb(u)=\int h_n(\theta,u)\dd\theta$. 
+
+\emph{Step 1 (ratio convergence).}  Fix $R>0$ and split
+\[
+  \frac{M_{n,m}(u)}{a_m}
+  \;=\;\underbrace{\int_{|\theta|\leq R}}_{=:I_1(R,m)}
+   +\underbrace{\int_{R<|\theta|\leq m/2}}_{=:I_2(R,m)}
+   +\underbrace{\int_{|\theta|>m/2}}_{=:I_3(m)}\;
+   h_{n}(\theta,u)\,\frac{\pi(\theta-m)}{a_m}\,\dd\theta.
+\]
+We have, for any $\theta$,
+$$
+\pi(\theta-m)\sim a_m \sim m^{-\beta}L_-(m)
+$$
+as $m\to\infty$. By the uniform convergence theorem for regularly varying functions
+\citep[Theorem~1.2.1]{Bingham1987}, 
+$$
+\sup_{|\theta|\leq R}|\pi(\theta-m)/a_m-1|\to 0
+$$
+as $m\to\infty$, so 
+$$
+I_1(R,m)\to\int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta.
+$$
+For $I_2$, on $|\theta|\leq m/2$ we have $|\theta-m|\in[m/2,\,3m/2]$, so
+regular variation yields a constant $C_\star<\infty$ (independent of $R$ and of
+$m$ for all large $m$) such that $\pi(\theta-m)/a_m\leq C_\star$; hence
+$$
+I_2(R,m)\leq C_\star\int_{|\theta|>R}h_{n}(\theta,u)\,\dd\theta,
+$$ which vanishes
+as $R\to\infty$. For $I_3$, using the fact that $\pi$ is a proper prior
+(i.e.\ $\int_\mathbb{R}\pi=1$),
+\[
+I_3(m)\;=\;\int_{|\theta|>m/2}h_{n}(\theta,u)\,\frac{\pi(\theta-m)}{a_m}\,\dd\theta
+   \;\leq\; a_m^{-1}\sup_{|\theta|>m/2}h_{n}(\theta,u),
+\]
+the supremum is exponentially small in $m$ by \eqref{eq:hu-env}, while $a_m$ is
+only polynomially small, so $I_3(m)\to 0$.
+
+Combining these three bounds, for each fixed $R>0$,
+\begin{align*}
+   \int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta
+   \;\leq\; \liminf_{m\to\infty}\frac{M_{n,m}(u)}{a_m}
+   &\;\leq\; \limsup_{m\to\infty}\frac{M_{n,m}(u)}{a_m}\\
+   & \;\leq\; \int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta
+   \;+\; C_\star\!\int_{|\theta|>R}h_{n}(\theta,u)\,\dd\theta.
+\end{align*}
+Sending $R\to\infty$ and using $\int_\mathbb{R} h_{n}(\theta,u)\,\dd\theta
+= M_n^{\Leb}(u)$ gives \eqref{eq:Mnm-asymp}.
+
+\emph{Step 2 (calibration convergence).}
+Since \(|U_2|<\sqrt 2\) almost surely under \(\Prob_0\), Step~1 applied with \(n=2\) gives
+\(M_{2,m}(U_2)/a_m\to M_2^{\Leb}(U_2)\) almost surely. Since \(0\leq\min(M_{2,m}(U_2)/(a_m c),1)\leq 1\), bounded convergence yields
+\[
+  g_m(a_m c)
+  \;=\;\E_0\!\Bigl[\min\!\Bigl(\tfrac{M_{2,m}(U_2)}{a_mc},1\Bigr)\Bigr]
+  \;\longrightarrow\;
+  \E_0\!\Bigl[\min\!\Bigl(\tfrac{M_2^{\Leb}(U_2)}{c},1\Bigr)\Bigr]
+  \;=\;g_{\Leb}(c),
+\]
+proving \eqref{eq:gm-asymp}.
+
+\emph{Step 3 (composition).}
+Set \(c_m:=M_{n,m}(u_n)/a_m\) and \(c:=M_n^{\Leb}(u_n)\); by Step~1 \(c_m\to c\). Each \(g_m\) is decreasing, so for any \(\varepsilon\in(0,c)\) and \(m\) large, \(g_m(a_m(c+\varepsilon))\leq g_m(a_m c_m)\leq g_m(a_m(c-\varepsilon))\). Taking \(\liminf\) and \(\limsup\) using Step~2 and letting \(\varepsilon\downarrow 0\) yields \eqref{eq:p-asymp}.
+\end{proof}
+
+
+
+
+\section{Secondary lemmas}
+\label{sec:secondarylemmas}
+
+\begin{lemma}\label{lemma:hthetabound}
+For $n\geq 2$, $|u|<\sqrt{n}$, $\theta\in\bbR$, let 
+  \begin{equation}
+\label{eq:hthetadef2}
+  h_{n}(\theta,u)
+  =
+  e^{-n\theta^2/2}
+  A_n\bigl(\theta u\bigr),
+\end{equation}
+where $A_n$ is the MGF of $\chi_n$.  Then, for any $u^2<\eta<n$, 
+\begin{equation}
+h_{n}(\theta,u)\leq \exp\left(-\frac{(n-\eta)\theta^2}{2}\right)\left(1-\frac{u^2}{\eta}\right)^{-n/2}.
+\label{eq:hu-env}
+\end{equation}
+Thus, there are constants $C_{n,u}$,$\kappa_{n,u}>0$ such that 
+$$
+0\leq h_{n}(\theta,u)\leq C_{n,u}e^{-\kappa_{n,u}\theta^2}.
+$$
+\end{lemma}
+
+\begin{proof}
+\fc{TODO}
+\end{proof}
+
+
+\begin{lemma}\label{sec:asymp_An}
+For $R_n\sim\chi_n$, let
+\[
+A_n(z)=\mathbb E[e^{z R_n}]=\frac{1}{\Gamma(n/2)}\int_0^\infty y^{n/2-1}\exp(-y+z\sqrt{2y})dy.
+\]
+Then
+$$A_n(z) \sim \frac{2^{1-n/2}}{\Gamma(n/2)} \sqrt{2\pi} z^{n-1} e^{z^2/2}$$ as $z \longrightarrow \infty$.
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+\begin{proof}
+Substituting \(r=\sqrt{2y}\), so that \(y=r^2/2\) and
+\(dy=r\,dr\), and completing the square, we obtain
+\[
+A_n(z)
+=
+\frac{2^{1-n/2}}{\Gamma(n/2)}
+e^{z^2/2}
+\int_0^\infty
+r^{n-1}e^{-(r-z)^2/2}\,dr.
+\]
+Setting \(u=r-z\) gives
+\[
+\int_0^\infty
+r^{n-1}e^{-(r-z)^2/2}\,dr
+=
+z^{n-1}
+\int_{-z}^\infty
+\left(1+\frac{u}{z}\right)^{n-1}
+e^{-u^2/2}\,du.
+\]
+For each fixed \(u\in\mathbb{R}\),
+\[
+\left(1+\frac{u}{z}\right)^{n-1}
+\mathbf{1}_{\{u>-z\}}
+\longrightarrow 1
+\qquad \text{as } z\to\infty.
+\]
+Moreover, for \(z\geq 1\), the integrand is bounded by
+\[
+(1+|u|)^{n-1}e^{-u^2/2},
+\]
+which is integrable on \(\mathbb{R}\). Therefore, by the dominated
+convergence theorem,
+\[
+\int_{-z}^\infty
+\left(1+\frac{u}{z}\right)^{n-1}
+e^{-u^2/2}\,du
+\longrightarrow
+\int_{-\infty}^\infty e^{-u^2/2}\,du
+=
+\sqrt{2\pi}.
+\]
+Consequently,
+\[
+A_n(z)
+\sim
+\frac{2^{1-n/2}}{\Gamma(n/2)}
+\sqrt{2\pi}\,
+z^{n-1}e^{z^2/2},
+\qquad z\to\infty.
+\]
+\end{proof}

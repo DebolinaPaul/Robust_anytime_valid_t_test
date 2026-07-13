@@ -39,24 +39,15 @@
 \theoremstyle{thmstyletwo}%
 \newtheorem{example}{Example}%
 \newtheorem{remark}{Remark}%
+\newtheorem{lemma}{Lemma}%
+\newtheorem{assumption}[theorem]{Assumption}
 \theoremstyle{thmstylethree}%
 \newtheorem{definition}{Definition}
 \usepackage[doublespacing]{setspace}
 \usepackage[fontsize=12pt]{fontsize}
 
 
-\DeclareMathOperator{\supp}{supp}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\E}{\mathbb{E}}
-\newcommand{\Prob}{\mathbb{P}}
-\newcommand{\dd}{\,\mathrm{d}}
-\newcommand{\thetahat}{\hat{\theta}_n}
-\newcommand{\thetastar}{\theta^*}
-\newcommand{\one}{\boldsymbol{1}}
-\newcommand{\Leb}{\mathrm{Leb}}
-\newcommand{\Lap}{\mathrm{Lap}}
-\newcommand{\diff}{\mathrm{d}}
-\newcommand{\1}{\mathbf{1}}
+\input{defs}
 
 
 \begin{document}
@@ -115,13 +106,16 @@ Gaussian means with unknown variance}
 
 \input{introduction}
 \input{background}
+\input{mainresult}
+
+\input{experiments}
 
 
 
 
 \begin{appendices}
 
-\section{First Appendix}
+\input{appendix.tex}
 
 
 \end{appendices}

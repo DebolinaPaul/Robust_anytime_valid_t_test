@@ -46,7 +46,7 @@ if that time is chosen after looking at the data.
 
 Our construction builds on the work of~\cite{Lai1976,PerezOrtiz2024,Wang2025,Lindon2026} on anytime-valid $t$ tests based on (extended) e-processes. It starts from a nonnegative scale-invariant evidence process \(M_n\) against the composite
 null, obtained by mixing a scale-invariant likelihood ratio over the prior distribution on the effect size. In the ordinary case, \(M_n\) is a test martingale under \(H_0\). In the noninformative case it may be an
-extended nonnegative martingale arising from a \(\sigma\)-finite mixture~\citep{Lai1976,Wang2025a}. For test martingales, 
+extended nonnegative martingale arising from a \(\sigma\)-finite mixture~\citep{Lai1976,Wang2025a}. For test martingales,
 Ville's inequality \citep{Ville1939} gives the classical
 conversion \(P_n=\min\{1,M_n^{-1}\}\). More generally, the extended
 Ville inequality~\citep{Lai1976,Wang2025a} yields a decreasing calibration function \(g\), defined
@@ -54,13 +54,13 @@ below, such that
 \[
   P_n = g(M_n)
 \]
-is an anytime-valid \(p\)-process. 
+is an anytime-valid \(p\)-process.
 
-The evidence processes considered in this paper can also be interpreted as evidence-to-null Bayes factors within a Bayesian \(t\)-test, when using a Jeffreys prior on the unknown scale parameter $\sigma$~\citep{Jeffreys1961,Zellner1980,Rouder2009,Gronau2020}. Such Bayes factors have become a standard Bayesian counterpart of the \(t\)-test in applied work. 
+The evidence processes considered in this paper can also be interpreted as evidence-to-null Bayes factors within a Bayesian \(t\)-test, when using a Jeffreys prior on the unknown scale parameter $\sigma$~\citep{Jeffreys1961,Zellner1980,Rouder2009,Gronau2020}. Such Bayes factors have become a standard Bayesian counterpart of the \(t\)-test in applied work.
 % and are implemented in software such as the R package \texttt{BayesFactor}
 %\citep{MoreyRouder2015} and JASP \citep{Wagenmakers2018,vanDoorn2021}.
 %More general informed Bayesian \(t\)-tests, using flexible priors on
-%the standardized effect size, were developed by \citet{Gronau2020}. 
+%the standardized effect size, were developed by \citet{Gronau2020}.
 
 
 
@@ -79,9 +79,9 @@ The evidence processes considered in this paper can also be interpreted as evide
 %implemented in software such as the R package \texttt{BayesFactor}
 %\citep{MoreyRouder2015} and JASP \citep{Wagenmakers2018,vanDoorn2021}.
 %More general informed Bayesian \(t\)-tests, using flexible priors on
-%the standardized effect size, were developed by \citet{Gronau2020}. 
+%the standardized effect size, were developed by \citet{Gronau2020}.
 %From the anytime-valid perspective, these Bayes factors are not merely
-%fixed-sample Bayesian summaries. When using a Jeffreys prior on the unknown scale parameter $\sigma$, the corresponding Bayes factor can be interpreted as an inverse test martingale, hence defines a valid p-process.  
+%fixed-sample Bayesian summaries. When using a Jeffreys prior on the unknown scale parameter $\sigma$, the corresponding Bayes factor can be interpreted as an inverse test martingale, hence defines a valid p-process.
 %
 %The unknown-variance case makes this construction nontrivial. One
 %cannot simply replace \(\sigma\) by the sample standard deviation in a
@@ -94,7 +94,7 @@ The evidence processes considered in this paper can also be interpreted as evide
 %filtrations, extended Ville inequalities, and invariant
 %\(e\)-statistics \citep{Wang2025,Wang2025a,PerezOrtiz2024}.
 
-The main contribution of this paper is to determine which priors allow
+The main contribution of this paper is to determine which priors and calibration function allow
 the Bayes-assisted anytime-valid \(t\)-test to be both useful and
 robust. The improper Lebesgue mixture recovers the noninformative
 anytime-valid \(t\)-test of \citet{Lai1976} and \citet{Wang2025}. For
@@ -110,8 +110,8 @@ misspecification.
 
 The resulting procedure is Bayesian in how it distributes evidence
 across effect sizes, frequentist in its anytime-valid Type I error
-guarantee, and robust in a precise tail-dependent sense. It extends the
-bounded-influence, extended-Ville programme of \citet{Cortinovis2025}
+guarantee, and robust in a precise tail-dependent sense. It is reminiscent of work in the Bayesian literature on bounded-influence priors \citep{Dawid1973,Pericchi1992,Pericchi1995}. It extends the
+bounded/vanishing-influence, extended-Ville programme of \citet{Cortinovis2025}
 from the known-variance Gaussian mean problem to the classical and
 practically more important unknown-variance \(t\)-testing problem.
 
@@ -336,7 +336,7 @@ practically more important unknown-variance \(t\)-testing problem.
 %extended forms of Ville's inequality \citep{Wang2025,Wang2025a}. In
 %parallel, \citet{PerezOrtiz2024} developed the role of group
 %invariance and right-Haar integration in producing valid and optimal
-%\(e\)-statistics. 
+%\(e\)-statistics.
 %%These results show why the unknown-variance case is
 %%not obtained by simply replacing \(\sigma\) by the sample standard
 %%deviation in a fixed-\(\sigma\) likelihood ratio. The nuisance scale
