@@ -1,254 +1,324 @@
 \section{Main results}
 \label{sec:mainresult}
 
-Let $\Pi$ be a probability distribution representing our prior belief about the effect size. Assume it admits a density $\pi_m$ with respect to the Lebesgue measure, where $m\in\bbR$ is the known center of the distribution. Assume it admits the location-shift construction $\pi_m(\theta)=\pi(\theta-m)$, for some density $\pi$.\fc{should add more discussion to justify the limit taken} 
+\subsection{Prior-location misspecification}
+\label{subsec:location-misspecification}
 
-For \(u\in(-\sqrt n,\sqrt n)\), define
-\[
-h_n(\theta,u)
-=
-e^{-n\theta^2/2}A_n(u\theta),
-\]
+Let \(\pi\) be a probability density on \(\mathbb R\), regarded as a
+zero-location baseline density. Holding its shape and scale fixed,
+consider the location family
+\begin{equation}
+\label{eq:location-prior}
+  \Pi_m(\dd\theta)
+  =
+  \pi_m(\theta)\,\dd\theta,
+  \qquad
+  \pi_m(\theta)
+  =
+  \pi(\theta-m),
+  \qquad m\in\mathbb R.
+\end{equation}
+Here \(m\) is a user-specified working-prior location, rather than an
+unknown parameter to be estimated.  If the data-generating standardized
+effect is \(\theta^\star\), the displacement
+\(\lvert m-\theta^\star\rvert\) measures location misspecification.
+We study an extreme-misspecification path by fixing
+\(\theta^\star\), the prior shape, and the sample size, and then letting
+\(m\to+\infty\) or \(m\to-\infty\).  Equivalently,
+\(\lvert m-\theta^\star\rvert\to\infty\).  This is a prior-sensitivity
+limit, not a large-sample limit: the results below hold pointwise for
+each fixed dataset with positive sample variance.
+
+For \(n\geq2\) and \(u\in(-\sqrt n,\sqrt n)\), define
+\begin{equation}
+\label{eq:hnu-def}
+  h_n(\theta,u)
+  =
+  e^{-n\theta^2/2}A_n(u\theta),
+\end{equation}
 and
-\[
-M_{n,m}(u)
-=
-\int_{\mathbb{R}}
-h_n(\theta,u)\pi(\theta-m)\,d\theta,
-\qquad
-M_n^{\Leb}(u)
-=
-\int_{\mathbb{R}}h_n(\theta,u)\,d\theta.
-\]
-Thus \(M_{n,m}=M_{n,m}(U_n)\) and
-\(M_n^{\Leb}=M_n^{\Leb}(U_n)\). Also define
-\[
-g_{\Leb}(c)
-=
-\mathbb{E}_0\left[
-\min\left(\frac{M_2^{\Leb}(U_2)}{c},1\right)
-\right],
-\qquad c>0.
-\]
+\begin{equation}
+\label{eq:shifted-mixtures}
+\begin{aligned}
+  M_{n,m}(u)
+  & =
+  \int_{\mathbb R}
+  h_n(\theta,u)\pi(\theta-m)\,\dd\theta,
+  \\
+  M_n^{\Leb}(u)
+  & =
+  \int_{\mathbb R}h_n(\theta,u)\,\dd\theta.
+\end{aligned}
+\end{equation}
+Thus \(M_{n,m}=M_{n,m}(U_n)\), while
+\(M_n^{\Leb}=M_n^{\Leb}(U_n)\) is the Lebesgue-mixture benchmark from
+Section~\ref{subsec:improper-prior}.  Specializing the calibrations in
+Section~\ref{subsec:ville} to \(\Pi_m\), define, for \(c>0\),
+\begin{equation}
+\label{eq:gm-def}
+  g_m(c)
+  =
+  \mathbb E_{0,1}
+  \left[
+    \min\left\{1,\frac{M_{2,m}}{c}\right\}
+  \right],
+\end{equation}
+with \(g_m(0)=1\) and \(g_m(\infty)=0\), and set
+\begin{equation}
+\label{eq:shifted-p-processes}
+  P_{n,m}^V
+  =
+  \min\left\{1,\frac1{M_{n,m}}\right\},
+  \qquad
+  P_{n,m}^E
+  =
+  g_m(M_{n,m}).
+\end{equation}
+Their running versions are
+\begin{equation}
+\label{eq:shifted-running-p-processes}
+  \widetilde P_{n,m}^V
+  =
+  \min\left\{
+    1,
+    \frac1{\max_{2\leq k\leq n}M_{k,m}}
+  \right\},
+  \qquad
+  \widetilde P_{n,m}^E
+  =
+  g_m\!\left(\max_{2\leq k\leq n}M_{k,m}\right).
+\end{equation}
 
+Our first result does not require any tail condition on \(\pi\).
 
-%
-%Define
-%\begin{equation}\label{eq:Mnm-def}
-%  M_{n,m}\;=\;\int_\mathbb{R} e^{-n\theta^2/2}A_n(\theta U_n)\,\pi_m(\theta)
-%  \,\dd\theta,
-%  \qquad
-%  g_m(c)\;=\;\E_0\!\bigl[\min(M_{2,m}/c,\,1)\bigr].
-%\end{equation}
-We are interested in the behaviour of the test martingale and associated $p$-processes, for a given sample size $n$, when the prior becomes badly misspecified. That is, for any fixed $n$ and any fixed dataset $y_{1:n}$, when the centering $|m|\to \infty$. We first prove a negative result: that Ville-calibrated $p$-variables become powerless in case of a bad prior. 
-
-
-\begin{proposition}
-For any proper prior $\Pi$, any $n\geq 2$ and any fixed dataset $y_{1:n}$ with \(|u_n|=\frac{|\sum_{i=1}^ny_i|}
-       {\sqrt{\sum_{i=1}^n y_i^2}}<\sqrt n\), we have, as $m\to\pm\infty$,
- $$M_{n,m}\to 0,$$
- hence the Ville-calibrated  $p$-process satisfies, as $m\to \pm \infty$,
-$$
-P^{V}_{n,m}:=\min(1,M_{n,m}^{-1})\to 1.
-$$
+\begin{proposition}[Degeneracy of reciprocal Ville calibration]
+\label{prop:ville-degeneracy}
+Let \(\pi\) be any probability density.  For every \(n\geq2\) and
+every \(u\in(-\sqrt n,\sqrt n)\),
+\begin{equation}
+\label{eq:Mnm-to-zero}
+  M_{n,m}(u)
+  \longrightarrow
+  0
+  \qquad\text{as }m\to+\infty
+  \quad\text{or}\quad
+  m\to-\infty.
+\end{equation}
+Consequently, for every fixed dataset \(y_{1:n}\) with positive sample
+variance,
+\begin{equation}
+\label{eq:PV-to-one}
+  P_{n,m}^V
+  \longrightarrow
+  1
+  \qquad\text{as }|m|\to\infty.
+\end{equation}
+If, in addition, every prefix \(y_{1:k}\), \(2\leq k\leq n\), has
+positive sample variance, then
+\begin{equation}
+\label{eq:running-PV-to-one}
+  \widetilde P_{n,m}^V
+  \longrightarrow
+  1
+  \qquad\text{as }|m|\to\infty.
+\end{equation}
 \end{proposition}
-The above result holds for any dataset; that is, however strong the evidence against null is, the Ville-calibrated $p$-variable becomes powerless when the prior becomes badly centered. Note that the result excludes the extreme cases $|u_n|=\sqrt{n}$, where all the observations take the same value. We note that the same result holds for $\widetilde P_{n,m}^V$.
-
 
 \begin{proof}
-Let \(Z\) have density \(\pi\). By the location-shift
-representation \(\pi_m(\theta)=\pi(\theta-m)\), the change of
-variables \(\theta=m+z\) gives
+Let \(Z\) have density \(\pi\).  The change of variables
+\(\theta=m+z\) gives
 \[
-M_{n,m}
-=
-\mathbb{E}\left[h_n(m+Z,u_n)\right],
+  M_{n,m}(u)
+  =
+  \mathbb E\bigl[h_n(m+Z,u)\bigr].
 \]
-where
+For \(\lvert u\rvert<\sqrt n\), Lemma~\ref{lemma:hthetabound} gives
+constants \(C_{n,u},\kappa_{n,u}>0\) such that
 \[
-h_n(\theta,u)
-=
-e^{-n\theta^2/2}A_n(u\theta).
+  0
+  \leq
+  h_n(\theta,u)
+  \leq
+  C_{n,u}e^{-\kappa_{n,u}\theta^2}
+  \leq
+  C_{n,u},
+  \qquad \theta\in\mathbb R.
 \]
-
-Since \(|u_n|<\sqrt n\), choose \(\eta\) such that
-\[
-u_n^2<\eta<n.
-\]
-By Lemma~\ref{lemma:hthetabound}, there exist constants
-\(C_{n,u_n},\kappa_{n,u_n}>0\) such that
-\[
-0\leq h_n(\theta,u_n)
-\leq
-C_{n,u_n}e^{-\kappa_{n,u_n}\theta^2},
-\qquad \theta\in\mathbb{R}.
-\]
-Consequently, for every fixed \(z\in\mathbb{R}\),
-\[
-h_n(m+z,u_n)\longrightarrow0
-\qquad\text{as }m\to\pm\infty,
-\]
-and
-\[
-0\leq h_n(m+z,u_n)\leq C_{n,u_n}.
-\]
-Since the dominating constant is integrable with respect to the
-probability distribution of \(Z\), the dominated convergence
-theorem yields
-\[
-M_{n,m}
-=
-\mathbb{E}\left[h_n(m+Z,u_n)\right]
-\longrightarrow0.
-\]
-Because \(M_{n,m}>0\), it follows that
-\[
-P_{n,m}^{V}
-=
-\min\left(1,M_{n,m}^{-1}\right)
-\longrightarrow1.
-\]
+For every fixed \(z\),
+\(h_n(m+z,u)\to0\) as \(|m|\to\infty\).  Dominated convergence
+therefore proves \eqref{eq:Mnm-to-zero}, and
+\eqref{eq:PV-to-one} follows from \eqref{eq:shifted-p-processes}.
+For the running version, apply \eqref{eq:Mnm-to-zero} to each of the
+finitely many prefixes \(k=2,\ldots,n\); their maximum also converges
+to zero.
 \end{proof}
 
-%\begin{proof}
-%For $Z\sim \pi$, we have
-%$$
-%M_{n,m}=\bbE[h_{n}(m+Z,u_n)]
-%$$
-%where
-%$$
-%h_{n}(\theta,u)=e^{-n\theta^2/2 }A_n(u \theta ).
-%$$
-%
-%%
-%%where $X\sim\chi_n$. For every $x\in\bbR$ and $X\geq 0$,
-%%$$
-%%-nx^2/2 +uxX\leq \frac{u^2 X^2}{2n}.
-%%$$
-%%Therefore, for $|u|<\sqrt{n}$ and every $x$, we have the uniform (in $x$) bound
-%%$$
-%%0\leq h_u(x)\leq \bbE[e^{u^2 X^2/(2n)}]=\left(1-\frac{u^2}{n}\right)^{-n/2}.
-%%$$
-%For $t>0$, the MGF of $\chi_n$ satisfies
-%$$
-%A_n(t)\sim \frac{\sqrt{2\pi}}{2^{n/2-1}\Gamma(n/2)}t^{n-1}e^{t^2/2}.
-%$$
-%Consequently, for $|u_n|<\sqrt{n}$, and any $z$, $h_{n,m+z}(u_n)\to 0$ as $m\to\pm\infty$. Additionally, by Lemma \ref{lemma:hthetabound}, $\theta\mapsto h_{n}(\theta,u)$ is bounded for any $n\geq 2$ and $|u|<\sqrt{n}$. Therefore, by dominated convergence, $M_{n,m}\to 0$.
-%\end{proof}
+Under every nondegenerate Gaussian model, all prefix sample variances
+are positive almost surely.  Write \(\mathbb P_{\theta^\star,\sigma}\)
+for the law under which
+\(Y_i\stackrel{\mathrm{iid}}{\sim}
+\mathcal N(\sigma\theta^\star,\sigma^2)\).  Then, for every fixed
+\(\theta^\star\in\mathbb R\), \(\sigma>0\),
+\(n\geq2\), and \(\alpha\in(0,1)\), Proposition~\ref{prop:ville-degeneracy}
+and bounded convergence imply
+\begin{equation}
+\label{eq:ville-power-zero}
+  \mathbb P_{\theta^\star,\sigma}
+  \bigl(P_{n,m}^V\leq\alpha\bigr)
+  \longrightarrow0,
+  \qquad
+  \mathbb P_{\theta^\star,\sigma}
+  \bigl(\widetilde P_{n,m}^V\leq\alpha\bigr)
+  \longrightarrow0,
+  \qquad |m-\theta^\star|\to\infty.
+\end{equation}
+In particular, when \(\theta^\star\neq0\), both the fixed-time power
+and the probability of rejection by time \(n\) vanish under extreme
+prior-location misspecification.  Anytime-validity is retained for
+every \(m\), but the reciprocal calibration becomes uninformative.
 
 
+\subsection{Recovery under regularly varying tails}
+\label{subsec:recovery}
 
+We next impose a tail condition that determines the limiting behaviour
+of the extended Ville calibration.
 
-
-\begin{assumption}\label{ass:tails}
-Assume that $\pi$ has regularly varying tails: for some $\beta>1$, some slowly varying functions $L_{+}$ and $L_-$,
-\begin{align}
-\pi(x)\sim |x|^{-\beta}L_{\pm} (|x|),\qquad x\to\pm\infty.
-\end{align}
+\begin{assumption}[Regularly varying prior tails]
+\label{ass:tails}
+There exist \(\beta>1\) and positive slowly varying functions
+\(L_+\) and \(L_-\) such that, as \(x\to\infty\),
+\begin{equation}
+\label{eq:regularly-varying-tails}
+  \pi(x)
+  \sim
+  x^{-\beta}L_+(x),
+  \qquad
+  \pi(-x)
+  \sim
+  x^{-\beta}L_-(x).
+\end{equation}
 \end{assumption}
 
-Examples include the Student-t with $\nu$ degrees of freedom ($\beta=\nu+1$) the Cauchy ($\beta=2$), and the horseshoe location family ($\beta=2$). In all these example, the slowly varying functions are positive constants.
+This condition is satisfied by Student \(t\) densities with
+\(\nu>0\) degrees of freedom, for which \(\beta=\nu+1\); the Cauchy
+case has \(\beta=2\).
 
-Set
-\(a_m =\pi_m(0)=\pi(-m)\sim m^{-\beta}L_-(m)\).
+For sufficiently large \(\lvert m\rvert\), define
+\begin{equation}
+\label{eq:am-def}
+  a_m
+  =
+  \pi_m(0)
+  =
+  \pi(-m).
+\end{equation}
+Under Assumption~\ref{ass:tails},
+\begin{equation}
+\label{eq:am-asymptotics}
+  a_m
+  \sim
+  \begin{cases}
+    m^{-\beta}L_-(m),
+      &m\to+\infty,\\[3pt]
+    \lvert m\rvert^{-\beta}L_+(\lvert m\rvert),
+      &m\to-\infty.
+  \end{cases}
+\end{equation}
+Moreover, for every fixed \(R<\infty\),
+\begin{equation}
+\label{eq:prior-local-flattening}
+  \sup_{\lvert\theta\rvert\leq R}
+  \left\lvert
+    \frac{\pi(\theta-m)}{a_m}-1
+  \right\rvert
+  \longrightarrow0
+  \qquad\text{as }m\to+\infty
+  \quad\text{or}\quad
+  m\to-\infty.
+\end{equation}
+Thus the rescaled shifted prior is asymptotically flat on every bounded
+set.  In particular, because \(\theta^\star\) is fixed,
+\(\pi_m(\theta^\star)/a_m\to1\) along either misspecification
+direction.
 
-
-\begin{theorem}\label{thm:recovery}
-Fix \(n\geq 2\) and a realization \(y_{1:n}\) with
-\(|u_n|=\frac{|\sum_{i=1}^ny_i|}
-       {\sqrt{\sum_{i=1}^n y_i^2}}<\sqrt n\). Under
-Assumption~\ref{ass:tails}, as \(m\to\infty\),
+\begin{theorem}[Recovery of the Lebesgue benchmark]
+\label{thm:recovery}
+Fix \(n\geq2\) and a dataset \(y_{1:n}\) with positive sample
+variance, and write
+\[
+  u_n
+  =
+  \frac{\sum_{i=1}^n y_i}
+       {\sqrt{\sum_{i=1}^n y_i^2}}
+  \in(-\sqrt n,\sqrt n).
+\]
+With all evidence quantities evaluated at this fixed dataset,
+Assumption~\ref{ass:tails} implies, along either
+\(m\to+\infty\) or \(m\to-\infty\),
 \begin{align}
   \frac{M_{n,m}}{a_m}
-   &\;\longrightarrow\; M_n^{\Leb},
-   \label{eq:Mnm-asymp}\\
+  &\longrightarrow
+  M_n^{\Leb},
+  \label{eq:Mnm-asymp}\\
   g_m(a_m c)
-   &\;\longrightarrow\; g_{\Leb}(c),\qquad c>0,
-   \label{eq:gm-asymp}\\
-  P_{n,m}^E=g_m\!\bigl(M_{n,m}\bigr)
-   &\;\longrightarrow\;
-   g_{\Leb}\!\bigl(M_n^{\Leb}\bigr)
-   \;=\;P_n^{\Leb}.
-   \label{eq:p-asymp}
+  &\longrightarrow
+  g_{\Leb}(c),
+  \qquad c>0,
+  \label{eq:gm-asymp}\\
+  P_{n,m}^E
+  =
+  g_m(M_{n,m})
+  &\longrightarrow
+  g_{\Leb}(M_n^{\Leb})
+  =
+  P_n^{\Leb}.
+  \label{eq:p-asymp}
 \end{align}
+If every prefix \(y_{1:k}\), \(2\leq k\leq n\), has positive sample
+variance, then also
+\begin{equation}
+\label{eq:running-p-asymp}
+  \widetilde P_{n,m}^E
+  \longrightarrow
+  \widetilde P_n^{\Leb}
+  \qquad\text{as }|m|\to\infty.
+\end{equation}
 \end{theorem}
 
-%
-%\fc{to be moved later}
-%
-%\begin{proof}
-%We recall that
-%$$
-%h_{n}(\theta,u)=e^{-n\theta^2/2 }A_n(u \theta ).
-%$$
-%Write $M_{n,m}(u)=\int h_n(\theta,u)\Pi(\dd\theta)$ and $M_{n,m}^\Leb(u)=\int h_n(\theta,u)\dd\theta$.
-%
-%\emph{Step 1 (ratio convergence).}  Fix $R>0$ and split
-%\[
-%  \frac{M_{n,m}(u)}{a_m}
-%  \;=\;\underbrace{\int_{|\theta|\leq R}}_{=:I_1(R,m)}
-%   +\underbrace{\int_{R<|\theta|\leq m/2}}_{=:I_2(R,m)}
-%   +\underbrace{\int_{|\theta|>m/2}}_{=:I_3(m)}\;
-%   h_{n}(\theta,u)\,\frac{\pi(\theta-m)}{a_m}\,\dd\theta.
-%\]
-%We have, for any $\theta$,
-%$$
-%\pi(\theta-m)\sim a_m \sim m^{-\beta}L_-(m)
-%$$
-%as $m\to\infty$. By the uniform convergence theorem for regularly varying functions
-%\citep[Theorem~1.2.1]{Bingham1987},
-%$$
-%\sup_{|\theta|\leq R}|\pi(\theta-m)/a_m-1|\to 0
-%$$
-%as $m\to\infty$, so
-%$$
-%I_1(R,m)\to\int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta.
-%$$
-%For $I_2$, on $|\theta|\leq m/2$ we have $|\theta-m|\in[m/2,\,3m/2]$, so
-%regular variation yields a constant $C_\star<\infty$ (independent of $R$ and of
-%$m$ for all large $m$) such that $\pi(\theta-m)/a_m\leq C_\star$; hence
-%$$
-%I_2(R,m)\leq C_\star\int_{|\theta|>R}h_{n}(\theta,u)\,\dd\theta,
-%$$ which vanishes
-%as $R\to\infty$. For $I_3$, using the fact that $\pi$ is a proper prior
-%(i.e.\ $\int_\mathbb{R}\pi=1$),
-%\[
-%I_3(m)\;=\;\int_{|\theta|>m/2}h_{n}(\theta,u)\,\frac{\pi(\theta-m)}{a_m}\,\dd\theta
-%   \;\leq\; a_m^{-1}\sup_{|\theta|>m/2}h_{n}(\theta,u),
-%\]
-%the supremum is exponentially small in $m$ by \eqref{eq:hu-env}, while $a_m$ is
-%only polynomially small, so $I_3(m)\to 0$.
-%
-%Combining these three bounds, for each fixed $R>0$,
-%\begin{align*}
-%   \int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta
-%   \;\leq\; \liminf_{m\to\infty}\frac{M_{n,m}(u)}{a_m}
-%   &\;\leq\; \limsup_{m\to\infty}\frac{M_{n,m}(u)}{a_m}\\
-%   & \;\leq\; \int_{|\theta|\leq R}h_{n}(\theta,u)\,\dd\theta
-%   \;+\; C_\star\!\int_{|\theta|>R}h_{n}(\theta,u)\,\dd\theta.
-%\end{align*}
-%Sending $R\to\infty$ and using $\int_\mathbb{R} h_{n}(\theta,u)\,\dd\theta
-%= M_n^{\Leb}(u)$ gives \eqref{eq:Mnm-asymp}.
-%
-%\emph{Step 2 (calibration convergence).}
-%Since \(|U_2|<\sqrt 2\) almost surely under \(\Prob_0\), Step~1 applied with \(n=2\) gives
-%\(M_{2,m}(U_2)/a_m\to M_2^{\Leb}(U_2)\) almost surely. Since \(0\leq\min(M_{2,m}(U_2)/(a_m c),1)\leq 1\), bounded convergence yields
-%\[
-%  g_m(a_m c)
-%  \;=\;\E_0\!\Bigl[\min\!\Bigl(\tfrac{M_{2,m}(U_2)}{a_mc},1\Bigr)\Bigr]
-%  \;\longrightarrow\;
-%  \E_0\!\Bigl[\min\!\Bigl(\tfrac{M_2^{\Leb}(U_2)}{c},1\Bigr)\Bigr]
-%  \;=\;g_{\Leb}(c),
-%\]
-%proving \eqref{eq:gm-asymp}.
-%
-%\emph{Step 3 (composition).}
-%Set \(c_m:=M_{n,m}(u_n)/a_m\) and \(c:=M_n^{\Leb}(u_n)\); by Step~1 \(c_m\to c\). Each \(g_m\) is decreasing, so for any \(\varepsilon\in(0,c)\) and \(m\) large, \(g_m(a_m(c+\varepsilon))\leq g_m(a_m c_m)\leq g_m(a_m(c-\varepsilon))\). Taking \(\liminf\) and \(\limsup\) using Step~2 and letting \(\varepsilon\downarrow 0\) yields \eqref{eq:p-asymp}.
-%\end{proof}
+The mechanism behind Theorem~\ref{thm:recovery} is the local
+flattening in \eqref{eq:prior-local-flattening}.  The exponential
+envelope for \(h_n\) in Lemma~\ref{lemma:hthetabound} makes the
+contribution from large \(\lvert\theta\rvert\) negligible, so the
+mixture only sees the region on which
+\(\pi(\theta-m)\approx a_m\).  Consequently,
+\(M_{n,m}\approx a_mM_n^{\Leb}\).  Applying the same argument at the
+calibration time \(n=2\) gives
+\(g_m(a_m c)\to g_{\Leb}(c)\); monotonicity of \(g_m\) then yields the
+composition limit \eqref{eq:p-asymp}.  The running version follows by
+taking a maximum over finitely many prefixes.  A full proof is given in
+the appendix.
 
+The distinction between the two calibrations is now explicit.  Since
+\(a_m\to0\), the proper-prior evidence \(M_{n,m}\) itself vanishes
+under either form of extreme misspecification, even when \(\pi\) has
+heavy tails.  Reciprocal Ville calibration retains this vanishing
+scale and therefore gives \(P_{n,m}^V\to1\).  Extended Ville
+calibration adapts to the null distribution of the same shifted
+mixture: the common factor \(a_m\) cancels asymptotically, leaving the
+noninformative Lebesgue benchmark \(P_n^{\Leb}\).  Regular variation is
+therefore not needed for the negative result in
+Proposition~\ref{prop:ville-degeneracy}; it is a simple sufficient
+condition for the symmetric Lebesgue fallback of the extended
+calibration.
 
-
-
-That is, for every fixed \(n\geq 2\) and any dataset with positive sample variance, the extended-Ville $p$-variable under the shifted polynomial-tail prior converges to the extended-Ville $p$-variable under the noninformative Lebesgue prior.
-
-
+The regularly varying case is the zero-exponential-rate member of a
+broader directional limit.  Section~S.1 of the Supplementary Material
+treats tails satisfying
+\(\pi(x)\sim e^{-\kappa_+x}x^{-\beta_+}L_+(x)\) and
+\(\pi(-x)\sim e^{-\kappa_-x}x^{-\beta_-}L_-(x)\).  It shows that the
+limiting mixing measure is \(e^{\kappa_-\theta}\dd\theta\) as
+\(m\to+\infty\), and \(e^{-\kappa_+\theta}\dd\theta\) as
+\(m\to-\infty\).  Thus a Laplace prior has a nondegenerate but
+directional fallback, whereas \(\kappa_+=\kappa_-=0\) recovers the
+Lebesgue benchmark in Theorem~\ref{thm:recovery}.
