@@ -1,0 +1,277 @@
+\section{Background}
+\label{sec:background}
+
+This section records the scale-invariant likelihood-ratio construction
+and the calibrations used in the sequel. Technical definitions and
+calculations are collected in Appendix~\ref{app:background-details}.
+
+\subsection{Scale-invariant likelihood-ratio mixtures}
+\label{subsec:martingale-t-test}
+\label{subsec:mixture-construction}
+
+Suppose that
+\[
+  Y_1,Y_2,\ldots
+  \stackrel{\mathrm{iid}}{\sim}
+  \mathcal N(\mu,\sigma^2),
+  \qquad \sigma>0,
+\]
+and write \(\theta^\star=\mu/\sigma\) for the standardized effect size.
+The null family corresponding to \(H_0:\theta^\star=0\) is
+\[
+  \mathcal P_0
+  =
+  \left\{\mathcal N(0,\sigma^2):\sigma>0\right\}.
+\]
+Following \citet{Lai1976,PerezOrtiz2024,Wang2025}, we remove the
+unknown scale by working with the filtration
+\[
+  \mathcal F_n
+  =
+  \sigma\left(
+    \frac{Y_1}{|Y_1|},
+    \frac{Y_2}{|Y_1|},\ldots,
+    \frac{Y_n}{|Y_1|}
+  \right).
+\]
+The variables in this display may be defined arbitrarily on
+\(\{Y_1=0\}\), which has probability zero under every model considered
+here.
+
+Define
+\begin{equation}
+\label{eq:undef}
+  U_n
+  =
+  \frac{\sum_{i=1}^nY_i}
+       {\sqrt{\sum_{i=1}^nY_i^2}}
+  \in[-\sqrt n,\sqrt n],
+\end{equation}
+and let
+\[
+  A_n(z)
+  =
+  \mathbb E\!\left[e^{zR_n}\right],
+  \qquad R_n\sim\chi_n,
+\]
+be the moment generating function of a \(\chi_n\) random variable. For
+\(\theta\in\mathbb R\), the likelihood ratio of the reduced data under
+standardized effect \(\theta\), relative to standardized effect zero,
+is
+\begin{equation}
+\label{eq:hthetadef}
+  L_{n,\theta}
+  =
+  e^{-n\theta^2/2}A_n(\theta U_n).
+\end{equation}
+The derivation is given in Appendix~\ref{app:invariant-likelihood}.
+For each fixed \(\theta\),
+\((L_{n,\theta})_{n\geq1}\) is an
+\((\mathcal F_n)\)-test martingale under every distribution in
+\(\mathcal P_0\).
+
+For comparison with the usual one-sample \(t\)-statistic, let
+\[
+  \overline Y_n=\frac1n\sum_{i=1}^nY_i,
+  \qquad
+  S_n^2=\frac1{n-1}\sum_{i=1}^n(Y_i-\overline Y_n)^2,
+  \qquad
+  \widehat\theta_n=\frac{\overline Y_n}{S_n},
+  \qquad
+  T_n=\sqrt n\,\widehat\theta_n.
+\]
+On \(\{S_n>0\}\), an event of probability one for \(n\geq2\),
+\begin{equation}
+\label{eq:undef-tstat}
+  U_n
+  =
+  \frac{n\widehat\theta_n}
+       {\sqrt{(n-1)+n\widehat\theta_n^2}}
+  =
+  \frac{\sqrt n\,T_n}
+       {\sqrt{(n-1)+T_n^2}}.
+\end{equation}
+
+Let \(\Pi\) be a nonzero \(\sigma\)-finite measure on \(\mathbb R\),
+representing a mixing measure over standardized effect sizes, and set
+\begin{equation}
+\label{eq:Mn-def}
+  M_n
+  =
+  \int_{\mathbb R}L_{n,\theta}\,\Pi(\dd\theta)
+  =
+  \int_{\mathbb R}
+  e^{-n\theta^2/2}A_n(\theta U_n)\,\Pi(\dd\theta).
+\end{equation}
+If \(\Pi\) is a probability distribution, then
+\((M_n)_{n\geq1}\) is a test martingale. For a general
+\(\sigma\)-finite \(\Pi\), it is an extended nonnegative martingale;
+see Appendix~\ref{app:mixture-martingales}.
+
+
+\subsection{Calibration and Bayesian interpretation}
+\label{subsec:ville}
+\label{subsec:bayesian-t-test}
+
+We use the common starting time \(n_0=2\), both for proper mixtures and
+for the Lebesgue benchmark below. For a proper \(\Pi\), ordinary Ville
+calibration gives
+\begin{equation}
+\label{eq:proper-mixture-p-process}
+  P_n^V
+  =
+  \min\left\{1,\frac1{M_n}\right\},
+  \qquad n\geq2.
+\end{equation}
+The extended Ville calibration of \citet{Wang2025a} uses the null law
+of the evidence at the starting time. Define \(g(0)=1\), \(g(\infty)=0\), and, for
+\(c>0\),
+\begin{equation}
+\label{eq:general-extended-calibration}
+  g(c)
+  =
+  \mathbb E_{0,1}
+  \left[
+    \min\left\{1,\frac{M_2}{c}\right\}
+  \right],
+\end{equation}
+and set
+\begin{equation}
+\label{eq:extended-mixture-p-process}
+  P_n^E
+  =
+  g(M_n),
+  \qquad n\geq2.
+\end{equation}
+The expectation in \eqref{eq:general-extended-calibration} may be taken
+under any \(\mathcal N(0,\sigma^2)\), because \(M_2\) is scale
+invariant. Whenever \(M_n\) is finite almost surely for all
+\(n\geq2\), \eqref{eq:extended-mixture-p-process} is a \(p\)-process,
+even if \(\Pi\) is merely \(\sigma\)-finite and \(M_n\) is not
+integrable.
+
+The corresponding running versions are
+\begin{equation}
+\label{eq:proper-mixture-running-p-process}
+  \widetilde P_n^V
+  =
+  \min\left\{
+    1,
+    \frac1{\max_{2\leq k\leq n}M_k}
+  \right\},
+  \qquad
+  \widetilde P_n^E
+  =
+  g\!\left(\max_{2\leq k\leq n}M_k\right).
+\end{equation}
+Under the stated finiteness condition, the two extended-calibrated
+processes are anytime valid from time \(2\); when \(\Pi\) is proper,
+the two reciprocal-Ville processes are anytime valid as well. The
+formal calibration statements are in
+Appendix~\ref{app:calibration-details}.
+For a proper \(\Pi\), \(\mathbb E_{0,\sigma}[M_2]=1\), and hence
+\begin{equation}
+\label{eq:extended-dominates-ville}
+  g(c)
+  \leq
+  \min\left\{1,\frac1c\right\},
+  \qquad c>0.
+\end{equation}
+Thus extended Ville calibration is pointwise no more conservative than
+reciprocal Ville calibration. It is also unaffected by the arbitrary
+normalization of a mixing measure: multiplying \(\Pi\) by \(a>0\)
+multiplies \(M_n\) by \(a\) and replaces \(g(c)\) by \(g(c/a)\), so
+the calibrated value \(g(M_n)\) is unchanged.
+
+When \(\Pi\) is proper, \(M_n\) also has a Bayesian
+interpretation. Parameterize the model as
+\[
+  Y_i\mid(\theta,\sigma)
+  \stackrel{\mathrm{iid}}{\sim}
+  \mathcal N(\sigma\theta,\sigma^2),
+\]
+use the common right-Haar scale prior \(\dd\sigma/\sigma\) under both
+hypotheses, set \(\theta=0\) under \(H_0\), and let
+\(\theta\sim\Pi\) under \(H_1\). Then
+\begin{equation}
+\label{eq:bayes-factor-identity}
+  \mathrm{BF}_{10,n}
+  =M_n
+  =\bigl(\mathrm{BF}_{01,n}\bigr)^{-1}.
+\end{equation}
+Appendix~\ref{app:bayes-factor-derivation} gives the marginal-likelihood
+calculation. The interpretation in \eqref{eq:bayes-factor-identity}
+requires \(\Pi\) to be proper; it is not available for a merely
+\(\sigma\)-finite mixing measure because the normalization of that
+measure is arbitrary.
+
+
+\subsection{The Lebesgue benchmark}
+\label{subsec:improper-prior}
+
+The improper Lebesgue mixing measure
+\[
+  \Pi_{\Leb}(\dd\theta)=\dd\theta
+\]
+provides the noninformative benchmark of \citet{Lai1976,Wang2025}.
+Here \(M_1^{\Leb}=\infty\) almost surely, whereas
+\(M_n^{\Leb}<\infty\) almost surely for every \(n\geq2\). Thus
+\((M_n^{\Leb})_{n\geq2}\) is a finite-valued extended nonnegative
+martingale, but not an integrable test martingale.
+
+\begin{proposition}[Lebesgue mixture]
+\label{thm:Mn-Leb}
+For every \(n\geq2\), on \(\{|U_n|<\sqrt n\}\),
+\begin{equation}
+\label{eq:Mn-Leb}
+  M_n^{\Leb}
+  =
+  \sqrt{\frac{2\pi}{n}}
+  \left(1-\frac{U_n^2}{n}\right)^{-n/2}.
+\end{equation}
+On \(\{S_n>0\}\), this can equivalently be written as
+\[
+  M_n^{\Leb}
+  =
+  \sqrt{\frac{2\pi}{n}}
+  \left(
+    1+\frac{n\widehat\theta_n^2}{n-1}
+  \right)^{n/2}.
+\]
+Define \(g_{\Leb}(0)=1\), \(g_{\Leb}(\infty)=0\), and, for \(c>0\),
+\begin{equation}
+\label{eq:g-Leb}
+  g_{\Leb}(c)
+  =
+  \begin{cases}
+    1,
+    &0<c\leq\sqrt\pi,
+    \\[6pt]
+    \displaystyle
+    \frac{2}{\pi}
+    \left[
+      \arcsin\left(
+        \sqrt{\frac{\sqrt\pi}{c}}
+      \right)
+      +
+      \sqrt{
+        \frac{\sqrt\pi}{c}
+        \left(1-\frac{\sqrt\pi}{c}\right)
+      }
+    \right],
+    &c>\sqrt\pi.
+  \end{cases}
+\end{equation}
+Then
+\[
+  P_n^{\Leb}
+  :=
+  g_{\Leb}(M_n^{\Leb}),
+  \qquad
+  \widetilde P_n^{\Leb}
+  :=
+  g_{\Leb}\!\left(\max_{2\leq k\leq n}M_k^{\Leb}\right),
+  \qquad n\geq2,
+\]
+are \(p\)-processes for \(\mathcal P_0\).
+\end{proposition}
