@@ -1,0 +1,36 @@
+{
+  "source": "experiments/simulations/Code_simulation.ipynb",
+  "source_sha256": "799a35a2392812cacd12491bc40b3c9c1de68f2039ffa550d5b83d764e7dfccc",
+  "definition_cells": [
+    4,
+    6,
+    8
+  ],
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "calibration_seed": 20260510,
+  "calibration_replicates": 100000,
+  "null_generation": "numpy.random.default_rng(seed).normal(0,1,(B,2)); notebook t_statistic",
+  "null_order": "Unsorted, original NumPy draw order; calibrators sort a copy.",
+  "null_csv_sha256": "5ed5a973015895b56f105f2e0b9c53b01d4dc93ac48c92f3e69995a674ef0089",
+  "null_gzip_sha256": "84813149e9b514697e841e7b1b668bfc478cf706920688f15742ab1f859bbf8c",
+  "first_five_null_t": [
+    49.61297690645055,
+    9.423664797088913,
+    -5.850566194162971,
+    -0.36620651237260304,
+    -1.537296283600286
+  ],
+  "paper_calibration_tolerance": 1e-05,
+  "evidence_rows": 55,
+  "density_rows": 35,
+  "direct_calibration_rows": 20,
+  "adaptive_calibration_rows": 15,
+  "note": "Empirical numerical brackets do not bound Monte Carlo error or establish exact population anytime validity.",
+  "source_repository": "https://github.com/DebolinaPaul/Robust_anytime_valid_t_test",
+  "source_commit": "8709f7dc1107d3ff93df22745d5857bd4f4aac0b",
+  "description": "Bundled null sample shared with the R package and Python simulation notebook; not target observations.",
+  "engine_sha256": "f9ff302fe9133922bfab71b72f39bebbbe12634cf2a4cb8dbbc3511c23941189",
+  "default_relative_tolerance": 0.001
+}
