@@ -15,6 +15,7 @@ studies and DepMap analyses.
 ## Statistical framework
 
 For independent observations
+
 \[
 Y_i \sim N(\mu,\sigma^2), \qquad \sigma>0,
 \]
