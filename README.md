@@ -34,7 +34,7 @@ For a fixed proper prior, Ville and extended Ville use the same mixture
 evidence process and differ in its calibration. The available prior
 families are Gaussian, Cauchy, Student-t with five degrees of freedom,
 Laplace and horseshoe. The implementations also include the centered
-Rouder Cauchy prior with scale \(1/\sqrt{2}\), and full-line or half-line
+Rouder Cauchy prior with scale $1/\sqrt{2}$, and full-line or half-line
 Lebesgue benchmarks.
 
 Priors must be specified independently of the target observations.
