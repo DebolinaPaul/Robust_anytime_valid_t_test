@@ -16,6 +16,28 @@ not itself establish the exact anytime-valid guarantee of the population
 calibration. The package reports Monte Carlo and numerical diagnostics;
 deterministic calibration remains available explicitly.
 
+
+## Features
+
+- Implements one-sample t-tests for a Gaussian mean with unknown
+  variance, with monitoring beginning at the second observation.
+- Supports Gaussian, Cauchy, Student-t5, Laplace and genuine horseshoe
+  effect-size priors, with one-sided or two-sided alternatives.
+- Includes the centered Rouder prior and separately calibrated
+  full and half-line Lebesgue benchmarks.
+- Uses the same prior parameterizations and shared 100,000 null draws
+  as the Python simulation notebook for Monte Carlo calibration.
+- Reports Monte Carlo standard errors and numerical calibration
+  brackets. Finite Monte Carlo calibration approximates the
+  theoretical population calibration.
+- Provides deterministic calibration as an alternative. Lebesgue
+  calibration is analytic, with ordinary Ville unavailable.
+- Provides running p-values, first rejection times, summaries,
+  plots and trajectory export.
+- Includes reproducible examples and numerical checks against
+  Python calculations, analytic formulas and BayesFactor.
+
+
 ## Installation
 
 ```r
