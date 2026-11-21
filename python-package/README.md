@@ -29,7 +29,7 @@ local package:
 python -m pip install ./python-package
 ```
 
-After this folder has been uploaded to GitHub, it can also be installed with:
+From GitHub, it can also be installed with:
 
 ```bash
 python -m pip install "git+https://github.com/DebolinaPaul/Robust_anytime_valid_t_test.git#subdirectory=python-package"
