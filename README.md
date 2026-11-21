@@ -15,17 +15,16 @@ studies and DepMap analyses.
 ## Statistical framework
 
 For independent observations
-
-\[
+$$
 Y_i \sim N(\mu,\sigma^2), \qquad \sigma>0,
-\]
+$$
 the standardized effect is
-\[
+$$
 \theta=\frac{\mu-\mu_0}{\sigma}.
-\]
+$$
 
-The two-sided test considers \(H_0:\mu=\mu_0\) against
-\(H_1:\mu\ne\mu_0\). One-sided alternatives are also implemented.
+The two-sided test considers $H_0:\mu=\mu_0$ against
+$H_1:\mu\ne\mu_0$. One-sided alternatives are also implemented.
 Monitoring begins at the second observation.
 
 For a fixed proper prior, Ville and extended Ville use the same mixture
