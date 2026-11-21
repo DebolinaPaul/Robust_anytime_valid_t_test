@@ -1,7 +1,7 @@
 test_that('a bracket crossing alpha is reported rather than silently resolved', {
   x <- c(-.3, .8)
   p <- ev_prior('gaussian', location = 3, scale = .7, alternative = 'greater')
-  cal <- ev_calibration(p, tolerance = 1e-3)
+  cal <- ev_calibration(p, method = "deterministic", tolerance = 1e-3)
   bracket <- ev_pvalues(ev_log_mixture(x, p), cal)
   expect_gt(bracket$gap, 0)
   alpha <- (bracket$lower + bracket$p_eville) / 2

@@ -6,10 +6,12 @@
 \alias{eVille-package}
 \title{eVille: Anytime-Valid One-Sample t-Tests}
 \description{
-Anytime-valid one-sample t-tests for a Gaussian mean with unknown variance,
-using fixed effect-size priors and extended Ville calibration. The main
+One-sample t-tests for a Gaussian mean with unknown variance, using fixed
+effect-size priors and Ville or extended Ville calibration. The main
 interface is \code{\link[=ev_ttest]{ev_ttest()}}, with \code{\link[=ev_prior]{ev_prior()}} specifying the prior and
-alternative. Use summary() and plot() to inspect the results.
+alternative. Proper priors use Monte Carlo calibration by default;
+this is a finite-sample approximation to the theoretically anytime-valid
+population calibration. Use summary() and plot() to inspect the results.
 }
 \section{Model and hypotheses}{
 
@@ -27,45 +29,69 @@ The alternative in \code{\link[=ev_prior]{ev_prior()}} determines the hypotheses
 }
 }
 
+\section{Prior families}{
+
+Gaussian, Cauchy, Student-t5, Laplace and horseshoe priors use the same
+location-scale parameterizations as the accompanying Python simulation
+notebook. The horseshoe is the genuine normal--half-Cauchy scale mixture.
+The centered Rouder default is a Cauchy with scale \eqn{1/\sqrt{2}}.
+One-sided proper priors are conditioned on the selected half-line.
+Location and scale describe the full-line distribution before conditioning.
+Use \code{\link[=ev_prior_density]{ev_prior_density()}} to evaluate the specified density.
+}
+
 \section{Sequential use}{
 
 Supply observations in their sampling order. Monitoring starts at \code{n0 = 2}.
-The calibration controls rejection over monitoring times under the stated
-model; it is not repeated use of ordinary fixed-sample t-test p-values.
+Under the stated model, the population calibration controls rejection over
+all monitoring times. Finite Monte Carlo calibration approximates that
+construction; it does not itself establish an exact anytime-valid guarantee.
 The prior and direction must be fixed before examining the target data.
 Parameters fitted using independent source data can be supplied to
-\code{\link[=ev_prior]{ev_prior()}}. Reordering an observed dataset to obtain a smaller p-value
+\code{\link[=ev_prior]{ev_prior()}}. Reordering an observed dataset to obtain a smaller value
 is not covered by the fixed-order guarantee.
+}
+
+\section{Calibration and numerical precision}{
+
+The default proper-prior calibration uses the same 100,000 null t
+statistics as the Python notebook's paper configuration. \code{\link[=ev_null_sample]{ev_null_sample()}}
+returns those bundled draws. A calibrator can be reused for the same
+prior, and different priors can share the same null sample.
+
+The empirical clipped mean is evaluated with numerical lower and upper
+bounds. The upper value is capped by the ordinary Ville bound. The
+empirical numerical gap and the Monte Carlo standard error describe
+different uncertainties: neither is a simultaneous confidence bound
+correcting the Monte Carlo approximation. Evidence quadrature error is
+separate from both diagnostics. Smaller numerical tolerance does not
+reduce Monte Carlo sampling error.
+
+Select \code{calibration_method = "deterministic"} in \code{\link[=ev_ttest]{ev_ttest()}} to use
+analytic formulas or numerical bounds for the population null expectation.
+Numerical bounds assume accurate evidence evaluations and are not
+interval-arithmetic certificates. Lebesgue benchmarks always use their
+own analytic calibration; ordinary Ville is unavailable for them.
 }
 
 \section{Output}{
 
-An \code{\link[=ev_ttest]{ev_ttest()}} result contains running p-values, mixture log-evidence,
-first rejection times, and calibration diagnostics. \code{summary(fit)} gives
-a compact table, \code{plot(fit)} draws the running p-values, and
-\code{as.data.frame(fit)} returns the full trajectory.
-With a proper prior, eVille and Ville use the same evidence. Lebesgue
-measure has its own extended Ville calibration; ordinary Ville is
-unavailable for this benchmark.
-}
-
-\section{Numerical precision}{
-
-Analytic calibration is used where implemented. General calibration uses
-an upper approximation and reports a null-integration gap. This gap does
-not include every floating-point error in computing the evidence. A warning
-identifies times at which the calibration bracket straddles the requested
-significance level; refine the tolerance to resolve those decisions.
+An \code{\link[=ev_ttest]{ev_ttest()}} result contains running values, mixture log-evidence,
+first rejection times, the calibration method and diagnostics.
+\code{summary(fit)} gives a compact table, \code{plot(fit)} draws running values,
+and \code{as.data.frame(fit)} returns the full trajectory.
+With a proper prior, eVille and Ville use the same evidence. For Monte
+Carlo calibration, the reported eVille values are approximations.
 }
 
 \section{Current scope}{
 
-The implementation supports Gaussian and Cauchy priors (including the
-centered Rouder default), their one-sided restrictions, and full or half-line
-Lebesgue benchmarks. Every monitored prefix must have positive sample
-variance. Missing and nonfinite observations are rejected.
+The implementation supports the five proper families and their one-sided
+restrictions, plus full and half-line Lebesgue benchmarks. Every monitored
+prefix must have positive sample variance. Missing and nonfinite
+observations are rejected.
 Two-sample and regression tests, other monitoring start times, automatic
-prior fitting, and incremental streaming updates are not implemented.
+prior fitting and incremental streaming updates are not implemented.
 Robustness to prior-data conflict does not remove the Gaussian or
 independence assumptions.
 }
@@ -80,8 +106,8 @@ plot(fit)
 
 }
 \seealso{
-\code{\link[=ev_ttest]{ev_ttest()}}, \code{\link[=ev_prior]{ev_prior()}}, \code{\link[=ev_calibration]{ev_calibration()}}, \code{\link[=ev_pvalues]{ev_pvalues()}},
-\code{\link[=ev_log_mixture]{ev_log_mixture()}}
+\code{\link[=ev_ttest]{ev_ttest()}}, \code{\link[=ev_prior]{ev_prior()}}, \code{\link[=ev_prior_density]{ev_prior_density()}},
+\code{\link[=ev_calibration]{ev_calibration()}}, \code{\link[=ev_pvalues]{ev_pvalues()}}, \code{\link[=ev_null_sample]{ev_null_sample()}}, \code{\link[=ev_log_mixture]{ev_log_mixture()}}
 }
 \author{
 \strong{Maintainer}: Debolina Paul \email{debolina.paul@stats.ox.ac.uk}

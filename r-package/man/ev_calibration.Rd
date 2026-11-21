@@ -4,28 +4,50 @@
 \alias{ev_calibration}
 \title{Construct the null calibration for a fixed prior and alternative}
 \usage{
-ev_calibration(prior = ev_prior(), tolerance = 1e-04, max_intervals = 4096L)
+ev_calibration(
+  prior = ev_prior(),
+  tolerance = 1e-05,
+  max_intervals = 4096L,
+  method = c("monte_carlo", "deterministic"),
+  null_t = NULL
+)
 }
 \arguments{
 \item{prior}{A fixed object from ev_prior().}
 
-\item{tolerance}{Requested absolute width of the null-angle integration
-bracket, default 1e-4. This does not bound floating-point evidence error.}
+\item{tolerance}{Requested absolute width of the numerical calibration
+bracket, default 1e-5 as in the Python paper simulation. For Monte Carlo
+this brackets the empirical mean, not the population expectation.}
 
-\item{max_intervals}{Maximum number of adaptive angle intervals.}
+\item{max_intervals}{Maximum number of adaptive intervals.}
+
+\item{method}{"monte_carlo" (default) or "deterministic" for proper priors.
+Lebesgue measure always uses its separate analytic calibration.}
+
+\item{null_t}{Optional finite vector of at least two independently generated
+null t statistics with one degree of freedom. It must be independent of
+target observations and held fixed during monitoring. The default uses
+all 100000 draws from \code{\link[=ev_null_sample]{ev_null_sample()}}, matching the Python notebook.}
 }
 \value{
-A reusable ev_calibration object. Evaluate it with ev_pvalues().
+A reusable ev_calibration object. Evaluate it with \code{\link[=ev_pvalues]{ev_pvalues()}}.
 }
 \description{
 Construct the null calibration for a fixed prior and alternative
 }
 \details{
-Monitoring starts at n=2. General proper priors use convexity of
-the initial mixture as a function of the invariant statistic to bracket
-the clipped null expectation. The returned upper value is conservative
-for exact evidence evaluations. Analytic formulas are used for centered
-two-sided Gaussian priors and full/half Lebesgue measure. The proper-prior
-upper bound is also capped by the ordinary Ville bound. No fixed cutoff
-in a simulated null sample is used.
+Monitoring starts at n=2. Monte Carlo calibration implements the
+same empirical clipped expectation and convex numerical brackets as the
+Python notebook. Its numerical upper estimate is capped by the ordinary
+Ville bound. This cap does not remove Monte Carlo error or establish an
+exact anytime-valid guarantee for the finite-sample approximation.
+The Monte Carlo standard error is descriptive, not a simultaneous bound.
+
+Deterministic calibration brackets the population null-angle integral,
+with an upper value conservative for exact evidence evaluations. Centered
+two-sided Gaussian and full/half Lebesgue formulas are analytic in that
+mode. Numerical brackets do not certify every floating-point operation.
+}
+\seealso{
+\code{\link[=ev_null_sample]{ev_null_sample()}}, \code{\link[=ev_ttest]{ev_ttest()}}, \code{\link[=ev_pvalues]{ev_pvalues()}}
 }

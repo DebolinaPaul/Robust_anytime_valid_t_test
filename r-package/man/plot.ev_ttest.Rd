@@ -30,7 +30,7 @@ this method draws step paths on linear axes.}
 
 \item{xlab, ylab}{Axis labels.}
 
-\item{main}{Plot title.}
+\item{main}{Plot title. The default identifies Monte Carlo calibration when used.}
 
 \item{ylim}{Vertical axis limits, default c(0, 1).}
 

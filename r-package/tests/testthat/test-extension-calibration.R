@@ -4,7 +4,7 @@ test_that('directional calibrations bracket the independent Python values', {
   for (rows in split(seq_len(nrow(ref)), key)) {
     group <- ref[rows, ]
     prior <- extension_prior_row(group[1, ])
-    cal <- ev_calibration(prior, tolerance = 1e-4)
+    cal <- ev_calibration(prior, method = "deterministic", tolerance = 1e-4)
     result <- ev_pvalues(group$log_c, cal)
     expect_true(all(result$lower <= group$g + 2e-7))
     expect_true(all(result$p_eville >= group$g - 2e-7))
@@ -38,7 +38,7 @@ test_that('convex cell bounds contain independently integrated clipped curves', 
 
 test_that('shifted two-sided Gaussian calibration brackets a separate null integral', {
   p <- ev_prior('gaussian', location = 3, scale = .7)
-  result <- ev_pvalues(0, ev_calibration(p, tolerance = 1e-4))
+  result <- ev_pvalues(0, ev_calibration(p, method = "deterministic", tolerance = 1e-4))
   # A shifted Gaussian mixture is a scaled noncentral-t density. This
   # independent oracle is used only at moderate noncentrality.
   D <- 1 + 2 * .7^2
@@ -60,7 +60,7 @@ test_that('analytic calibrations preserve centered and full/half flat cases', {
   logs <- c(-Inf, -2, 0, 2, log(20), 1000, Inf)
   for (scale in c(1, 30)) {
     p <- ev_prior('gaussian', scale = scale)
-    actual <- ev_pvalues(logs, ev_calibration(p))
+    actual <- ev_pvalues(logs, ev_calibration(p, method = "deterministic"))
     expect_equal(actual$p_eville, ev_calibrate(logs, 'gaussian', scale),
                  tolerance = 1e-12)
     expect_true(all(actual$gap == 0))

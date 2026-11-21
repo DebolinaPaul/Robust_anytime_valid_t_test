@@ -5,20 +5,26 @@
 \title{Specify a fixed effect-size prior}
 \usage{
 ev_prior(
-  family = c("gaussian", "cauchy", "rouder", "lebesgue"),
+  family = c("gaussian", "cauchy", "student_t5", "laplace", "horseshoe", "rouder",
+    "lebesgue"),
   location = 0,
   scale = NULL,
   alternative = c("two.sided", "greater", "less")
 )
 }
 \arguments{
-\item{family}{One of "gaussian", "cauchy", "rouder", or "lebesgue".}
+\item{family}{One of "gaussian", "cauchy", "student_t5", "laplace",
+"horseshoe", "rouder", or "lebesgue". The aliases "student_t",
+"student-t5", and "t5" select the Student family with five degrees of
+freedom. Names are case insensitive.}
 
 \item{location}{Location of the unconditioned distribution on the
 standardized effect (mu-mu0)/sigma. Rouder requires location zero.}
 
-\item{scale}{Gaussian standard deviation or Cauchy scale; defaults to
-1 for Gaussian and 1/sqrt(2) for Cauchy/Rouder. Omit for Lebesgue.}
+\item{scale}{Scale of the unconditioned family: Gaussian standard
+deviation, Cauchy scale, Student-t scale, Laplace scale, or horseshoe
+global scale. Defaults to 1/sqrt(2) for Cauchy/Rouder and 1 otherwise,
+matching the simulation notebook. Omit for Lebesgue.}
 
 \item{alternative}{One of "two.sided", "greater", or "less".}
 }
@@ -34,4 +40,9 @@ conditioned on the selected half-line. Location and scale describe the
 distribution before conditioning, not its conditional mean and SD.
 Fix the prior before examining target observations. Lebesgue measure is
 restricted to the selected half-line without normalization.
+Student-t5 has exactly five degrees of freedom; its scale is not its
+standard deviation. Laplace has density exp(-abs(theta-location)/scale)
+divided by twice scale. The genuine horseshoe is the normal-scale
+mixture theta given lambda distributed as N(location,scale^2*lambda^2),
+with lambda half-Cauchy(0,1); its density is infinite at its location.
 }

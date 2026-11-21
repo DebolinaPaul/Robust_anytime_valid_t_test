@@ -1,4 +1,4 @@
-# Shifted Gaussian/Cauchy invariant mixtures. No noncentral-t density is used.
+# Shifted and directional invariant mixtures. No noncentral-t density is used.
 # Quadrature refinement is a numerical diagnostic, not interval arithmetic.
 
 .evx_quad_cache <- new.env(parent = emptyenv())
@@ -57,12 +57,12 @@
     value <- term
     # Alternating expansion after integrating the Taylor expansion of
     # exp(-r^2/2). The next term bounds the integrated remainder.
-    for (j in seq_len(40L)) {
+    for (j in seq_len(60L)) {
       term <- -term * (2 * j + 1) * inv
       value <- value + term
-      if (all(abs(term) <= 2e-16 * abs(value))) break
+      if (all(abs(term) <= 2e-15 * abs(value))) break
     }
-    if (any(value <= 0) || any(abs(term) > 1e-12 * abs(value))) {
+    if (any(value <= 0) || any(abs(term) > 2e-13 * abs(value))) {
       stop("The negative radial tail failed its remainder check.", call. = FALSE)
     }
     out[!small] <- -2 * log(aa) + log(value)
@@ -143,10 +143,24 @@
   q <- .evx_legendre(order)
   theta <- as.vector(outer(half, q$x) + mid)
   lw <- as.vector(outer(log(half), q$log_w, "+"))
-  lp <- if (family == "gaussian") {
-    stats::dnorm(theta, mean = location, sd = scale, log = TRUE)
-  } else {
-    stats::dcauchy(theta, location = location, scale = scale, log = TRUE)
+  lp <- .evx_prior_logpdf(theta, family, location, scale)
+  if (family == "horseshoe" && location >= 0 && location <= upper) {
+    # A fourth-power change of variables resolves the integrable logarithmic
+    # spike at the horseshoe location. The offset is retained separately so
+    # that subtracting a nonzero location cannot round the density argument
+    # to zero. Gauss-Legendre nodes do not include the singular endpoint.
+    left <- breaks[-length(breaks)][good]
+    right <- breaks[-1L][good]
+    for (j in which(left == location | right == location)) {
+      indices <- j + length(mid) * (seq_along(q$x) - 1L)
+      width <- 2 * half[j]
+      v <- (q$x + 1) / 2
+      direction <- if (left[j] == location) 1 else -1
+      offset <- direction * width * v^4
+      theta[indices] <- location + offset
+      lw[indices] <- q$log_w - log(2) + log(4 * width) + 3 * log(v)
+      lp[indices] <- .evx_prior_logpdf(offset, family, 0, scale)
+    }
   }
   .evx_logsum(.evx_log_lr(theta, u, n, d, order) + lp - log_mass + lw)
 }

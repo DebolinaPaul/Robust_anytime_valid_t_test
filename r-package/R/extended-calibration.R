@@ -139,26 +139,57 @@
 #' Construct the null calibration for a fixed prior and alternative
 #'
 #' @param prior A fixed object from ev_prior().
-#' @param tolerance Requested absolute width of the null-angle integration
-#'   bracket, default 1e-4. This does not bound floating-point evidence error.
-#' @param max_intervals Maximum number of adaptive angle intervals.
-#' @return A reusable ev_calibration object. Evaluate it with ev_pvalues().
-#' @details Monitoring starts at n=2. General proper priors use convexity of
-#'   the initial mixture as a function of the invariant statistic to bracket
-#'   the clipped null expectation. The returned upper value is conservative
-#'   for exact evidence evaluations. Analytic formulas are used for centered
-#'   two-sided Gaussian priors and full/half Lebesgue measure. The proper-prior
-#'   upper bound is also capped by the ordinary Ville bound. No fixed cutoff
-#'   in a simulated null sample is used.
+#' @param tolerance Requested absolute width of the numerical calibration
+#'   bracket, default 1e-5 as in the Python paper simulation. For Monte Carlo
+#'   this brackets the empirical mean, not the population expectation.
+#' @param max_intervals Maximum number of adaptive intervals.
+#' @param method "monte_carlo" (default) or "deterministic" for proper priors.
+#'   Lebesgue measure always uses its separate analytic calibration.
+#' @param null_t Optional finite vector of at least two independently generated
+#'   null t statistics with one degree of freedom. It must be independent of
+#'   target observations and held fixed during monitoring. The default uses
+#'   all 100000 draws from [ev_null_sample()], matching the Python notebook.
+#' @return A reusable ev_calibration object. Evaluate it with [ev_pvalues()].
+#' @details Monitoring starts at n=2. Monte Carlo calibration implements the
+#'   same empirical clipped expectation and convex numerical brackets as the
+#'   Python notebook. Its numerical upper estimate is capped by the ordinary
+#'   Ville bound. This cap does not remove Monte Carlo error or establish an
+#'   exact anytime-valid guarantee for the finite-sample approximation.
+#'   The Monte Carlo standard error is descriptive, not a simultaneous bound.
+#'
+#'   Deterministic calibration brackets the population null-angle integral,
+#'   with an upper value conservative for exact evidence evaluations. Centered
+#'   two-sided Gaussian and full/half Lebesgue formulas are analytic in that
+#'   mode. Numerical brackets do not certify every floating-point operation.
+#' @seealso [ev_null_sample()], [ev_ttest()], [ev_pvalues()]
 #' @export
-ev_calibration <- function(prior = ev_prior(), tolerance = 1e-4,
-                           max_intervals = 4096L) {
+ev_calibration <- function(prior = ev_prior(), tolerance = 1e-5,
+                           max_intervals = 4096L,
+                           method = c("monte_carlo", "deterministic"),
+                           null_t = NULL) {
   .evx_check_prior(prior)
+  method <- match.arg(method)
   if (!is.numeric(tolerance) || length(tolerance) != 1L ||
       !is.finite(tolerance) || tolerance <= 0 || tolerance >= 1 ||
-      length(max_intervals) != 1L || !is.finite(max_intervals) ||
-      max_intervals < 8 || max_intervals != as.integer(max_intervals)) {
+      !is.numeric(max_intervals) || length(max_intervals) != 1L ||
+      !is.finite(max_intervals) || max_intervals < 8 ||
+      max_intervals > .Machine$integer.max ||
+      max_intervals != as.integer(max_intervals)) {
     stop("Require 0 < tolerance < 1 and integer max_intervals >= 8.", call. = FALSE)
+  }
+  if (!is.null(null_t) && (method != "monte_carlo" || !prior$proper)) {
+    stop("`null_t` is only used by Monte Carlo calibration of a proper prior.",
+         call. = FALSE)
+  }
+  if (prior$proper && method == "monte_carlo") {
+    is_reference <- is.null(null_t)
+    if (is_reference) null_t <- ev_null_sample()
+    mc <- .evx_mc_calibrator(prior, null_t, tolerance, max_intervals)
+    return(structure(list(prior = prior, n0 = 2L, tolerance = tolerance,
+      max_intervals = max_intervals, method = "monte_carlo",
+      B = mc$B, null_t = as.numeric(null_t),
+      null_sample_source = if (is_reference) "Python notebook: seed 20260510" else "supplied null_t",
+      approximation = TRUE, evaluate = mc$evaluate), class = "ev_calibration"))
   }
   analytic <- !prior$proper ||
     (prior$family == "gaussian" && prior$location == 0 &&
@@ -177,7 +208,8 @@ ev_calibration <- function(prior = ev_prior(), tolerance = 1e-4,
   } else evaluate <- .evx_general_calibrator(prior, tolerance, max_intervals)
   structure(list(prior = prior, n0 = 2L, tolerance = tolerance,
     max_intervals = max_intervals,
-    method = if (analytic) "analytic" else "adaptive convex bounds",
+    method = if (analytic) "analytic" else "deterministic",
+    B = 0L, approximation = FALSE,
     evaluate = evaluate), class = "ev_calibration")
 }
 
@@ -186,16 +218,33 @@ ev_calibration <- function(prior = ev_prior(), tolerance = 1e-4,
 #' @param log_evidence Numeric vector of natural log evidence; infinities are
 #'   allowed. Use cumulative maxima for running p-values.
 #' @param calibration Object from ev_calibration().
-#' @return A data frame containing p_eville (upper value), lower, gap, and
-#'   intervals (number of adaptive angle intervals).
+#' @param relative_tolerance Optional relative numerical gap for Monte Carlo
+#'   evaluation. NULL uses only the calibrator's absolute tolerance.
+#' @return A data frame with p_eville, lower, gap and intervals. In Monte Carlo
+#'   mode, p_eville is the empirical numerical upper value capped by Ville;
+#'   lower is capped in the same way. Additional columns mc_estimate,
+#'   mc_lower, mc_upper, mc_gap, mcse and B describe the uncapped empirical
+#'   calibration and sample size. These brackets do not bound Monte Carlo
+#'   error relative to the population calibration.
 #' @export
-ev_pvalues <- function(log_evidence, calibration) {
+ev_pvalues <- function(log_evidence, calibration, relative_tolerance = NULL) {
   if (!inherits(calibration, "ev_calibration") ||
       !is.numeric(log_evidence) || anyNA(log_evidence) || !length(log_evidence)) {
     stop("Supply numeric log evidence without NA and an ev_calibration object.",
          call. = FALSE)
   }
-  result <- calibration$evaluate(log_evidence)
+  if (!is.null(relative_tolerance) &&
+      (!is.numeric(relative_tolerance) || length(relative_tolerance) != 1L ||
+       !is.finite(relative_tolerance) || relative_tolerance <= 0 ||
+       relative_tolerance >= 1)) {
+    stop("`relative_tolerance` must be NULL or a number between zero and one.",
+         call. = FALSE)
+  }
+  result <- if (identical(calibration$method, "monte_carlo")) {
+    calibration$evaluate(log_evidence, relative_tolerance = relative_tolerance)
+  } else {
+    calibration$evaluate(log_evidence)
+  }
   rownames(result) <- NULL
   result
 }

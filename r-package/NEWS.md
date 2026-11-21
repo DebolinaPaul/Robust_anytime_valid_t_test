@@ -1,3 +1,18 @@
+# eVille 0.2.0
+
+* Adds Student-t5, Laplace and genuine normal--half-Cauchy horseshoe priors,
+  using the same parameterizations as the Python simulation notebook.
+* Adds prior-density evaluation and supports one-sided conditioning of all
+  five proper prior families.
+* Makes Monte Carlo calibration the default for proper priors, using the
+  notebook's shared 100,000 null draws and empirical-calibration rule.
+* Reports empirical-calibration brackets and Monte Carlo standard errors;
+  explicitly distinguishes finite Monte Carlo approximation from the
+  theoretical anytime-valid guarantee.
+* Retains deterministic calibration as an explicit option and analytic
+  calibration for the full and half-line Lebesgue benchmarks.
+* Adds all-prior examples and cross-language evidence/calibration references.
+
 # eVille 0.1.0
 
 * Implements anytime-valid one-sample t-tests for a Gaussian mean with

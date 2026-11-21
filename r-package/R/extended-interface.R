@@ -24,11 +24,8 @@
     if (prior$alternative == "two.sided") return(.ev_log_lebesgue(st$n, st$d))
     return(.evx_log_half_flat(st, if (prior$alternative == "greater") 1 else -1))
   }
-  if (prior$alternative == "two.sided" && prior$location == 0) {
-    if (prior$family == "gaussian") {
-      return(.ev_log_gaussian(st$n, st$d, prior$scale))
-    }
-    return(.ev_log_rouder(st$n, st$d, prior$scale))
+  if (prior$alternative == "two.sided") {
+    return(.evx_log_full_mixture_stats(st, prior))
   }
   .evx_log_mixture_stats(st, prior)
 }
@@ -60,20 +57,31 @@ ev_log_mixture <- function(x, prior = ev_prior(), mu = 0) {
 #' @param n0 Initial monitoring time; this implementation requires 2.
 #' @param calibration Optional reusable object from ev_calibration(), made
 #'   for exactly the same prior, support, and monitoring start.
-#' @param tolerance Absolute tolerance for the null-angle calibration bracket
-#'   when constructing a new calibrator. Defaults to 1e-4.
+#' @param tolerance Absolute numerical calibration tolerance, default 1e-5.
+#' @param calibration_method "monte_carlo" (default) or "deterministic" when
+#'   constructing a new calibration. A supplied calibration takes precedence.
+#' @param null_t Optional independent null t sample passed to ev_calibration().
+#'   Omit when supplying a calibration object. The default uses the Python
+#'   notebook's 100000 bundled null draws.
+#' @param relative_tolerance Relative numerical gap for Monte Carlo trajectory
+#'   evaluation, default 1e-3 as in the Python paper notebook. NULL disables
+#'   relative refinement. This is not a bound on Monte Carlo sampling error.
 #' @return An ev_ttest object with path, stopping_times, prior, calibration,
 #'   alpha, mu, and call. Ville is NA for Lebesgue measure.
 #' @details The working model is independent normal observations with unknown
 #'   common variance. Two-sided tests use the point null mu=mu0. Greater tests
 #'   use null mu<=mu0, and less tests use null mu>=mu0; zero standardized effect
-#'   is the least-favourable boundary for either one-sided null. General
-#'   calibration returns a conservative upper approximation, together with
-#'   its null-angle integration gap. Floating-point quadrature error in the
-#'   evidence is separate from that gap. Source-fitted priors require source
-#'   data independent of the target, and are held fixed while monitoring.
-#'   A warning identifies prefixes where the integration bracket straddles
-#'   alpha; reduce tolerance to resolve a decision at such a prefix.
+#'   is the least-favourable boundary for either one-sided null. The default
+#'   Monte Carlo calibration matches the empirical rule used in the Python
+#'   simulations. It approximates the population calibration; a finite null
+#'   sample does not establish exact anytime validity. Numerical brackets
+#'   concern the empirical mean and are separate from Monte Carlo error and
+#'   floating-point error in the evidence. The deterministic option integrates
+#'   the population null distribution. Lebesgue calibration remains analytic.
+#'   Source-fitted priors require source data independent of the target and
+#'   are held fixed while monitoring. A warning identifies a numerical
+#'   bracket that straddles alpha; tighter tolerances resolve numerical
+#'   uncertainty, but do not remove Monte Carlo sampling uncertainty.
 #' @seealso [ev_prior()], [ev_calibration()], [ev_log_mixture()]
 #' @examples
 #' x <- c(-0.3, -1.1, -0.7, -0.5, -1.4, -0.8, -0.2, -1.0)
@@ -85,14 +93,31 @@ ev_log_mixture <- function(x, prior = ev_prior(), mu = 0) {
 #' head(as.data.frame(fit))
 #' @export
 ev_ttest <- function(x, prior = ev_prior(), mu = 0, alpha = 0.05, n0 = 2,
-                     calibration = NULL, tolerance = 1e-4) {
+                     calibration = NULL, tolerance = 1e-5,
+                     calibration_method = c("monte_carlo", "deterministic"),
+                     null_t = NULL, relative_tolerance = 1e-3) {
   .evx_check_prior(prior)
+  calibration_method <- match.arg(calibration_method)
+  if (!is.null(relative_tolerance) &&
+      (!is.numeric(relative_tolerance) || length(relative_tolerance) != 1L ||
+       !is.finite(relative_tolerance) || relative_tolerance <= 0 ||
+       relative_tolerance >= 1)) {
+    stop("`relative_tolerance` must be NULL or a number between zero and one.",
+         call. = FALSE)
+  }
   if (!is.numeric(alpha) || length(alpha) != 1L || !is.finite(alpha) ||
-      alpha <= 0 || alpha >= 1 || length(n0) != 1L || is.na(n0) || n0 != 2) {
+      alpha <= 0 || alpha >= 1 || !is.numeric(n0) ||
+      length(n0) != 1L || is.na(n0) || n0 != 2) {
     stop("Require 0 < alpha < 1 and n0 = 2.", call. = FALSE)
   }
   .ev_stats(x, mu)
-  if (is.null(calibration)) calibration <- ev_calibration(prior, tolerance)
+  if (is.null(calibration)) {
+    calibration <- ev_calibration(prior, tolerance = tolerance,
+      method = calibration_method, null_t = null_t)
+  } else if (!is.null(null_t)) {
+    stop("Supply `null_t` when constructing the calibration, not alongside it.",
+         call. = FALSE)
+  }
   if (!inherits(calibration, "ev_calibration") ||
       !identical(calibration$prior, prior)) {
     stop("The calibration must match this exact prior and alternative.",
@@ -103,30 +128,50 @@ ev_ttest <- function(x, prior = ev_prior(), mu = 0, alpha = 0.05, n0 = 2,
     .evx_log_mixture_dispatch(.ev_stats(x[seq_len(k)], mu), prior)
   }, numeric(1))
   running <- cummax(lm)
-  cal <- ev_pvalues(running, calibration)
+  cal <- ev_pvalues(running, calibration,
+    relative_tolerance = if (identical(calibration$method, "monte_carlo")) {
+      relative_tolerance
+    } else NULL)
   pv <- if (prior$proper) exp(pmin(0, -running)) else rep(NA_real_, length(n))
+  # Retain the smallest calibrated value, as in the Python trajectories.
+  # Raw Monte Carlo diagnostics below continue to refer to each threshold.
+  pe <- cummin(cal$p_eville)
+  lower_running <- pmin(pe, cummin(cal$lower))
   path <- data.frame(n = n, log_evidence = lm,
-    p_eville = cal$p_eville, p_ville = pv,
-    calibration_lower = cal$lower, calibration_gap = cal$gap)
-  ambiguous <- n[cal$lower <= alpha & cal$p_eville > alpha]
+    p_eville = pe, p_ville = pv,
+    calibration_lower = lower_running,
+    calibration_gap = pmax(0, pe - lower_running),
+    running_log_evidence = running)
+  if (identical(calibration$method, "monte_carlo")) {
+    for (name in c("mc_estimate", "mc_lower", "mc_upper", "mc_gap", "mcse")) {
+      path[[name]] <- cal[[name]]
+    }
+    path$mc_samples <- cal$B
+  }
+  ambiguous <- n[path$calibration_lower <= alpha & path$p_eville > alpha]
   if (length(ambiguous)) {
     warning(paste0("The calibration bracket straddles alpha at n = ",
       paste(ambiguous[seq_len(min(8L, length(ambiguous)))], collapse = ", "),
       if (length(ambiguous) > 8L) ", ..." else "",
-      ". The test uses the conservative upper value; use a tighter calibration to resolve it."),
+      ". The test uses the numerical upper value; use a tighter calibration to resolve it."),
       call. = FALSE)
   }
   stopping <- c(eVille = .evx_first_rejection(n, path$p_eville, alpha),
                  Ville = .evx_first_rejection(n, path$p_ville, alpha))
   structure(list(call = match.call(), prior = prior, calibration = calibration,
     mu = mu, alpha = alpha, path = path, stopping_times = stopping,
-    calibration_ambiguous_n = ambiguous),
+    calibration_ambiguous_n = ambiguous,
+    relative_tolerance = relative_tolerance),
     class = "ev_ttest")
 }
 
 #' @export
 print.ev_ttest <- function(x, ...) {
-  cat("Anytime-valid one-sample t-test\n")
+  mc <- identical(x$calibration$method, "monte_carlo")
+  cat(if (mc) "One-sample t-test (Monte Carlo eVille calibration)\n" else
+    "Anytime-valid one-sample t-test\n")
+  if (mc) cat("Finite Monte Carlo approximation with", x$calibration$B,
+              "null draws; inspect summary() for diagnostics.\n")
   cat("Alternative:", x$prior$alternative, "| Null boundary:", x$mu, "\n")
   cat("Prior:", x$prior$family)
   if (x$prior$proper) {

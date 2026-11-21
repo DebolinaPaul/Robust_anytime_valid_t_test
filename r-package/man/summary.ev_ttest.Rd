@@ -24,5 +24,8 @@ or calibration. An NA rejection time means that no rejection was observed,
 except for Ville with Lebesgue measure, where the method is unavailable.
 Prior location and scale refer to the family before one-sided conditioning.
 The calibration integration gap does not include floating-point error in
-the evidence calculation.
+the evidence calculation. In Monte Carlo mode, the summary also reports
+the null sample size and empirical calibration standard error. These
+diagnostics do not establish exact anytime validity for finite Monte
+Carlo calibration.
 }

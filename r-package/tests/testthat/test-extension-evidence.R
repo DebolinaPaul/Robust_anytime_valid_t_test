@@ -65,8 +65,11 @@ test_that('centered two-sided evidence retains the original reference cases', {
   x <- extension_data(8, 2.3)
   for (family in c('gaussian', 'cauchy', 'lebesgue')) {
     old <- if (family == 'cauchy') 'rouder' else family
+    # The notebook's normal-scale quadrature uses relative tolerance 2e-9.
+    # Its checked omitted tail can differ from the older centered-only
+    # quadrature by about 1e-10; do not demand agreement beyond that accuracy.
     expect_equal(ev_log_mixture(x, ev_prior(family)),
-                 ev_log_evidence(x, old), tolerance = 1e-12)
+                 ev_log_evidence(x, old), tolerance = 2e-9)
   }
   expect_error(ev_prior('rouder', location = 1), 'shifted Cauchy')
   expect_error(ev_prior('gaussian', scale = 0), 'scale')

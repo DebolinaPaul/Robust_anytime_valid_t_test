@@ -4,17 +4,24 @@
 \alias{ev_pvalues}
 \title{Calibrate log evidence with its matching null calibration}
 \usage{
-ev_pvalues(log_evidence, calibration)
+ev_pvalues(log_evidence, calibration, relative_tolerance = NULL)
 }
 \arguments{
 \item{log_evidence}{Numeric vector of natural log evidence; infinities are
 allowed. Use cumulative maxima for running p-values.}
 
 \item{calibration}{Object from ev_calibration().}
+
+\item{relative_tolerance}{Optional relative numerical gap for Monte Carlo
+evaluation. NULL uses only the calibrator's absolute tolerance.}
 }
 \value{
-A data frame containing p_eville (upper value), lower, gap, and
-intervals (number of adaptive angle intervals).
+A data frame with p_eville, lower, gap and intervals. In Monte Carlo
+mode, p_eville is the empirical numerical upper value capped by Ville;
+lower is capped in the same way. Additional columns mc_estimate,
+mc_lower, mc_upper, mc_gap, mcse and B describe the uncapped empirical
+calibration and sample size. These brackets do not bound Monte Carlo
+error relative to the population calibration.
 }
 \description{
 Calibrate log evidence with its matching null calibration

@@ -11,7 +11,10 @@ ev_ttest(
   alpha = 0.05,
   n0 = 2,
   calibration = NULL,
-  tolerance = 1e-04
+  tolerance = 1e-05,
+  calibration_method = c("monte_carlo", "deterministic"),
+  null_t = NULL,
+  relative_tolerance = 0.001
 )
 }
 \arguments{
@@ -29,8 +32,18 @@ positive sample variance; observations are never silently removed.}
 \item{calibration}{Optional reusable object from ev_calibration(), made
 for exactly the same prior, support, and monitoring start.}
 
-\item{tolerance}{Absolute tolerance for the null-angle calibration bracket
-when constructing a new calibrator. Defaults to 1e-4.}
+\item{tolerance}{Absolute numerical calibration tolerance, default 1e-5.}
+
+\item{calibration_method}{"monte_carlo" (default) or "deterministic" when
+constructing a new calibration. A supplied calibration takes precedence.}
+
+\item{null_t}{Optional independent null t sample passed to ev_calibration().
+Omit when supplying a calibration object. The default uses the Python
+notebook's 100000 bundled null draws.}
+
+\item{relative_tolerance}{Relative numerical gap for Monte Carlo trajectory
+evaluation, default 1e-3 as in the Python paper notebook. NULL disables
+relative refinement. This is not a bound on Monte Carlo sampling error.}
 }
 \value{
 An ev_ttest object with path, stopping_times, prior, calibration,
@@ -43,13 +56,17 @@ Run an anytime-valid one-sample t-test
 The working model is independent normal observations with unknown
 common variance. Two-sided tests use the point null mu=mu0. Greater tests
 use null mu<=mu0, and less tests use null mu>=mu0; zero standardized effect
-is the least-favourable boundary for either one-sided null. General
-calibration returns a conservative upper approximation, together with
-its null-angle integration gap. Floating-point quadrature error in the
-evidence is separate from that gap. Source-fitted priors require source
-data independent of the target, and are held fixed while monitoring.
-A warning identifies prefixes where the integration bracket straddles
-alpha; reduce tolerance to resolve a decision at such a prefix.
+is the least-favourable boundary for either one-sided null. The default
+Monte Carlo calibration matches the empirical rule used in the Python
+simulations. It approximates the population calibration; a finite null
+sample does not establish exact anytime validity. Numerical brackets
+concern the empirical mean and are separate from Monte Carlo error and
+floating-point error in the evidence. The deterministic option integrates
+the population null distribution. Lebesgue calibration remains analytic.
+Source-fitted priors require source data independent of the target and
+are held fixed while monitoring. A warning identifies a numerical
+bracket that straddles alpha; tighter tolerances resolve numerical
+uncertainty, but do not remove Monte Carlo sampling uncertainty.
 }
 \examples{
 x <- c(-0.3, -1.1, -0.7, -0.5, -1.4, -0.8, -0.2, -1.0)

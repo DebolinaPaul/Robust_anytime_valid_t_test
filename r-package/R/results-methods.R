@@ -9,7 +9,10 @@
 #'   except for Ville with Lebesgue measure, where the method is unavailable.
 #'   Prior location and scale refer to the family before one-sided conditioning.
 #'   The calibration integration gap does not include floating-point error in
-#'   the evidence calculation.
+#'   the evidence calculation. In Monte Carlo mode, the summary also reports
+#'   the null sample size and empirical calibration standard error. These
+#'   diagnostics do not establish exact anytime validity for finite Monte
+#'   Carlo calibration.
 #' @export
 summary.ev_ttest <- function(object, ...) {
   path <- object$path
@@ -36,6 +39,12 @@ summary.ev_ttest <- function(object, ...) {
     n0 = path$n[1L],
     results = results,
     max_calibration_gap = max(path$calibration_gap),
+    calibration_method = object$calibration$method,
+    mc_samples = if (identical(object$calibration$method, "monte_carlo")) {
+      object$calibration$B
+    } else 0L,
+    final_mcse = if ("mcse" %in% names(path)) path$mcse[last] else NA_real_,
+    max_mc_gap = if ("mc_gap" %in% names(path)) max(path$mc_gap) else NA_real_,
     calibration_ambiguous_n = object$calibration_ambiguous_n
   ), class = "summary.ev_ttest")
 }
@@ -48,8 +57,11 @@ summary.ev_ttest <- function(object, ...) {
 #' @return The input, invisibly.
 #' @export
 print.summary.ev_ttest <- function(x, digits = 4, ...) {
-  cat("Anytime-valid one-sample t-test\n")
+  mc <- identical(x$calibration_method, "monte_carlo")
+  cat(if (mc) "One-sample t-test (Monte Carlo eVille calibration)\n" else
+    "Anytime-valid one-sample t-test\n")
   cat("Observations:", x$n, "| Monitoring starts at:", x$n0, "\n")
+  cat("Calibration:", x$calibration_method, "\n")
   cat("Alternative:", x$prior$alternative,
       "| Null boundary:", x$mu, "| Alpha:", x$alpha, "\n")
   cat("Prior:", x$prior$family)
@@ -71,8 +83,16 @@ print.summary.ev_ttest <- function(x, digits = 4, ...) {
   display$final_running_p[unavailable] <- "--"
   display$first_rejection[unavailable] <- "--"
   print(display, row.names = FALSE, right = FALSE)
-  cat("\nMaximum null-calibration integration gap:",
+  cat("\nMaximum numerical calibration gap:",
       format(x$max_calibration_gap, digits = digits), "\n")
+  if (mc) {
+    cat("Null Monte Carlo draws:", x$mc_samples, "\n")
+    cat("Final empirical calibration MC standard error (before Ville cap):",
+        format(x$final_mcse, digits = digits), "\n")
+    cat("Maximum raw empirical numerical gap:",
+        format(x$max_mc_gap, digits = digits), "\n")
+    cat("Finite Monte Carlo approximation; MC error is separate from the numerical gap.\n")
+  }
   if (length(x$calibration_ambiguous_n)) {
     cat("Calibration bracket straddles alpha at n =",
         paste(x$calibration_ambiguous_n, collapse = ", "), "\n")
@@ -91,7 +111,7 @@ print.summary.ev_ttest <- function(x, digits = 4, ...) {
 #'   this method draws step paths on linear axes.
 #' @param method Which procedure to display: "both", "eVille", or "Ville".
 #' @param xlab,ylab Axis labels.
-#' @param main Plot title.
+#' @param main Plot title. The default identifies Monte Carlo calibration when used.
 #' @param ylim Vertical axis limits, default c(0, 1).
 #' @param legend_position A legend position such as "topright", or NULL
 #'   to omit the legend.
@@ -114,6 +134,9 @@ plot.ev_ttest <- function(x, y = NULL, ...,
          call. = FALSE)
   }
   method <- match.arg(method)
+  mc <- identical(x$calibration$method, "monte_carlo")
+  if (mc && missing(main)) main <- "One-sample t-test: Monte Carlo eVille calibration"
+  if (mc && missing(ylab)) ylab <- "Running p-value (Monte Carlo eVille)"
   selected <- if (method == "both") c("eVille", "Ville") else method
   if (!isTRUE(x$prior$proper)) {
     if (method == "Ville") {
@@ -145,7 +168,8 @@ plot.ev_ttest <- function(x, y = NULL, ...,
   }
   if (!is.null(legend_position)) {
     graphics::legend(legend_position,
-                     legend = c(selected, paste0("alpha = ", x$alpha)),
+                     legend = c(ifelse(mc & selected == "eVille", "eVille (MC)", selected),
+                                paste0("alpha = ", x$alpha)),
                      col = c(unname(colours[selected]), "grey40"),
                      lty = c(unname(styles[selected]), 3),
                      lwd = c(rep(2, length(selected)), 1), bty = "n")

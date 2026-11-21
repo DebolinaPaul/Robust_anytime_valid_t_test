@@ -1,6 +1,6 @@
 Package: eVille
 Title: Anytime-Valid One-Sample t-Tests Using Extended Ville Calibration
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
     person(
         given = "Debolina",
@@ -21,13 +21,14 @@ Authors@R: c(
         role = "aut"
     )
     )
-Description: Implements anytime-valid one-sample t-tests for a Gaussian
-    mean with unknown variance. Fixed priors on the standardized effect
-    size are combined with Ville or extended Ville calibration to obtain
-    running p-values and first rejection times. Supports Gaussian and
-    Cauchy priors, one-sided and two-sided alternatives, and separately
-    calibrated Lebesgue benchmarks. Provides summaries and plots of
-    sequential test results.
+Description: Implements one-sample t-tests for a Gaussian mean with unknown
+    variance using Ville and extended Ville calibration. Supports Gaussian,
+    Cauchy, Student-t5, Laplace and horseshoe effect-size priors, one-sided
+    and two-sided alternatives, and separately calibrated Lebesgue benchmarks.
+    Provides Monte Carlo calibration matching the accompanying Python
+    simulations, deterministic calibration, running values, first rejection
+    times, summaries and plots. Finite Monte Carlo calibration approximates
+    the population calibration and reports sampling and numerical diagnostics.
 License: MIT + file LICENSE
 Config/roxygen2/version: 8.1.1
 Encoding: UTF-8
@@ -38,6 +39,7 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     graphics,
-    stats
+    stats,
+    utils
 URL: https://github.com/DebolinaPaul/Robust_anytime_valid_t_test
 BugReports: https://github.com/DebolinaPaul/Robust_anytime_valid_t_test/issues
