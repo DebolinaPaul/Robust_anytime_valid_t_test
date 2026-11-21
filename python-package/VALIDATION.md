@@ -26,17 +26,17 @@ reported numerical bounds, up to the reference integration tolerance.
 
 The two-sided evidence engine is the numerical engine from
 `experiments/simulations/Code_simulation.ipynb`. The Monte Carlo engine
-uses the same empirical calibration rule. The notebook SHA256 is
+uses the same empirical calibration rule. The reference fixtures were generated from the notebook snapshot with SHA256
 `799a35a2392812cacd12491bc40b3c9c1de68f2039ffa550d5b83d764e7dfccc`.
 The bundled sample and its provenance are included in `src/eville/data/`.
 Tests use reference CSVs generated separately from this package.
 
 Both examples run successfully and export CSV and PDF files. For the
-100-observation stream used in `examples/compare_priors.py`, the default
+50-observation stream used in `examples/compare_priors.py`, the default
 settings give first rejection times 48, 47, 47, 47 and 48 for Gaussian,
 Cauchy, Student-t5, Laplace and horseshoe, respectively, for both methods.
-This example demonstrates the interface and agreement with the reference
-calculations; it is not an example of a strict stopping-time improvement.
+This example demonstrates agreement with the reference calculations;
+it does not illustrate a strict stopping-time improvement.
 
 A separate precision check reproduced all 15 Monte Carlo reference rows
 when extended-precision accumulations were restricted to ordinary float64,
