@@ -1,0 +1,23 @@
+{
+  "scope": "two-sided centered priors; evidence only; n0 not involved",
+  "source_files_sha256": {
+    "engine.py": "3186db268dbe1140196baf4c28262b6cdd3dcb5ef1871f1b9ec7375b07e3a49a",
+    "improper_flat.py": "e3fdf04848504535d7bee1d0e6e175015c59898d0a728612f661bc76130dee5b"
+  },
+  "versions": {
+    "python": "3.13.15",
+    "numpy": "2.3.5",
+    "scipy": "1.18.1"
+  },
+  "quadrature_orders": [
+    32,
+    64
+  ],
+  "max_log_m_order_difference": 8.881784197001252e-16,
+  "max_log_m_independent_formula_difference": 4.274358644806853e-15,
+  "max_log_lr_nct_difference": 1.924171044720424e-09,
+  "mixture_rows": 56,
+  "likelihood_ratio_rows": 27,
+  "proper_symmetrization": "logaddexp(log_Mplus(t),log_Mplus(-t))-log(2)",
+  "lebesgue_symmetrization": "logaddexp(log_Mplus(t),log_Mplus(-t))"
+}

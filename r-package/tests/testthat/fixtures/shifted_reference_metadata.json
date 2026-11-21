@@ -1,0 +1,26 @@
+{
+  "scope": "shifted Gaussian/Cauchy; two-sided and conditioned one-sided mixtures; full/half Lebesgue",
+  "source_files_sha256": {
+    "engine.py": "bcea2c4fc3d65dbb6d0a618803df968ad9f9babfd3ba48238cf5fd5590e6ae9f",
+    "improper_flat.py": "e3fdf04848504535d7bee1d0e6e175015c59898d0a728612f661bc76130dee5b"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "quadrature_orders": [
+    32,
+    64
+  ],
+  "evidence_rows": 375,
+  "calibration_rows": 60,
+  "max_log_m_order_difference": 1.7763568394002505e-15,
+  "gaussian_independent_radial_checks": 174,
+  "max_gaussian_radial_log_difference": 7.105427357601002e-15,
+  "max_calibration_order_difference": 2.220446049250313e-16,
+  "full_proper_mixture": "positive_prior_mass*Mplus(t;m) + negative_prior_mass*Mplus(-t;-m)",
+  "less_mixture": "Mplus(-t;-m)",
+  "lebesgue_two_sided": "Mplus(t)+Mplus(-t)",
+  "calibration_note": "Proper calibration references only cover one-sided priors. They use the actual Python calibration_direct, a numerical approximation, not a certified bound. Full and half Lebesgue are analytic."
+}

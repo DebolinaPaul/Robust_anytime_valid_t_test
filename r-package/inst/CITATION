@@ -1,0 +1,14 @@
+citHeader("To cite the eVille R package, use:")
+
+bibentry(
+  bibtype = "Manual",
+  title = "eVille: Anytime-Valid One-Sample t-Tests Using Extended Ville Calibration",
+  author = c(
+    person("Debolina", "Paul"),
+    person("Patrick", "Rebeschini"),
+    person("Fran\u00e7ois", "Caron")
+  ),
+  year = "2026",
+  note = paste("R package version", meta$Version),
+  url = "https://github.com/DebolinaPaul/Robust_anytime_valid_t_test"
+)
