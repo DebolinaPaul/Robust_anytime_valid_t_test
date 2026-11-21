@@ -99,7 +99,7 @@ The required input files are:
 Original data release:
 [DepMap 24Q4 Public](https://doi.org/10.25452/figshare.plus.27993248.v1).
 
-The final analysis instructions will specify the filtering,
+The analysis specifies the filtering,
 patient deduplication, prior fitting, and observation-order procedures
 needed to reproduce the reported results.
 
