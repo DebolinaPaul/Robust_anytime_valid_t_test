@@ -69,7 +69,6 @@ The intended organisation is:
 | `results/` | Numerical results and figures used in the paper |
 | `reproduce/` | Reproduction instructions and figure/table manifest |
 | `JRSSB/` | Main manuscript and supplementary material |
-| `archive/` | Historical experiments and earlier versions |
 
 The Python experiment code will include the additional prior families
 used in the paper, beyond those currently supported by the R package.
