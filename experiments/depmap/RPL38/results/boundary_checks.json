@@ -1,0 +1,4648 @@
+{
+  "checks": 663,
+  "all_agree": true,
+  "checked_orders": "original order plus first validation_orders random orders",
+  "records": [
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bladder/Urinary Tract",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bone",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Bowel",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Breast",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "CNS/Brain",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Cervix",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Esophagus/Stomach",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Head and Neck",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lung",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Lymphoid",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Myeloid",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Ovary/Fallopian Tube",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Pancreas",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Peripheral Nervous System",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Skin",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Soft Tissue",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Gaussian",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Laplace",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Student-t5",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Horseshoe",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 0,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 1,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Rouder half-Cauchy",
+      "permutation": 2,
+      "method": "Ville",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Improper flat",
+      "permutation": 0,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Improper flat",
+      "permutation": 1,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    },
+    {
+      "target_lineage": "Uterus",
+      "prior": "Improper flat",
+      "permutation": 2,
+      "method": "eVille",
+      "direct_and_boundary_agree": true
+    }
+  ]
+}

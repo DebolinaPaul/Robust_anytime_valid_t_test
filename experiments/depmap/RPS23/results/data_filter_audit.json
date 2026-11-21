@@ -1,0 +1,25 @@
+{
+  "gene": "RPS23",
+  "gene_column": "RPS23 (6228)",
+  "gene_effect_rows": 1178,
+  "sex_filter": "Male",
+  "sex_metadata_column": "Sex",
+  "sex_counts_before_filter": {
+    "Male": 639,
+    "Female": 480,
+    "Unknown": 59
+  },
+  "rows_excluded_by_sex_filter": 539,
+  "excluded_sex_counts": {
+    "Female": 480,
+    "Unknown": 59
+  },
+  "unknown_or_other_sex_rows_excluded": 59,
+  "nonfinite_score_rows": 0,
+  "missing_patient_rows": 0,
+  "missing_lineage_rows": 0,
+  "noncancerous_rows": 0,
+  "otherwise_eligible_rows_excluded_by_sex_filter": 539,
+  "duplicate_patient_rows_removed": 17,
+  "eligible_distinct_patients": 622
+}

@@ -1,0 +1,61 @@
+{
+  "evidence": {
+    "checks": {
+      "centered_gaussian": 60,
+      "shifted_gaussian": 36,
+      "large_positive_radial": 6,
+      "negative_radial": 17,
+      "independent_effect_integrals": 10,
+      "reflection": 10,
+      "large_prior_conflict": 8,
+      "horseshoe_density": 5,
+      "lebesgue": 16
+    },
+    "maximum_absolute_log_errors": {
+      "centered_gaussian": 1.1368683772161603e-13,
+      "shifted_gaussian": 7.283063041541027e-14,
+      "large_positive_radial": 1.1368683772161603e-13,
+      "negative_radial": 5.684341886080802e-14,
+      "independent_effect_integrals": 1.5497447769519113e-10,
+      "reflection": 0.0,
+      "large_prior_conflict": 1.2401990545640729e-10,
+      "horseshoe_density": 1.7763568394002505e-15,
+      "lebesgue": 2.2737367544323206e-13
+    },
+    "elapsed_seconds": 0.3223660420626402,
+    "status": "passed"
+  },
+  "monte_carlo_calibration": {
+    "status": "passed",
+    "checks": {
+      "empirical_brackets_all_five_priors": 75,
+      "ties_constant_and_ville_cap": 13,
+      "empirical_cutoffs": 6,
+      "multiplicative_scale_checks": 13,
+      "log_calibration_below_floating_point_range": 4,
+      "publication_size_empirical_sums": 3
+    },
+    "maximum_absolute_errors": {
+      "empirical_mean_midpoint": 4.991603348714069e-08,
+      "mcse": 1.4089142518890901e-08,
+      "log_cutoff": 9.211282547827437e-08,
+      "scaled_log_cutoff": 1.3550847555166001e-08,
+      "tiny_log_calibration": 0.0
+    },
+    "dkw_diagnostic": {
+      "B": 100000,
+      "delta": 0.01,
+      "epsilon": 0.005146997846583986,
+      "scope": "one fixed prior, uniformly over positive thresholds"
+    },
+    "interpretation": "These checks validate empirical Monte Carlo calibration; they do not turn a raw sample mean into an exactly anytime-valid population calibration."
+  },
+  "experiment_helpers": {
+    "status": "passed",
+    "checks": {
+      "student_statistic_and_scale_invariance": 135,
+      "unimodal_counts_against_brute_force": 1215
+    },
+    "maximum_absolute_t_error": 3.552713678800501e-15
+  }
+}

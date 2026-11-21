@@ -1,0 +1,23 @@
+{
+  "complete": true,
+  "files": [
+    "boundary_checks.json",
+    "cohort.csv",
+    "critical_boundaries.csv.gz",
+    "data_filter_audit.json",
+    "example_paths.csv",
+    "figures/conflict_and_flat_baseline.pdf",
+    "figures/conflict_and_flat_baseline_myeloid.pdf",
+    "figures/example_forest_and_evidence.pdf",
+    "figures/example_running_pvalues.pdf",
+    "figures/paired_savings_all_lineages.pdf",
+    "figures/raw_stopping_times_all_lineages.pdf",
+    "observations.csv.gz",
+    "paper_stopping_times.csv",
+    "prior_fits.csv",
+    "settings.json",
+    "stopping_times.csv.gz",
+    "summary.csv",
+    "validation.json"
+  ]
+}

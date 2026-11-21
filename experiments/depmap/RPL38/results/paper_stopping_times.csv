@@ -1,0 +1,11 @@
+Panel,Fitted prior,Fitted prior: eVille,Fitted prior: Ville,Lebesgue: eVille,Rouder eVille
+All eligible lineages,Gaussian,3.88,3.88,4.87,4.91
+All eligible lineages,Cauchy,3.89,3.89,4.87,4.91
+All eligible lineages,Laplace,3.87,3.87,4.87,4.91
+All eligible lineages,Student-t5,3.87,3.87,4.87,4.91
+All eligible lineages,Horseshoe,3.90,3.90,4.87,4.91
+Myeloid,Gaussian,6.11,6.11,7.38,6.29
+Myeloid,Cauchy,5.92,5.92,7.38,6.29
+Myeloid,Laplace,5.95,5.95,7.38,6.29
+Myeloid,Student-t5,6.04,6.04,7.38,6.29
+Myeloid,Horseshoe,6.38,6.38,7.38,6.29

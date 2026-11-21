@@ -1,0 +1,11 @@
+Panel,Fitted prior,Fitted prior: eVille,Fitted prior: Ville,Lebesgue: eVille,Rouder eVille
+All eligible lineages,Gaussian,4.68,4.68,6.54,5.73
+All eligible lineages,Cauchy,4.68,4.68,6.54,5.73
+All eligible lineages,Laplace,4.66,4.66,6.54,5.73
+All eligible lineages,Student-t5,4.67,4.67,6.54,5.73
+All eligible lineages,Horseshoe,4.67,4.67,6.54,5.73
+Prostate,Gaussian,7.43,7.43,9.68,7.64
+Prostate,Cauchy,7.42,7.42,9.68,7.64
+Prostate,Laplace,7.30,7.30,9.68,7.64
+Prostate,Student-t5,7.39,7.39,9.68,7.64
+Prostate,Horseshoe,7.65,7.65,9.68,7.64

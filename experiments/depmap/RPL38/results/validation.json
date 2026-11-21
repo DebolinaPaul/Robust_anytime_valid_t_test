@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "tested_lineages": 17,
+  "main_lineages": 17,
+  "small_lineages": 0,
+  "paired_random_orders_per_lineage": 100,
+  "method_stopping_decisions_reproduced": 22321,
+  "method_summary_rows_reproduced": 221,
+  "boundary_rows_checked": 5174,
+  "maximum_example_log_evidence_refinement_error": 5.329070518200751e-15,
+  "core_checks": {
+    "likelihood_reference_points": 60,
+    "maximum_likelihood_log_error": 8.046896482483135e-13,
+    "maximum_horseshoe_survival_relative_error": 3.3306690738754696e-16,
+    "extreme_horseshoe_log_mixture_error": 0.0,
+    "flat_mixture_reference_points": 20,
+    "maximum_flat_mixture_relative_error": 6.217248937900877e-15,
+    "maximum_flat_calibration_inverse_relative_error": 3.5083047578154947e-14,
+    "maximum_near_zero_flat_log_error": 0.0,
+    "invalid_likelihood_inputs_rejected": 4
+  },
+  "interpretation": "Numerical verification for these cases, not certified quadrature bounds or validation of Gaussianity, independence, or retrospective selection."
+}

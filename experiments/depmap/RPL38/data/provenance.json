@@ -1,0 +1,34 @@
+{
+  "release": "DepMap Public 24Q4",
+  "doi": "10.25452/figshare.plus.27993248.v1",
+  "source_files": [
+    {
+      "id": 51064667,
+      "name": "CRISPRGeneEffect.csv",
+      "size": 428678699,
+      "is_link_only": false,
+      "download_url": "https://ndownloader.figshare.com/files/51064667",
+      "supplied_md5": "6edf7ade09b9b34199210b559d4745d3",
+      "computed_md5": "6edf7ade09b9b34199210b559d4745d3",
+      "mimetype": "text/csv",
+      "verified_local_md5": "6edf7ade09b9b34199210b559d4745d3"
+    },
+    {
+      "id": 51065297,
+      "name": "Model.csv",
+      "size": 645696,
+      "is_link_only": false,
+      "download_url": "https://ndownloader.figshare.com/files/51065297",
+      "supplied_md5": "675210d17675f3517b0ce39a3c274f16",
+      "computed_md5": "675210d17675f3517b0ce39a3c274f16",
+      "mimetype": "undefined",
+      "verified_local_md5": "675210d17675f3517b0ce39a3c274f16"
+    }
+  ],
+  "subset_genes": [
+    "RPL38"
+  ],
+  "subset_rows": 1178,
+  "gene_effect_subset_md5": "4c355f8204b9272c75493556a16e7fe4",
+  "analysis_filter": "Each experiment uses a single recorded Sex value for BOTH source and target, before per-gene patient deduplication."
+}

@@ -1,0 +1,59 @@
+{
+  "reference": "uploaded RPL38_final.zip",
+  "statistical_modules_unchanged": true,
+  "files": [
+    {
+      "file": "engine.py",
+      "reference_sha256": "3186db268dbe1140196baf4c28262b6cdd3dcb5ef1871f1b9ec7375b07e3a49a",
+      "new_sha256": "3186db268dbe1140196baf4c28262b6cdd3dcb5ef1871f1b9ec7375b07e3a49a",
+      "byte_identical": true
+    },
+    {
+      "file": "improper_flat.py",
+      "reference_sha256": "e3fdf04848504535d7bee1d0e6e175015c59898d0a728612f661bc76130dee5b",
+      "new_sha256": "e3fdf04848504535d7bee1d0e6e175015c59898d0a728612f661bc76130dee5b",
+      "byte_identical": true
+    },
+    {
+      "file": "fitting.py",
+      "reference_sha256": "ed12dba5f0700df476e890f65c8a4457c7ca7ffde1027fe7b17261eea93116e2",
+      "new_sha256": "ed12dba5f0700df476e890f65c8a4457c7ca7ffde1027fe7b17261eea93116e2",
+      "byte_identical": true
+    },
+    {
+      "file": "cohort.py",
+      "reference_sha256": "10f2ecc5b11d477e9d67a9582173f245c80fc29dc3ed98e94eb65d99b44d05f5",
+      "new_sha256": "10f2ecc5b11d477e9d67a9582173f245c80fc29dc3ed98e94eb65d99b44d05f5",
+      "byte_identical": true
+    },
+    {
+      "file": "sequential.py",
+      "reference_sha256": "b3170142b36945f044eb8da6fb354c0b52d7064bdf152326f060939b78e05265",
+      "new_sha256": "b3170142b36945f044eb8da6fb354c0b52d7064bdf152326f060939b78e05265",
+      "byte_identical": true
+    },
+    {
+      "file": "effect_intervals.py",
+      "reference_sha256": "0ee14515cc08dbd0cf565e113c9171babec6fe19f6408ce8f1731632c03ec4d2",
+      "new_sha256": "0ee14515cc08dbd0cf565e113c9171babec6fe19f6408ce8f1731632c03ec4d2",
+      "byte_identical": true
+    },
+    {
+      "file": "validate.py",
+      "reference_sha256": "1b24048e442dc67b54dc77313d365ec44dee34cdf24ee379f71159119813ec97",
+      "new_sha256": "1b24048e442dc67b54dc77313d365ec44dee34cdf24ee379f71159119813ec97",
+      "byte_identical": true
+    },
+    {
+      "file": "requirements.txt",
+      "reference_sha256": "556d8e7273830d2bb88cca082bdb73d0c985d3980bbad6552b73b936fc8f88dc",
+      "new_sha256": "556d8e7273830d2bb88cca082bdb73d0c985d3980bbad6552b73b936fc8f88dc",
+      "byte_identical": true
+    }
+  ],
+  "other_changes": [
+    "Runner gene/sex/example target defaults and package labels",
+    "Figure/table example target made dynamic instead of Myeloid",
+    "Runner docstring and minimum-size error text; six-figure docstring"
+  ]
+}
